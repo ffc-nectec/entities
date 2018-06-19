@@ -2,6 +2,7 @@
 plugins {
     kotlin("jvm") version "1.2.50"
     id("org.jlleitschuh.gradle.ktlint") version "4.1.0"
+    maven
 }
 
 dependencies {
