@@ -34,7 +34,7 @@ data class Organization(val uuid: UUID = UUID.randomUUID()) : Cloneable {
     var socketUrl: String? = null
     var firebaseToken: String? = null
 
-    override fun clone(): Organization {
+    public override fun clone(): Organization {
         return super.clone() as Organization
     }
 }
