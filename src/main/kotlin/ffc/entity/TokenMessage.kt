@@ -37,7 +37,8 @@ data class TokenMessage(
         else -> timestamp
     }
 
-    fun checkExpireTokem(): Boolean = expireDate.isBeforeNow
+    val isNotExpire: Boolean
+        get() = expireDate <= DateTime.now()
 
     enum class TYPEROLE {
         ORG, USER, NOAUTH
