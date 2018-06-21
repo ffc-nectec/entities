@@ -20,5 +20,4 @@ package ffc.model
 data class Payload(val message: Message) {
 
     data class Message(val data: Messaging)
-
 }

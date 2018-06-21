@@ -38,5 +38,3 @@ fun Any.toJson(): String {
 inline fun <reified T> String.fromJson(): T {
     return goon.fromJson(this, T::class.java)
 }
-
-

@@ -1,6 +1,10 @@
 package ffc.entity
 
-import com.google.gson.*
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import java.lang.reflect.Type
 
 interface Identity {
@@ -21,11 +25,9 @@ class ThaiHouseholdId(override val id: String) : Identity {
     override fun isValid(): Boolean = id.length == 11
 }
 
-
 class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity> {
     override fun serialize(src: Identity?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
         return context!!.serialize(src)
-
     }
 
     override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Identity {
