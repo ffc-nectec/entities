@@ -17,24 +17,24 @@
 
 package ffc.entity
 
-import java.util.UUID
+import com.fatboyindustrial.gsonjodatime.Converters
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import me.piruin.geok.LatLng
+import me.piruin.geok.gson.LatLngSerializer
 
-data class Organization(val uuid: UUID = UUID.randomUUID()) : Cloneable {
+val goon = Converters.registerAll(GsonBuilder())
+        .adapterFor<LatLng>(LatLngSerializer())
+        .adapterFor<Identity>(IdentityDeserializer()).create()
 
-    constructor(uuid: UUID = UUID.randomUUID(), block: Organization.() -> Unit) : this(uuid) {
-        apply(block)
-    }
+private inline fun <reified T> GsonBuilder.adapterFor(adapter: Any): GsonBuilder {
+    return registerTypeAdapter(object : TypeToken<T>() {}.type, adapter)
+}
 
-    var id: String = "-1"
-    var pcuCode: String = "099912"
-    var name: String = "NECTEC"
-    var session: String? = null
-    var lastKnownIp: String? = null
-    var token: UUID? = null
-    var socketUrl: String? = null
-    var firebaseToken: String? = null
+fun Any.toJson(): String {
+    return goon.toJson(this)
+}
 
-    override fun clone(): Organization {
-        return super.clone() as Organization
-    }
+inline fun <reified T> String.fromJson(): T {
+    return goon.fromJson(this, T::class.java)
 }
