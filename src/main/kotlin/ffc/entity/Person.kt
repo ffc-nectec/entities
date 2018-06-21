@@ -17,7 +17,7 @@
 
 package ffc.entity
 
-import java.time.LocalDate
+import org.joda.time.LocalDate
 import java.util.Random
 
 data class Person(val id: Long = Random().nextLong() * -1) : Cloneable {
