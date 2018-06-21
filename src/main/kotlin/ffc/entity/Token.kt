@@ -20,8 +20,8 @@ package ffc.entity
 import org.joda.time.DateTime
 import java.util.UUID
 
-val USERDATEEXPIRE = 1
-val ORGDATEEXPIRE = 9000
+const val USER_DATE_EXPIRE = 1
+const val ORG_DATE_EXPIRE = 9000
 
 data class TokenMessage(
     val token: UUID,
@@ -32,8 +32,8 @@ data class TokenMessage(
 ) {
 
     var expireDate: DateTime = when (role) {
-        TYPEROLE.USER -> timestamp.plusDays(USERDATEEXPIRE)
-        TYPEROLE.ORG -> timestamp.plusDays(ORGDATEEXPIRE)
+        TYPEROLE.USER -> timestamp.plusDays(USER_DATE_EXPIRE)
+        TYPEROLE.ORG -> timestamp.plusDays(ORG_DATE_EXPIRE)
         else -> timestamp
     }
 
