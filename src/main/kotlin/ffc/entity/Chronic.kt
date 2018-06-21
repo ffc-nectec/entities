@@ -26,4 +26,6 @@ data class Chronic(val idc10: String, val diagDate: LocalDate) : Cloneable {
     var dischardDate: LocalDate? = null
     var houseId: Int? = null
     var pid: Long? = null
+
+    public override fun clone(): Chronic = super.clone() as Chronic
 }

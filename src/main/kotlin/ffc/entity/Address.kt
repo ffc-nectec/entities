@@ -43,4 +43,6 @@ data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now
     enum class Type {
         House, Condo
     }
+
+    public override fun clone(): Address = super.clone() as Address
 }
