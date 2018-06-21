@@ -21,7 +21,7 @@ import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
 
-data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now()) {
+data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now()) : Cloneable {
 
     var _shortId: String = ""
     var identity: Identity? = null
@@ -42,25 +42,5 @@ data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now
 
     enum class Type {
         House, Condo
-    }
-
-    fun clone(): Address {
-        val cloneObj = Address(this._id, this.dateUpdate)
-        cloneObj._shortId = this._shortId
-        cloneObj.identity = this.identity
-        cloneObj.type = this.type
-        cloneObj.no = this.no
-        cloneObj.road = this.road
-        cloneObj.tambon = this.tambon
-        cloneObj.ampur = this.ampur
-        cloneObj.changwat = this.changwat
-        cloneObj.coordinates = this.coordinates
-        cloneObj.hid = this.hid
-        cloneObj.haveChronics = this.haveChronics
-        cloneObj.people = this.people
-        cloneObj.pcuCode = this.pcuCode
-        cloneObj._sync = this._sync
-
-        return cloneObj
     }
 }

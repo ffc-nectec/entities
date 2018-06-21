@@ -19,7 +19,7 @@ package ffc.entity
 
 import org.joda.time.LocalDate
 
-data class Chronic(val idc10: String, val diagDate: LocalDate) {
+data class Chronic(val idc10: String, val diagDate: LocalDate) : Cloneable {
     var diagHospCode: String? = null
     var careHospCode: String? = null
     var status: String = "active"
