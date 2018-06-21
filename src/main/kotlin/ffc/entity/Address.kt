@@ -44,5 +44,5 @@ data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now
         House, Condo
     }
 
-    public override fun clone(): Address = this.clone()
+    public override fun clone(): Address = super.clone() as Address
 }
