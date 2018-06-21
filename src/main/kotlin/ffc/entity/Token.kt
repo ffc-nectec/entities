@@ -38,6 +38,9 @@ data class TokenMessage(
     }
 
     val isNotExpire: Boolean
+        get() = !isExpire
+
+    val isExpire: Boolean
         get() = expireDate <= DateTime.now()
 
     enum class TYPEROLE {
