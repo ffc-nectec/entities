@@ -23,9 +23,8 @@ import java.util.UUID
 const val USER_DATE_EXPIRE = 1
 const val ORG_DATE_EXPIRE = 9000
 
-data class TokenMessage(
-    val token: UUID,
-    var firebaseToken: String? = null,
+data class Token(
+    val token: String,
     val timestamp: DateTime = DateTime.now(),
     val role: TYPEROLE = TYPEROLE.NOAUTH,
     val name: String
