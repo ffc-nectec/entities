@@ -18,9 +18,16 @@
 package ffc.entity
 
 import org.joda.time.LocalDate
-import java.util.Random
+import java.util.UUID
 
-data class Person(val id: Long = Random().nextLong() * -1) : Cloneable {
+class Person(id: String) : Entity(id), Cloneable {
+
+    constructor(
+        id: String = "${UUID.randomUUID()}",
+        block: Person.() -> Unit
+    ) : this(id) {
+        apply(block)
+    }
 
     var orgId: Int? = null
     var hospCode: String? = null
@@ -35,4 +42,6 @@ data class Person(val id: Long = Random().nextLong() * -1) : Cloneable {
     var house: Address? = null
     var chronics: MutableList<Chronic>? = null
     var houseId: Int? = null
+    val age: Int?
+        get() = birthDate?.let { LocalDate.now().year - it.year }
 }
