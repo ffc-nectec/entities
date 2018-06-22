@@ -24,14 +24,12 @@ data class Organization(val uuid: UUID = UUID.randomUUID()) : Cloneable {
     constructor(uuid: UUID = UUID.randomUUID(), block: Organization.() -> Unit) : this(uuid) {
         apply(block)
     }
-
     var id: String = "-1"
     var pcuCode: String = "099912"
     var name: String = "NECTEC"
-    var session: String? = null
+
     var lastKnownIp: String? = null
-    var token: UUID? = null
-    var socketUrl: String? = null
+    var token: Token? = null
     var firebaseToken: String? = null
 
     public override fun clone(): Organization = super.clone() as Organization
