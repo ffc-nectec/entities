@@ -24,9 +24,9 @@ import org.joda.time.DateTime
 
 open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 
-    @Deprecated("use id", replaceWith = ReplaceWith("id"))
+    @Deprecated("use id", ReplaceWith("id"))
     var _id: String = ""
-    @Deprecated("use timestamp", replaceWith = ReplaceWith("timestamp"))
+    @Deprecated("use timestamp", ReplaceWith("timestamp"))
     var dateUpdate: DateTime = DateTime.now()
     @Deprecated("Use location", ReplaceWith("location"))
     var coordinates: LatLng? = null
@@ -39,8 +39,5 @@ class House(id: String = generateTempId()) : Address(id) {
     var identity: ThaiHouseholdId? = null
     var people: MutableList<People>? = mutableListOf()
     val haveChronic: Boolean get() = people?.firstOrNull { it.haveChronic } != null
-}
-
-enum class Type {
-    House, Temple, School
+    var link: Link? = null
 }
