@@ -17,22 +17,28 @@
 
 package ffc.entity
 
+import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
-import java.util.Random
 
-data class Person(val id: Long = Random().nextLong() * -1) : Cloneable {
+class Person(id: String = generateTempId()) : Entity(id), Cloneable {
 
-    var orgId: Int? = null
-    var hospCode: String? = null
-    var pid: Long? = null
+    var identities: MutableList<Identity> = mutableListOf()
     var prename: String = ""
     var firstname: String = ""
+    var midname: String? = null
     var lastname: String = ""
     val name: String
-        get() = "$prename$firstname $lastname"
+        get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
+
+    var chronics: MutableList<Chronic> = mutableListOf()
+    var sex: Sex = Sex.UNKNOWN
     var birthDate: LocalDate? = null
-    var identities: MutableList<Identity> = mutableListOf()
-    var house: Address? = null
-    var chronics: MutableList<Chronic>? = null
-    var houseId: Int? = null
+    val age: Int?
+        get() = birthDate?.let { LocalDate.now().year - it.year }
+
+    var link: Link? = null
+
+    enum class Sex {
+        MALE, FEMALE, UNKNOWN
+    }
 }

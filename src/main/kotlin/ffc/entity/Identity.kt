@@ -17,42 +17,24 @@
 
 package ffc.entity
 
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
-import com.google.gson.JsonSerializationContext
-import com.google.gson.JsonSerializer
-import java.lang.reflect.Type
+const val THAI_CITIZEN_ID = "thailand-citizen-id"
+const val THAI_HOUSEHOLD_ID = "thailand-household-id"
 
-interface Identity {
-    val id: String
-    val type: String
-    fun isValid(): Boolean
+abstract class Identity(val id: String) {
+    abstract val type: String
+    abstract fun isValid(): Boolean
 }
 
-class ThaiCitizenId(override val id: String) : Identity {
-    override val type: String = "thailand-citizen-id"
+class ThaiCitizenId(id: String) : Identity(id) {
+
+    override val type: String = THAI_CITIZEN_ID
 
     override fun isValid(): Boolean = id.length == 13
 }
 
-class ThaiHouseholdId(override val id: String) : Identity {
-    override val type: String = "thailand-household-id"
+class ThaiHouseholdId(id: String) : Identity(id) {
+
+    override val type: String = THAI_HOUSEHOLD_ID
 
     override fun isValid(): Boolean = id.length == 11
-}
-
-class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity> {
-    override fun serialize(src: Identity?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
-        return context!!.serialize(src)
-    }
-
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Identity {
-        val jsonObj = json.asJsonObject
-        return when (jsonObj.get("type").asString) {
-            "thailand-citizen-id" -> ThaiCitizenId(jsonObj.get("id").asString)
-            "thailand-household-id" -> ThaiHouseholdId(jsonObj.get("id").asString)
-            else -> throw IllegalArgumentException("Not support Identity type")
-        }
-    }
 }

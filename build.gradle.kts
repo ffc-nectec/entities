@@ -11,6 +11,9 @@ dependencies {
     implementation("com.github.piruin:geok:1.0.0-alpha-2")
     implementation("com.google.code.gson:gson:2.8.1")
     implementation("com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.6.0")
+
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.amshove.kluent:kluent:1.34")
 }
 
 repositories {
