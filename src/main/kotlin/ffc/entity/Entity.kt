@@ -5,7 +5,7 @@ import org.joda.time.LocalDateTime
 
 open class Entity(id: String = generateTempId()) : Cloneable {
     var id: String private set
-    val type = javaClass.simpleName
+    open val type = javaClass.simpleName
 
     init { this.id = id }
 
