@@ -22,6 +22,11 @@ import com.fatboyindustrial.gsonjodatime.LocalDateConverter
 import com.fatboyindustrial.gsonjodatime.LocalDateTimeConverter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import com.google.gson.reflect.TypeToken
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
@@ -51,3 +56,18 @@ inline fun <reified T> typeTokenOf(): Type = object : TypeToken<T>() {}.type
 fun Any.toJson(gson: Gson = ffcGson): String = gson.toJson(this)
 
 inline fun <reified T> String.parseTo(gson: Gson = ffcGson): T = gson.fromJson(this, typeTokenOf<T>())
+
+class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity> {
+    override fun serialize(src: Identity?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+        return context!!.serialize(src)
+    }
+
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Identity {
+        val jsonObj = json.asJsonObject
+        return when (jsonObj.get("type").asString) {
+            THAI_CITIZEN_ID -> ThaiCitizenId(jsonObj.get("id").asString)
+            THAI_HOUSEHOLD_ID -> ThaiHouseholdId(jsonObj.get("id").asString)
+            else -> throw IllegalArgumentException("Not support Identity type")
+        }
+    }
+}
