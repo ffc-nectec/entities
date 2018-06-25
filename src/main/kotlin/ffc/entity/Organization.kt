@@ -18,7 +18,6 @@
 package ffc.entity
 
 import ffc.entity.util.generateTempId
-import java.util.UUID
 
 class Organization(id: String = generateTempId()) : Entity(id), Cloneable {
 

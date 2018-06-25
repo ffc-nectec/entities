@@ -15,7 +15,7 @@ class PersonTest {
 
         lastname = "พานิชผล"
         birthDate = LocalDate.now().minusYears(25)
-        link = Link(System.                  JHICS, "pid" to "1234567", "cid" to "11014578451234")
+        link = Link(System.JHICS, "pid" to "1234567", "cid" to "11014578451234")
     }
 
     @Test
@@ -48,12 +48,37 @@ class PersonTest {
     @Test
     fun fromJson() {
         val person = """
-            {"identities":[{"type":"thailand-citizen-id","id":"1154801544875"}],"prename":"นาย","firstname":"พิรุณ","lastname":"พานิชผล","chronics":[],"sex":"UNKNOWN","birthDate":"1993-06-25","link":{"system":"JHICS","keys":{"pid":"1234567","cid":"11014578451234"}},"timestamp":"2018-06-25T11:35:24.602","_sync":false,"_id":"2731e839-128b-4dc3-8dd5-0f967e6143dd"}
+{
+  "identities": [
+    {
+      "type": "thailand-citizen-id",
+      "id": "1154801544875"
+    }
+  ],
+  "prename": "นาย",
+  "firstname": "พิรุณ",
+  "lastname": "พานิชผล",
+  "chronics": [],
+  "sex": "UNKNOWN",
+  "birthDate": "1993-06-25",
+  "link": {
+    "isSynced": true,
+    "lastSync": "2018-06-25T14:09:07.815+07:00",
+    "system": "JHICS",
+    "keys": {
+      "pid": "1234567",
+      "cid": "11014578451234"
+    }
+  },
+  "id": "e079e175c75a44f180e8eaeb3ccc3cc6",
+  "type": "Person",
+  "timestamp": "2018-06-25T14:09:07.815"
+}
         """.parseTo<Person>()
 
         with(person) {
             link!!.keys["pid"] `should equal` "1234567"
-            link!!.keys["cid"]  `should equal` "11014578451234"
+            link!!.keys["cid"] `should equal` "11014578451234"
         }
     }
 
@@ -75,7 +100,6 @@ class PersonTest {
             id `should be` "piruin"
             name `should equal` "นายพิรุณ พานิชผล"
             person.age `should be` 25
-
         }
     }
 }

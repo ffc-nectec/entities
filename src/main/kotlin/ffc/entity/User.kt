@@ -17,10 +17,9 @@
 
 package ffc.entity
 
-import com.google.gson.annotations.SerializedName
 import ffc.entity.util.generateTempId
 
-class User(id: String = generateTempId()): Entity(id) {
+class User(id: String = generateTempId()) : Entity(id) {
 
     @Deprecated("use name instead", ReplaceWith("name"))
     val username: String? = null

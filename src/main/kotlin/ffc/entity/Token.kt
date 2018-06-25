@@ -18,7 +18,6 @@
 package ffc.entity
 
 import org.joda.time.DateTime
-import java.util.UUID
 
 const val USER_DATE_EXPIRE = 1
 const val ORG_DATE_EXPIRE = 9000

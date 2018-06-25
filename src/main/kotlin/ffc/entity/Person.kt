@@ -41,5 +41,4 @@ class Person(id: String = generateTempId()) : Entity(id), Cloneable {
     enum class Sex {
         MALE, FEMALE, UNKNOWN
     }
-
 }

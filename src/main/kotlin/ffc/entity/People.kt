@@ -17,8 +17,10 @@
 
 package ffc.entity
 
-data class People(val id: String,
-                  val name: String,
-                  val chronics: MutableList<Chronic> = mutableListOf()) {
+data class People(
+    val id: String,
+    val name: String,
+    val chronics: MutableList<Chronic> = mutableListOf()
+) {
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
 }

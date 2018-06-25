@@ -33,7 +33,6 @@ open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
     var no: String? = null
     var road: String? = null
     var location: Point? = null
-
 }
 
 class House(id: String = generateTempId()) : Address(id) {

@@ -2,9 +2,8 @@ package ffc.entity
 
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDateTime
-import java.util.UUID
 
-open class Entity(id: String = "${UUID.randomUUID()}") : Cloneable {
+open class Entity(id: String = generateTempId()) : Cloneable {
     var id: String private set
     val type = javaClass.simpleName
 
@@ -40,4 +39,3 @@ open class Entity(id: String = "${UUID.randomUUID()}") : Cloneable {
         return cloneObj
     }
 }
-
