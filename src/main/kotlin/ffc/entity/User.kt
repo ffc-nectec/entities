@@ -17,7 +17,15 @@
 
 package ffc.entity
 
-data class User(
-    val username: String,
-    val password: String
-)
+import com.google.gson.annotations.SerializedName
+import ffc.entity.util.generateTempId
+
+class User(id: String = generateTempId()): Entity(id) {
+
+    @Deprecated("use name instead", ReplaceWith("name"))
+    val username: String? = null
+
+    lateinit var name: String
+    lateinit var password: String
+    var link: Link? = null
+}

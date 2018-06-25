@@ -17,32 +17,32 @@
 
 package ffc.entity
 
+import ffc.entity.util.generateTempId
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
 
-data class Address(var _id: String = "", var dateUpdate: DateTime = DateTime.now()) : Cloneable {
+open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 
-    var _shortId: String = ""
-    var identity: Identity? = null
-    var type: Type = Type.House
-    var no: String? = null
-    var road: String? = null
-    var tambon: String? = null
-    var ampur: String? = null
-    var changwat: String? = null
+    @Deprecated("use id", replaceWith = ReplaceWith("id"))
+    var _id: String = ""
+    @Deprecated("use timestamp", replaceWith = ReplaceWith("timestamp"))
+    var dateUpdate: DateTime = DateTime.now()
     @Deprecated("Use location", ReplaceWith("location"))
     var coordinates: LatLng? = null
+    var no: String? = null
+    var road: String? = null
     var location: Point? = null
-    var hid: Int? = null
-    var haveChronics: Boolean? = null
-    var people: List<People>? = null
-    var pcuCode: String? = null
-    var _sync: Boolean = false
-
-    enum class Type {
-        House, Condo
-    }
 
     public override fun clone(): Address = super.clone() as Address
+}
+
+class House(id: String = generateTempId()) : Address(id) {
+    var identity: ThaiHouseholdId? = null
+    var people: MutableList<People>? = mutableListOf()
+    val haveChronic: Boolean get() = people?.firstOrNull { it.haveChronic } != null
+}
+
+enum class Type {
+    House, Temple, School
 }

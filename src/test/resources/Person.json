@@ -1,0 +1,28 @@
+{
+  "identities": [
+    {
+      "type": "thailand-citizen-id",
+      "id": "1154801544875"
+    }
+  ],
+  "prename": "นาย",
+  "firstname": "พิรุณ",
+  "lastname": "พานิชผล",
+  "chronics": [],
+  "sex": "UNKNOWN",
+  "birthDate": "1993-06-25",
+  "link": {
+    "isSync": true,
+    "lastSync": "2018-06-25T13:42:30.404+07:00",
+    "system": "JHICS",
+    "keys": {
+      "pid": "1234567",
+      "cid": "11014578451234"
+    }
+  },
+  "type": "Person",
+  "timestamp": "2018-06-25T13:42:30.404",
+  "isTempId": true,
+  "_sync": false,
+  "_id": "356c6302edae4560b8d47a579d393fd0"
+}

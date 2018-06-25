@@ -17,20 +17,14 @@
 
 package ffc.entity
 
+import ffc.entity.util.generateTempId
 import java.util.UUID
 
-data class Organization(val uuid: UUID = UUID.randomUUID()) : Cloneable {
+class Organization(id: String = generateTempId()) : Entity(id), Cloneable {
 
-    constructor(uuid: UUID = UUID.randomUUID(), block: Organization.() -> Unit) : this(uuid) {
-        apply(block)
-    }
-    var id: String = "-1"
-    var pcuCode: String = "099912"
     var name: String = "NECTEC"
-
-    var lastKnownIp: String? = null
-    var token: Token? = null
-    var firebaseToken: String? = null
+    var users: MutableList<User> = mutableListOf()
+    var link: Link? = null
 
     public override fun clone(): Organization = super.clone() as Organization
 }

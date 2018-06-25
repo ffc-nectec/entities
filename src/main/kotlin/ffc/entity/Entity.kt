@@ -4,9 +4,8 @@ import com.google.gson.annotations.SerializedName
 import org.joda.time.LocalDateTime
 import java.util.UUID
 
-open class Entity(
-    @SerializedName("_id") val id: String = "${UUID.randomUUID()}"
-) {
+open class Entity(val id: String = "${UUID.randomUUID()}") {
+    val type = javaClass.simpleName
 
     fun <T : Entity> update(updateTimestamp: Boolean = true,block: T.() -> Unit): T  {
         this as T
@@ -18,8 +17,7 @@ open class Entity(
     var timestamp: LocalDateTime = LocalDateTime.now()
         protected set
 
-    @SerializedName("_sync")
-    var isSynced: Boolean? = null
+    val isTempId :Boolean get() = id.length == 32
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

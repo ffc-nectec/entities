@@ -8,12 +8,14 @@ import org.junit.Test
 
 class PersonTest {
 
-    val person = Person {
+    val person = Person().apply {
         identities.add(ThaiCitizenId("1154801544875"))
         prename = "นาย"
         firstname = "พิรุณ"
+
         lastname = "พานิชผล"
         birthDate = LocalDate.now().minusYears(25)
+        link = Link(System.                  JHICS, "pid" to "1234567", "cid" to "11014578451234")
     }
 
     @Test
@@ -22,7 +24,7 @@ class PersonTest {
 
         Thread.sleep(500)
         person.update<Person> {
-            houseId = 123456
+            link = Link(System.JHICS, "pid" to "1234567")
         }
 
         person.timestamp `should not equal` timestampOnCreate
@@ -44,7 +46,24 @@ class PersonTest {
     }
 
     @Test
+    fun fromJson() {
+        val person = """
+            {"identities":[{"type":"thailand-citizen-id","id":"1154801544875"}],"prename":"นาย","firstname":"พิรุณ","lastname":"พานิชผล","chronics":[],"sex":"UNKNOWN","birthDate":"1993-06-25","link":{"system":"JHICS","keys":{"pid":"1234567","cid":"11014578451234"}},"timestamp":"2018-06-25T11:35:24.602","_sync":false,"_id":"2731e839-128b-4dc3-8dd5-0f967e6143dd"}
+        """.parseTo<Person>()
+
+        with(person) {
+            link!!.keys["pid"] `should equal` "1234567"
+            link!!.keys["cid"]  `should equal` "11014578451234"
+        }
+    }
+
+    @Test
     fun equal() {
         person `should equal` Person(person.id)
+    }
+
+    @Test
+    fun isTempId() {
+        person.isTempId `should be` true
     }
 }
