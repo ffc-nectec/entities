@@ -1,0 +1,28 @@
+{
+  "identity": {
+    "type": "thailand-household-id",
+    "id": "10125501411"
+  },
+  "people": [],
+  "link": {
+    "isSynced": true,
+    "lastSync": "2018-06-25T15:27:11.091+07:00",
+    "system": "JHICS",
+    "keys": {
+      "hid": "100234"
+    }
+  },
+  "dateUpdate": "2018-06-25T15:27:11.075+07:00",
+  "no": "302/21",
+  "road": "รังสิต-นครนายก",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      100.5995609,
+      14.077196
+    ]
+  },
+  "id": "330ecb8ab794402d95f630db6c708cc4",
+  "type": "House",
+  "timestamp": "2018-06-25T15:27:11.012"
+}
