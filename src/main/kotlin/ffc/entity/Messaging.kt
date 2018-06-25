@@ -17,8 +17,10 @@
 
 package ffc.entity
 
-data class Messaging(val _id: String, val type: Type, val url: String) {
-    enum class Type {
-        House
-    }
+data class Messaging(val id: String, val type: String, val url: String) {
+
+    constructor(entity: Entity, url: String) : this(entity.id, entity.type, url)
+
+    @Deprecated("use id instead", ReplaceWith("id"))
+    var _id: String = ""
 }
