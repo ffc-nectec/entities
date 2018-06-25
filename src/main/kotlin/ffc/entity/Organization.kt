@@ -25,6 +25,4 @@ class Organization(id: String = generateTempId()) : Entity(id), Cloneable {
     var name: String = "NECTEC"
     var users: MutableList<User> = mutableListOf()
     var link: Link? = null
-
-    public override fun clone(): Organization = super.clone() as Organization
 }

@@ -42,5 +42,4 @@ class Person(id: String = generateTempId()) : Entity(id), Cloneable {
         MALE, FEMALE, UNKNOWN
     }
 
-    public override fun clone() = super.clone() as Person
 }

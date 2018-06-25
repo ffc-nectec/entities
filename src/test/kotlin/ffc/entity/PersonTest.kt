@@ -66,4 +66,16 @@ class PersonTest {
     fun isTempId() {
         person.isTempId `should be` true
     }
+
+    @Test
+    fun copy() {
+        val copyPerson = person.copy<Person>("piruin")
+
+        with(copyPerson) {
+            id `should be` "piruin"
+            name `should equal` "นายพิรุณ พานิชผล"
+            person.age `should be` 25
+
+        }
+    }
 }

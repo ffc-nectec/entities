@@ -34,7 +34,6 @@ open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
     var road: String? = null
     var location: Point? = null
 
-    public override fun clone(): Address = super.clone() as Address
 }
 
 class House(id: String = generateTempId()) : Address(id) {

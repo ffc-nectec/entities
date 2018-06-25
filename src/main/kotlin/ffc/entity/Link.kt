@@ -1,10 +1,11 @@
 package ffc.entity
 
+import com.google.gson.annotations.SerializedName
 import org.joda.time.DateTime
 
 data class Link(val system: System, val keys: Map<String, String>) {
 
-    var isSync: Boolean = true
+   var isSynced: Boolean = true
         set(value)  {
             field = value
             if (value == true)

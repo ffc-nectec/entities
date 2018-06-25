@@ -1,13 +1,16 @@
 package ffc.entity
 
-import com.google.gson.annotations.SerializedName
+import ffc.entity.util.generateTempId
 import org.joda.time.LocalDateTime
 import java.util.UUID
 
-open class Entity(val id: String = "${UUID.randomUUID()}") {
+open class Entity(id: String = "${UUID.randomUUID()}") : Cloneable {
+    var id: String private set
     val type = javaClass.simpleName
 
-    fun <T : Entity> update(updateTimestamp: Boolean = true,block: T.() -> Unit): T  {
+    init { this.id = id }
+
+    fun <T : Entity> update(updateTimestamp: Boolean = true, block: T.() -> Unit): T {
         this as T
         this.apply(block)
         if (updateTimestamp) timestamp = LocalDateTime.now()
@@ -17,7 +20,7 @@ open class Entity(val id: String = "${UUID.randomUUID()}") {
     var timestamp: LocalDateTime = LocalDateTime.now()
         protected set
 
-    val isTempId :Boolean get() = id.length == 32
+    val isTempId: Boolean get() = id.length == 32
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -29,6 +32,12 @@ open class Entity(val id: String = "${UUID.randomUUID()}") {
 
     override fun hashCode(): Int {
         return id.hashCode()
+    }
+
+    fun <T : Entity> copy(id: String = this.id): T {
+        val cloneObj = this.clone() as T
+        cloneObj.id = id
+        return cloneObj
     }
 }
 
