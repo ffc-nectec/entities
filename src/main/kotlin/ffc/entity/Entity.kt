@@ -2,6 +2,7 @@ package ffc.entity
 
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDateTime
+import java.util.concurrent.ConcurrentHashMap
 
 open class Entity(id: String = generateTempId()) : Cloneable {
     var id: String private set
@@ -38,4 +39,6 @@ open class Entity(id: String = generateTempId()) : Cloneable {
         cloneObj.id = id
         return cloneObj
     }
+
+    val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 }
