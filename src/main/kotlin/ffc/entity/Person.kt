@@ -27,15 +27,12 @@ class Person(id: String = generateTempId()) : Entity(id), Cloneable {
     var firstname: String = ""
     var midname: String? = null
     var lastname: String = ""
-    val name: String
-        get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
-
-    var chronics: MutableList<Chronic> = mutableListOf()
+    val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
     var sex: Sex = Sex.UNKNOWN
     var birthDate: LocalDate? = null
-    val age: Int?
-        get() = birthDate?.let { LocalDate.now().year - it.year }
-
+    val age: Int? get() = birthDate?.let { LocalDate.now().year - it.year }
+    var chronics: MutableList<Chronic> = mutableListOf()
+    val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
     var link: Link? = null
 
     enum class Sex {

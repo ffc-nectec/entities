@@ -44,10 +44,14 @@ class PersonTest {
 
     @Test
     fun toJson() {
+        println(person.toJson())
+    }
+
+    @Test
+    fun jsonShouldNotContainBundleValue() {
         person.bundle.put("say", "Hello World")
 
         val json = person.toJson()
-        println(json)
 
         json `should not contain` "Hello World"
     }
@@ -106,7 +110,7 @@ class PersonTest {
         with(copyPerson) {
             id `should be` "piruin"
             name `should equal` "นายพิรุณ พานิชผล"
-            person.age `should be` 25
+            age `should be` 25
         }
     }
 }

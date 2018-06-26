@@ -37,7 +37,7 @@ open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 
 class House(id: String = generateTempId()) : Address(id) {
     var identity: ThaiHouseholdId? = null
-    var people: MutableList<People>? = mutableListOf()
+    var people: MutableList<Person>? = mutableListOf()
     val haveChronic: Boolean get() = people?.firstOrNull { it.haveChronic } != null
     var link: Link? = null
 }
