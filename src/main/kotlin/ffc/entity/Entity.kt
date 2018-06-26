@@ -1,7 +1,7 @@
 package ffc.entity
 
 import ffc.entity.util.generateTempId
-import org.joda.time.LocalDateTime
+import org.joda.time.DateTime
 import java.util.concurrent.ConcurrentHashMap
 
 @Suppress("UNCHECKED_CAST")
@@ -10,12 +10,12 @@ open class Entity(id: String = generateTempId()) : Cloneable {
         private set
     val isTempId: Boolean get() = id.length == 32
     open val type = javaClass.simpleName
-    var timestamp: LocalDateTime = LocalDateTime.now()
+    var timestamp: DateTime = DateTime.now()
         protected set
     val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 
     fun <T : Entity> update(
-        timestamp: LocalDateTime = LocalDateTime.now(),
+        timestamp: DateTime = DateTime.now(),
         block: T.() -> Unit
     ): T {
         with(this as T) {
