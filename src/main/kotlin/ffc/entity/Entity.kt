@@ -4,23 +4,32 @@ import ffc.entity.util.generateTempId
 import org.joda.time.LocalDateTime
 import java.util.concurrent.ConcurrentHashMap
 
+@Suppress("UNCHECKED_CAST")
 open class Entity(id: String = generateTempId()) : Cloneable {
-    var id: String private set
+    var id: String = id
+        private set
+    val isTempId: Boolean get() = id.length == 32
     open val type = javaClass.simpleName
+    var timestamp: LocalDateTime = LocalDateTime.now()
+        protected set
+    val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 
-    init { this.id = id }
-
-    fun <T : Entity> update(updateTimestamp: Boolean = true, block: T.() -> Unit): T {
-        this as T
-        this.apply(block)
-        if (updateTimestamp) timestamp = LocalDateTime.now()
+    fun <T : Entity> update(
+        timestamp: LocalDateTime = LocalDateTime.now(),
+        block: T.() -> Unit
+    ): T {
+        with(this as T) {
+            apply(block)
+            this.timestamp = timestamp
+        }
         return this
     }
 
-    var timestamp: LocalDateTime = LocalDateTime.now()
-        protected set
-
-    val isTempId: Boolean get() = id.length == 32
+    fun <T : Entity> copy(id: String = this.id): T {
+        val cloneObj = this.clone() as T
+        cloneObj.id = id
+        return cloneObj
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -30,15 +39,5 @@ open class Entity(id: String = generateTempId()) : Cloneable {
         return true
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
-    fun <T : Entity> copy(id: String = this.id): T {
-        val cloneObj = this.clone() as T
-        cloneObj.id = id
-        return cloneObj
-    }
-
-    val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
+    override fun hashCode(): Int = id.hashCode()
 }
