@@ -15,11 +15,13 @@
  * limitations under the License.
  */
 
-package ffc.entity
+package ffc.entity.gson
 
 import com.fatboyindustrial.gsonjodatime.DateTimeConverter
 import com.fatboyindustrial.gsonjodatime.LocalDateConverter
 import com.fatboyindustrial.gsonjodatime.LocalDateTimeConverter
+import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
@@ -28,6 +30,11 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import com.google.gson.reflect.TypeToken
+import ffc.entity.Identity
+import ffc.entity.THAI_CITIZEN_ID
+import ffc.entity.THAI_HOUSEHOLD_ID
+import ffc.entity.ThaiCitizenId
+import ffc.entity.ThaiHouseholdId
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
 import me.piruin.geok.gson.GeometrySerializer
@@ -39,6 +46,7 @@ import java.lang.reflect.Type
 
 val ffcGson: Gson by lazy {
     GsonBuilder()
+            .setExclusionStrategies(ExcludeAnnotationStrategy())
             .adapterFor<Geometry>(GeometrySerializer())
             .adapterFor<LatLng>(LatLngSerializer())
             .adapterFor<Identity>(IdentityDeserializer())
@@ -69,5 +77,20 @@ class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity
             THAI_HOUSEHOLD_ID -> ThaiHouseholdId(jsonObj.get("id").asString)
             else -> throw IllegalArgumentException("Not support Identity type")
         }
+    }
+}
+
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FIELD)
+annotation class Exclude
+
+class ExcludeAnnotationStrategy : ExclusionStrategy {
+
+    override fun shouldSkipField(f: FieldAttributes): Boolean {
+        return f.getAnnotation(Exclude::class.java) != null
+    }
+
+    override fun shouldSkipClass(clazz: Class<*>): Boolean {
+        return false
     }
 }
