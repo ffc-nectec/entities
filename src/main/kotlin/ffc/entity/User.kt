@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+import ffc.entity.gson.Exclude
 import ffc.entity.util.generateTempId
 
 class User(id: String = generateTempId()) : Entity(id) {
@@ -25,6 +26,7 @@ class User(id: String = generateTempId()) : Entity(id) {
     val username: String? = null
 
     lateinit var name: String
+    @Exclude
     lateinit var password: String
 
     var role: Role = Role.USER
