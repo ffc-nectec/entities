@@ -26,5 +26,11 @@ class User(id: String = generateTempId()) : Entity(id) {
 
     lateinit var name: String
     lateinit var password: String
+
+    var role: Role = Role.USER
     var link: Link? = null
+
+    enum class Role {
+        ORG, USER
+    }
 }

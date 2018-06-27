@@ -23,16 +23,22 @@ const val USER_DATE_EXPIRE = 1
 const val ORG_DATE_EXPIRE = 9000
 
 data class Token(
-    val token: String,
-    val timestamp: DateTime = DateTime.now(),
-    val role: TYPEROLE = TYPEROLE.NOAUTH,
-    val name: String
+    val user: User,
+    val token: String
 ) {
+    @Deprecated("check at user", level = DeprecationLevel.ERROR)
+    val role = User.Role.USER
 
-    var expireDate: DateTime = when (role) {
-        TYPEROLE.USER -> timestamp.plusDays(USER_DATE_EXPIRE)
-        TYPEROLE.ORG -> timestamp.plusDays(ORG_DATE_EXPIRE)
-        else -> timestamp
+    @Deprecated("not need", level = DeprecationLevel.ERROR)
+    val name: String = ""
+
+    @Deprecated("Use createDate", ReplaceWith("createDate"))
+    val timestamp: DateTime = DateTime.now()
+
+    val createDate: DateTime = DateTime.now()
+    var expireDate: DateTime = when (user.role) {
+        User.Role.ORG -> createDate.plusDays(ORG_DATE_EXPIRE)
+        else -> createDate.plusDays(USER_DATE_EXPIRE)
     }
 
     val isNotExpire: Boolean
@@ -40,8 +46,4 @@ data class Token(
 
     val isExpire: Boolean
         get() = expireDate <= DateTime.now()
-
-    enum class TYPEROLE {
-        ORG, USER, NOAUTH
-    }
 }

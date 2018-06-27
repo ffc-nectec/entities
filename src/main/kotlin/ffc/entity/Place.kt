@@ -40,7 +40,6 @@ open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 }
 
 open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
-    var coordinates: LatLng? = null
     var no: String? = null
     var road: String? = null
     var location: Point? = null
