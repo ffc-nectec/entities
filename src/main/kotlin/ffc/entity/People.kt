@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+@Deprecated("Use Person instead", ReplaceWith("Person"))
 data class People(
     val id: String,
     val name: String,

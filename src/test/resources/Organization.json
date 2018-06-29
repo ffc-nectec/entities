@@ -1,0 +1,31 @@
+{
+  "name": "รพ.สต. เนคเทค",
+  "users": [
+    {
+      "name": "blast",
+      "password": "aaddddres",
+      "role": "USER",
+      "id": "d028ba1ecdc4447fa04693ca4e23d29d",
+      "type": "User",
+      "timestamp": "2018-06-29T14:55:15.803+07:00"
+    },
+    {
+      "name": "pcu100214.airsync",
+      "role": "ORG",
+      "id": "123456",
+      "type": "User",
+      "timestamp": "2018-06-29T14:55:15.803+07:00"
+    }
+  ],
+  "link": {
+    "isSynced": true,
+    "lastSync": "2018-06-29T14:55:15.803+07:00",
+    "system": "JHICS",
+    "keys": {
+      "pcucode": 100214
+    }
+  },
+  "id": "7e226a182d1448c69b308fb40c045f04",
+  "type": "Organization",
+  "timestamp": "2018-06-29T14:55:15.803+07:00"
+}

@@ -23,6 +23,21 @@ const val THAI_HOUSEHOLD_ID = "thailand-household-id"
 abstract class Identity(val id: String) {
     abstract val type: String
     abstract fun isValid(): Boolean
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as Identity
+        if (id != other.id) return false
+        if (type != other.type) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + type.hashCode()
+        return result
+    }
 }
 
 class ThaiCitizenId(id: String) : Identity(id) {

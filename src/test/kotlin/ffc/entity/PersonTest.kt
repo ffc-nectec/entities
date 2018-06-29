@@ -1,7 +1,10 @@
 package ffc.entity
 
+import ffc.entity.gson.parseTo
+import ffc.entity.gson.toJson
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
+import org.amshove.kluent.`should not contain`
 import org.amshove.kluent.`should not equal`
 import org.joda.time.LocalDate
 import org.junit.Test
@@ -12,7 +15,6 @@ class PersonTest {
         identities.add(ThaiCitizenId("1154801544875"))
         prename = "นาย"
         firstname = "พิรุณ"
-
         lastname = "พานิชผล"
         birthDate = LocalDate.now().minusYears(25)
         link = Link(System.JHICS, "pid" to "1234567", "cid" to "11014578451234")
@@ -43,6 +45,15 @@ class PersonTest {
     @Test
     fun toJson() {
         println(person.toJson())
+    }
+
+    @Test
+    fun jsonShouldNotContainBundleValue() {
+        person.bundle.put("say", "Hello World")
+
+        val json = person.toJson()
+
+        json `should not contain` "Hello World"
     }
 
     @Test
@@ -99,7 +110,7 @@ class PersonTest {
         with(copyPerson) {
             id `should be` "piruin"
             name `should equal` "นายพิรุณ พานิชผล"
-            person.age `should be` 25
+            age `should be` 25
         }
     }
 }

@@ -1,5 +1,6 @@
 package ffc.entity
 
+import ffc.entity.gson.toJson
 import me.piruin.geok.geometry.Point
 import org.junit.Test
 

@@ -22,22 +22,32 @@ import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
 
+@Deprecated("use place instead", ReplaceWith("Place"))
 open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 
     @Deprecated("use id", ReplaceWith("id"))
     var _id: String = ""
+
     @Deprecated("use timestamp", ReplaceWith("timestamp"))
     var dateUpdate: DateTime = DateTime.now()
+
     @Deprecated("Use location", ReplaceWith("location"))
     var coordinates: LatLng? = null
+
     var no: String? = null
     var road: String? = null
     var location: Point? = null
 }
 
-class House(id: String = generateTempId()) : Address(id) {
+open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
+    var no: String? = null
+    var road: String? = null
+    var location: Point? = null
+}
+
+class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
-    var people: MutableList<People>? = mutableListOf()
+    var people: MutableList<Person>? = mutableListOf()
     val haveChronic: Boolean get() = people?.firstOrNull { it.haveChronic } != null
     var link: Link? = null
 }
