@@ -17,11 +17,11 @@
 
 package ffc.entity
 
-import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 data class Chronic(val idc10: String) : Cloneable {
-    var diagDate: DateTime = DateTime.now()
-    var dischardDate: DateTime? = null
+    var diagDate: LocalDate = LocalDate.now()
+    var dischardDate: LocalDate? = null
     val isActive: Boolean get() = dischardDate == null
     var link: Link? = null
 
