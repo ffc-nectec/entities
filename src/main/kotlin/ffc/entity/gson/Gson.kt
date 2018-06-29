@@ -35,6 +35,7 @@ import ffc.entity.THAI_CITIZEN_ID
 import ffc.entity.THAI_HOUSEHOLD_ID
 import ffc.entity.ThaiCitizenId
 import ffc.entity.ThaiHouseholdId
+import ffc.entity.User
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
 import me.piruin.geok.gson.GeometrySerializer
@@ -47,12 +48,19 @@ import java.lang.reflect.Type
 val ffcGson: Gson by lazy {
     GsonBuilder()
             .setExclusionStrategies(ExcludeAnnotationStrategy())
-            .adapterFor<Geometry>(GeometrySerializer())
-            .adapterFor<LatLng>(LatLngSerializer())
-            .adapterFor<Identity>(IdentityDeserializer())
-            .adapterFor<DateTime>(DateTimeConverter())
-            .adapterFor<LocalDate>(LocalDateConverter())
-            .adapterFor<LocalDateTime>(LocalDateTimeConverter()).create()
+            .adapterFor<User>(UserJsonAdapter())
+            .adapterFor<Identity>(IdentityJsonAdapter())
+            .adapterForExtLibrary()
+            .create()
+}
+
+private fun GsonBuilder.adapterForExtLibrary(): GsonBuilder {
+    adapterFor<Geometry>(GeometrySerializer())
+    adapterFor<LatLng>(LatLngSerializer())
+    adapterFor<DateTime>(DateTimeConverter())
+    adapterFor<LocalDate>(LocalDateConverter())
+    adapterFor<LocalDateTime>(LocalDateTimeConverter())
+    return this
 }
 
 private inline fun <reified T> GsonBuilder.adapterFor(adapter: Any): GsonBuilder {
@@ -65,10 +73,7 @@ fun Any.toJson(gson: Gson = ffcGson): String = gson.toJson(this)
 
 inline fun <reified T> String.parseTo(gson: Gson = ffcGson): T = gson.fromJson(this, typeTokenOf<T>())
 
-class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity> {
-    override fun serialize(src: Identity?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
-        return context!!.serialize(src)
-    }
+class IdentityJsonAdapter : JsonDeserializer<Identity> {
 
     override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Identity {
         val jsonObj = json.asJsonObject
@@ -76,6 +81,15 @@ class IdentityDeserializer : JsonDeserializer<Identity>, JsonSerializer<Identity
             THAI_CITIZEN_ID -> ThaiCitizenId(jsonObj.get("id").asString)
             THAI_HOUSEHOLD_ID -> ThaiHouseholdId(jsonObj.get("id").asString)
             else -> throw IllegalArgumentException("Not support Identity type")
+        }
+    }
+}
+
+class UserJsonAdapter() : JsonSerializer<User> {
+    val gson = GsonBuilder().adapterForExtLibrary().create()
+    override fun serialize(user: User, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
+        return gson.toJsonTree(user).apply {
+            if (!user.isTempId) asJsonObject.remove("password")
         }
     }
 }
