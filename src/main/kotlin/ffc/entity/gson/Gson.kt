@@ -86,7 +86,12 @@ class IdentityJsonAdapter : JsonDeserializer<Identity> {
 }
 
 class UserJsonAdapter() : JsonSerializer<User> {
-    val gson = GsonBuilder().adapterForExtLibrary().create()
+
+    val gson = GsonBuilder()
+            .setExclusionStrategies(ExcludeAnnotationStrategy())
+            .adapterForExtLibrary()
+            .create()
+
     override fun serialize(user: User, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
         return gson.toJsonTree(user).apply {
             if (!user.isTempId) asJsonObject.remove("password")

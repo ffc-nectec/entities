@@ -5,29 +5,27 @@
       "name": "blast",
       "password": "aaddddres",
       "role": "USER",
-      "id": "fbe2dd1bbc434e77af17ac1531024617",
+      "id": "d028ba1ecdc4447fa04693ca4e23d29d",
       "type": "User",
-      "timestamp": "2018-06-28T15:39:37.296+07:00",
-      "bundle": {}
+      "timestamp": "2018-06-29T14:55:15.803+07:00"
     },
     {
       "name": "pcu100214.airsync",
       "role": "ORG",
       "id": "123456",
       "type": "User",
-      "timestamp": "2018-06-28T15:39:37.296+07:00",
-      "bundle": {}
+      "timestamp": "2018-06-29T14:55:15.803+07:00"
     }
   ],
   "link": {
     "isSynced": true,
-    "lastSync": "2018-06-28T15:39:37.296+07:00",
+    "lastSync": "2018-06-29T14:55:15.803+07:00",
     "system": "JHICS",
     "keys": {
       "pcucode": 100214
     }
   },
-  "id": "d16377ed9edd49628cd150514a25782f",
+  "id": "7e226a182d1448c69b308fb40c045f04",
   "type": "Organization",
-  "timestamp": "2018-06-28T15:39:37.296+07:00"
+  "timestamp": "2018-06-29T14:55:15.803+07:00"
 }
