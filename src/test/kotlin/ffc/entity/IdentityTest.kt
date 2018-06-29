@@ -1,0 +1,22 @@
+package ffc.entity
+
+import org.amshove.kluent.`should equal`
+import org.amshove.kluent.`should not equal`
+import org.junit.Test
+
+class IdentityTest {
+
+    @Test
+    fun thaiCitizenIdEquals() {
+        ThaiCitizenId("1102304324006") `should equal` ThaiCitizenId("1102304324006")
+        ThaiCitizenId("1102304324006") `should not equal` ThaiCitizenId("0")
+        ThaiCitizenId("1102304324006") `should not equal` ThaiHouseholdId("1102304324006")
+    }
+
+    @Test
+    fun thaiHouseholdIdEquals() {
+        ThaiHouseholdId("10245003328") `should equal` ThaiHouseholdId("10245003328")
+        ThaiHouseholdId("10245003328") `should not equal` ThaiHouseholdId("01")
+        ThaiHouseholdId("10245003328") `should not equal` ThaiCitizenId("10245003328")
+    }
+}
