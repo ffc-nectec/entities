@@ -73,7 +73,10 @@ fun Any.toJson(gson: Gson = ffcGson): String = gson.toJson(this)
 
 inline fun <reified T> String.parseTo(gson: Gson = ffcGson): T = gson.fromJson(this, typeTokenOf<T>())
 
-class IdentityJsonAdapter : JsonDeserializer<Identity> {
+class IdentityJsonAdapter : JsonDeserializer<Identity>, JsonSerializer<Identity> {
+    override fun serialize(src: Identity, typeOfSrc: Type?, context: JsonSerializationContext): JsonElement {
+        return context.serialize(src)
+    }
 
     override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Identity {
         val jsonObj = json.asJsonObject
