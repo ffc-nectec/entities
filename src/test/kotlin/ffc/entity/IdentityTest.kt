@@ -1,6 +1,8 @@
 package ffc.entity
 
 import ffc.entity.gson.parseTo
+import ffc.entity.gson.toJson
+import org.amshove.kluent.`should contain`
 import org.amshove.kluent.`should equal`
 import org.amshove.kluent.`should not equal`
 import org.junit.Test
@@ -29,7 +31,9 @@ class IdentityTest {
   "id": "1102304324006"
 }
         """.trimIndent()
+
         val thaiCitizenId = thaiCitizenIdJson.parseTo<ThaiCitizenId>()
+
         thaiCitizenId.id `should equal` "1102304324006"
     }
 
@@ -41,7 +45,19 @@ class IdentityTest {
   "id": "10245003328"
 }
         """.trimIndent()
+
         val houseCitizenId = houseCitizenIdJson.parseTo<ThaiCitizenId>()
+
         houseCitizenId.id `should equal` "10245003328"
+    }
+
+    @Test
+    fun thaiCitizenIdJsonType() {
+        ThaiCitizenId("1102304324006").toJson() `should contain` "thailand-citizen-id"
+    }
+
+    @Test
+    fun thaiHouseholdIdJsonType() {
+        ThaiHouseholdId("10245003328").toJson() `should contain` "thailand-household-id"
     }
 }
