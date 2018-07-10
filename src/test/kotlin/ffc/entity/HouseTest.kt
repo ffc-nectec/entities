@@ -1,60 +1,46 @@
 package ffc.entity
 
+import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should equal`
+import org.joda.time.DateTime
+import org.junit.Ignore
 import org.junit.Test
 
 class HouseTest {
 
-    val house = House().apply {
+    val house = House("123f678f90c").update<House>(DateTime.parse("2018-06-25T14:09:07.815")) {
         identity = ThaiHouseholdId("10125501411")
-        link = Link(System.JHICS, "hid" to "100234")
+        link = Link(System.JHICS, "hid" to "100234",
+                lastSync = DateTime.parse("2018-07-10T09:39:08.746+07:00"))
         no = "302/21"
         road = "รังสิต-นครนายก"
         location = Point(14.077196, 100.5995609)
     }
 
+    @Ignore
     @Test
-    fun toJson() {
+    fun print() {
         println(house.toJson())
     }
 
     @Test
-    fun fromJson() {
-        val json = """
-{
-  "identity": {
-    "type": "thailand-household-id",
-    "id": "10125501411"
-  },
-  "people": [],
-  "link": {
-    "isSynced": true,
-    "lastSync": "2018-07-05T11:53:59.999+07:00",
-    "system": "JHICS",
-    "keys": {
-      "hid": "100234"
+    fun toJson() {
+        house.toJson() `should equal json` resourceFile("House.json")
     }
-  },
-  "no": "302/21",
-  "road": "รังสิต-นครนายก",
-  "location": {
-    "type": "Point",
-    "coordinates": [
-      "100.5995609",
-      "14.077196"
-    ]
-  },
-  "id": "4c9612f81718422fa11556c4f4b0c869",
-  "type": "House",
-  "timestamp": "2018-07-05T11:53:59.912+07:00"
-}
-""".trimIndent()
 
-        val house = json.parseTo<House>()
+    @Test
+    fun fromJson() {
+        val house = resourceFile("House.json").parseTo<House>()
 
-        house.no `should equal` "302/21"
+        with(house) {
+            identity `should equal` ThaiHouseholdId("10125501411")
+            no `should equal` "302/21"
+            road `should equal` "รังสิต-นครนายก"
+            location `should equal` Point(14.077196, 100.5995609)
+            link `should equal` Link(System.JHICS, "hid" to "100234")
+        }
     }
 }

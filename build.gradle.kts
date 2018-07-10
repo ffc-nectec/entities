@@ -10,6 +10,7 @@ dependencies {
     implementation("joda-time:joda-time:2.9.9")
     implementation("com.github.piruin:geok:1.0.0-alpha-2")
     implementation("com.google.code.gson:gson:2.8.1")
+    implementation("com.gregwoodfill.assert:kotlin-json-assert:0.1.0")
     implementation("com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.6.0")
 
     testImplementation("junit:junit:4.12")
