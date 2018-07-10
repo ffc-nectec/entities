@@ -1,23 +1,29 @@
 package ffc.entity
 
+import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
+import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should contain`
 import org.amshove.kluent.`should equal`
 import org.amshove.kluent.`should not contain`
 import org.amshove.kluent.`should not equal`
+import org.joda.time.DateTime
 import org.joda.time.LocalDate
+import org.junit.Ignore
 import org.junit.Test
 
 class PersonTest {
 
-    val person = Person().apply {
+    val person = Person("e079e175c75a44f180e8eaeb").update<Person>(DateTime.parse("2018-06-25T14:09:07.815+07:00")) {
         identities.add(ThaiCitizenId("1154801544875"))
         prename = "นาย"
         firstname = "พิรุณ"
         lastname = "พานิชผล"
-        birthDate = LocalDate.now().minusYears(25)
-        link = Link(System.JHICS, "pid" to "1234567", "cid" to "11014578451234")
+        birthDate = LocalDate.parse("1993-06-29")
+        link = Link(System.JHICS, "pid" to "1234567", "cid" to "11014578451234",
+                lastSync = DateTime.parse("2018-06-25T14:09:07.815+07:00"))
     }
 
     @Test
@@ -42,8 +48,9 @@ class PersonTest {
         person.name `should equal` "นายพิรุณ พานิชผล"
     }
 
+    @Ignore
     @Test
-    fun toJson() {
+    fun print() {
         println(person.toJson())
     }
 
@@ -57,39 +64,23 @@ class PersonTest {
     }
 
     @Test
+    fun toJson() {
+        person.toJson() `should equal json` resourceFile("Person.json")
+    }
+
+    @Test
     fun fromJson() {
-        val person = """
-{
-  "identities": [
-    {
-      "type": "thailand-citizen-id",
-      "id": "1154801544875"
-    }
-  ],
-  "prename": "นาย",
-  "firstname": "พิรุณ",
-  "lastname": "พานิชผล",
-  "chronics": [],
-  "sex": "UNKNOWN",
-  "birthDate": "1993-06-25",
-  "link": {
-    "isSynced": true,
-    "lastSync": "2018-06-25T14:09:07.815+07:00",
-    "system": "JHICS",
-    "keys": {
-      "pid": "1234567",
-      "cid": "11014578451234"
-    }
-  },
-  "id": "e079e175c75a44f180e8eaeb3ccc3cc6",
-  "type": "Person",
-  "timestamp": "2018-06-25T14:09:07.815"
-}
-        """.parseTo<Person>()
+        val person = resourceFile("Person.json").parseTo<Person>()
 
         with(person) {
+            identities `should contain` ThaiCitizenId("1154801544875")
+            prename `should equal` "นาย"
+            firstname `should equal` "พิรุณ"
+            lastname `should equal` "พานิชผล"
+            birthDate `should equal` LocalDate.parse("1993-06-29")
             link!!.keys["pid"] `should equal` "1234567"
             link!!.keys["cid"] `should equal` "11014578451234"
+            link!!.isSynced `should be` true
         }
     }
 
@@ -100,6 +91,8 @@ class PersonTest {
 
     @Test
     fun isTempId() {
+        val person = person.copy<Person>(generateTempId())
+
         person.isTempId `should be` true
     }
 
