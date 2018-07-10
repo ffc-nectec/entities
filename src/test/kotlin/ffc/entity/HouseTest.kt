@@ -11,7 +11,7 @@ import org.junit.Test
 
 class HouseTest {
 
-    val house = House("123f678f90c").update<House>(DateTime.parse("2018-06-25T14:09:07.815")) {
+    val house = House("123f678f90c").update(DateTime.parse("2018-06-25T14:09:07.815")) {
         identity = ThaiHouseholdId("10125501411")
         link = Link(System.JHICS, "hid" to "100234",
                 lastSync = DateTime.parse("2018-07-10T09:39:08.746+07:00"))
