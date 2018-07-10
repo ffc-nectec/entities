@@ -11,10 +11,9 @@ import org.junit.Test
 
 class HouseTest {
 
-    val house = House("123f678f90c").update(DateTime.parse("2018-06-25T14:09:07.815")) {
+    val house = House("123f678f90c").update(DateTime.parse("2018-06-25T14:09:07.815+07:00")) {
         identity = ThaiHouseholdId("10125501411")
-        link = Link(System.JHICS, "hid" to "100234",
-                lastSync = DateTime.parse("2018-07-10T09:39:08.746+07:00"))
+        link = Link(System.JHICS, "hid" to "100234", lastSync = timestamp)
         no = "302/21"
         road = "รังสิต-นครนายก"
         location = Point(14.077196, 100.5995609)
