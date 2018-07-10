@@ -3,29 +3,30 @@
   "users": [
     {
       "name": "blast",
-      "password": "aaddddres",
       "role": "USER",
-      "id": "d028ba1ecdc4447fa04693ca4e23d29d",
+      "id": "ad030c",
       "type": "User",
-      "timestamp": "2018-06-29T14:55:15.803+07:00"
+      "timestamp": "2018-07-10T12:30:00.000+07:00",
+      "bundle": {}
     },
     {
       "name": "pcu100214.airsync",
       "role": "ORG",
       "id": "123456",
       "type": "User",
-      "timestamp": "2018-06-29T14:55:15.803+07:00"
+      "timestamp": "2018-07-10T12:30:00.000+07:00",
+      "bundle": {}
     }
   ],
   "link": {
     "isSynced": true,
-    "lastSync": "2018-06-29T14:55:15.803+07:00",
+    "lastSync": "2018-07-10T12:30:00.000+07:00",
     "system": "JHICS",
     "keys": {
       "pcucode": 100214
     }
   },
-  "id": "7e226a182d1448c69b308fb40c045f04",
+  "id": "7e226a182d1448c69b308fb4",
   "type": "Organization",
-  "timestamp": "2018-06-29T14:55:15.803+07:00"
+  "timestamp": "2018-07-10T12:30:00.000+07:00"
 }
