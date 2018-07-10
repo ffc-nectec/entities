@@ -17,8 +17,11 @@ data class Link(val system: System, var keys: MutableMap<String, Any>) {
 
     constructor(
         system: System,
-        vararg keys: Pair<String, Any>
-    ) : this(system, keys.toMap(ConcurrentHashMap()).toMutableMap())
+        vararg keys: Pair<String, Any>,
+        lastSync: DateTime = DateTime.now()
+    ) : this(system, keys.toMap(ConcurrentHashMap()).toMutableMap()) {
+        this.lastSync = lastSync
+    }
 }
 
 enum class System {
