@@ -16,7 +16,7 @@ import org.junit.Test
 
 class PersonTest {
 
-    val person = Person("e079e175c75a44f180e8eaeb").update<Person>(DateTime.parse("2018-06-25T14:09:07.815+07:00")) {
+    val person = Person("e079e175c75a44f180e8eaeb").update(DateTime.parse("2018-06-25T14:09:07.815+07:00")) {
         identities.add(ThaiCitizenId("1154801544875"))
         prename = "นาย"
         firstname = "พิรุณ"
@@ -91,14 +91,14 @@ class PersonTest {
 
     @Test
     fun isTempId() {
-        val person = person.copy<Person>(generateTempId())
+        val person = person.copy(generateTempId())
 
         person.isTempId `should be` true
     }
 
     @Test
     fun copy() {
-        val copyPerson = person.copy<Person>("piruin")
+        val copyPerson = person.copy("piruin")
 
         with(copyPerson) {
             id `should be` "piruin"

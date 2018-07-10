@@ -61,4 +61,3 @@ inline fun <reified T> typeTokenOf(): Type = object : TypeToken<T>() {}.type
 fun Any.toJson(gson: Gson = ffcGson): String = gson.toJson(this)
 
 inline fun <reified T> String.parseTo(gson: Gson = ffcGson): T = gson.fromJson(this, typeTokenOf<T>())
-
