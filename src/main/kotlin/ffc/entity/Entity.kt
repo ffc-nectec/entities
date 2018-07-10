@@ -21,8 +21,8 @@ open class Entity(id: String = generateTempId()) : Cloneable {
         block: T.() -> Unit
     ): T {
         with(this as T) {
-            apply(block)
             this.timestamp = timestamp
+            apply(block)
         }
         return this
     }
