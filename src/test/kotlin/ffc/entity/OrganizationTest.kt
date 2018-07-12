@@ -2,6 +2,7 @@ package ffc.entity
 
 import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.toJson
+import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be equal to`
 import org.joda.time.DateTime
 import org.junit.Ignore
@@ -21,6 +22,9 @@ class OrganizationTest {
             password = "a1e6-4f63e8295160"
             role = User.Role.ORG
         })
+        tel = "02-564-6900"
+        address = "อุธยานวิทยาศาสตร์ ปทุมธานี ประเทศไทย"
+        location = Point(14.077065, 100.601616)
         link = Link(System.JHICS, "pcucode" to 100214, lastSync = timestamp)
     }
 
