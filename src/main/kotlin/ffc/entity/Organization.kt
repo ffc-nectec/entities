@@ -18,10 +18,16 @@
 package ffc.entity
 
 import ffc.entity.util.generateTempId
+import me.piruin.geok.geometry.Point
 
 class Organization(id: String = generateTempId()) : Entity(id), Cloneable {
 
     var name: String = "NECTEC"
     var users: MutableList<User> = mutableListOf()
+
+    var tel: String? = null
+    var address: String? = null
+    var location: Point? = null
+
     var link: Link? = null
 }
