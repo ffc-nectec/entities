@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+skinparam monochrome true
+
+actor :Health Care\nProvider: as Provider
+actor Surveyor
+actor OrgAdmin <<AirSync>> as Admin
+actor Patient
+
+usecase (View Service\nHistory) as ServiceHist
+
+Provider --> ServiceHist : Provider View
+ServiceHist <-- Patient : Patient View
+Provider --> (Home Visit)
+Provider --> (NCD Screening)
+Provider --> (View Genogram)
+
+(Home Visit) ..|> (Service) : extend
+(NCD Screening) ..|> (Service) : extend
+(Service) . Patient
+usecase (View Place) as VP
+usecase (View Service\nTarget Place) as VTP
+
+VTP ..|> VP : extend
+Provider --> VTP
+Provider --> (View Patient\nDetail)
+(Alert to Visit Patient) --> Provider
+Provider -> (Edit Relationship)
+
+(Edit Relationship) <-- Surveyor
+Surveyor --> VP
+Surveyor --> (Add Place)
+Surveyor --> (Mark\nPlace Location)
+
+
+(Add Place) <-- Admin
+(Add Person) <-- Admin
+
+@enduml
