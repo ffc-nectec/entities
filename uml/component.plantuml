@@ -1,0 +1,7 @@
+@startuml
+
+[App] --> [API]
+[Air Sync] --> [API]
+[API] --> [Entity]
+
+@enduml
