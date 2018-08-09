@@ -1,0 +1,36 @@
+{
+    "detail": "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม",
+    "result": "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี",
+    "plan": "ติดตามเยี่ยมปีละ 1 ครั้ง",
+    "serviceCause": {
+        "id": "1B0030",
+        "type": "CommunityServiceType",
+        "timestamp": "2018-08-09T17:32:31.494+07:00"
+    },
+    "time": "2018-08-09T17:32:31.982+07:00",
+    "syntom": "ทานอาหารได้น้อย เบื่ออาหาร",
+    "weight": 61.5,
+    "height": 170.0,
+    "bloodPressure": {
+        "systolic": 145.0,
+        "diastolic": 95.0
+    },
+    "respiratoryRate": 192,
+    "diagnosises": [
+        {
+            "disease": {
+                "icd10": "i10",
+                "isChronic": true,
+                "isNonCommunicable": true,
+                "name": "Hypertension",
+                "id": "6d2b0be43eb2431e89421f7927fff2a1",
+                "type": "Disease",
+                "timestamp": "2018-08-09T17:32:31.967+07:00"
+            },
+            "dxType": "PRINCIPLE_DX"
+        }
+    ],
+    "id": "2d1a5b55e9a64ce3b6ff1ea823353277",
+    "type": "HomeVisit",
+    "timestamp": "2018-08-09T17:32:31.982+07:00"
+}
