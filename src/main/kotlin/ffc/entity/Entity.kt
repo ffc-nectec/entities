@@ -1,6 +1,6 @@
 package ffc.entity
 
-import ffc.entity.gson.Exclude
+import ffc.entity.gson.JsonExclude
 import ffc.entity.util.generateTempId
 import org.joda.time.DateTime
 import java.util.concurrent.ConcurrentHashMap
@@ -13,7 +13,7 @@ open class Entity(id: String = generateTempId()) : Cloneable {
     open val type = javaClass.simpleName
     var timestamp: DateTime = DateTime.now()
         internal set
-    @Exclude
+    @JsonExclude
     val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 
     override fun equals(other: Any?): Boolean {
