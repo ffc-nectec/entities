@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+import ffc.entity.healthcare.Chronic
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
 

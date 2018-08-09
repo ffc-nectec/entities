@@ -17,13 +17,16 @@
 
 package ffc.entity
 
+import ffc.entity.healthcare.Disease
 import org.joda.time.LocalDate
 
-data class Chronic(val idc10: String) : Cloneable {
+@Deprecated(
+        "move to healthcare package",
+        ReplaceWith("Chronic", "ffc.entity.healthcare"),
+        DeprecationLevel.ERROR)
+data class Chronic(val disease: Disease) : Cloneable {
     var diagDate: LocalDate = LocalDate.now()
     var dischardDate: LocalDate? = null
     val isActive: Boolean get() = dischardDate == null
     var link: Link? = null
-
-    public override fun clone(): Chronic = super.clone() as Chronic
 }
