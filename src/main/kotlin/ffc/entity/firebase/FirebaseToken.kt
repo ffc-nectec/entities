@@ -17,5 +17,5 @@
 
 package ffc.entity.firebase
 
-@Deprecated("Use mapOf(\"firebaseToken\" to ...)")
+@Deprecated("Use mapOf(\"firebaseToken\" to ...)", level = DeprecationLevel.ERROR)
 data class FirebaseToken(val firebasetoken: String)

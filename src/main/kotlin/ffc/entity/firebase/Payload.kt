@@ -19,7 +19,7 @@ package ffc.entity.firebase
 
 import ffc.entity.Messaging
 
-@Deprecated("user Map instead")
+@Deprecated("user Map instead", level = DeprecationLevel.ERROR)
 data class Payload(val message: Message) {
 
     data class Message(val data: Messaging)
