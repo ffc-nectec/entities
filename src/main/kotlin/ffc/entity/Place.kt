@@ -22,7 +22,7 @@ import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
 
-@Deprecated("use place instead", ReplaceWith("Place"))
+@Deprecated("use place instead", ReplaceWith("Place"), DeprecationLevel.ERROR)
 open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
 
     @Deprecated("use id", ReplaceWith("id"))
