@@ -27,10 +27,20 @@ class User(id: String = generateTempId()) : Entity(id) {
     lateinit var name: String
     lateinit var password: String
 
+    @Deprecated("use rolse", ReplaceWith("roles"))
     var role: Role = Role.USER
+
+    var roles: List<Role> = listOf()
     var link: Link? = null
 
     enum class Role {
-        ORG, USER
+        @Deprecated("Use admin")
+        ORG,
+        @Deprecated("Define as Provider, Surveyor or Patient")
+        USER,
+        ADMIN,
+        PROVIDER,
+        SURVEYOR,
+        PATIENT
     }
 }
