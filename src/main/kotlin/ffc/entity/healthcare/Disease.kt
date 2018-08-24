@@ -1,9 +1,12 @@
 package ffc.entity.healthcare
 
-import ffc.entity.Entity
-import ffc.entity.util.generateTempId
+import ffc.entity.Lookup
 
-class Disease(val name: String, var icd10: String? = null, id: String = generateTempId()) : Entity(id) {
-    var isChronic: Boolean = false
-    var isNonCommunicable: Boolean = false
-}
+class Disease(
+    id: String,
+    name: String,
+    val icd10: String? = null,
+    val isEpimedic: Boolean = false,
+    val isChronic: Boolean = false,
+    val isNCD: Boolean = false
+) : Lookup(id, name)

@@ -1,9 +1,11 @@
 package ffc.entity.healthcare
 
-import ffc.entity.Entity
 import ffc.entity.Link
-import ffc.entity.util.generateTempId
+import ffc.entity.Lookup
 
-class CommunityServiceType(id: String = generateTempId(), name: String) : Entity(id) {
+class CommunityServiceType(
+    id: String,
+    name: String
+) : Lookup(id, name) {
     var link: Link? = null
 }
