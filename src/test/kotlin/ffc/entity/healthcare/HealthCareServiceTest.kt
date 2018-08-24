@@ -6,7 +6,9 @@ import ffc.entity.ThaiCitizenId
 import ffc.entity.User
 import ffc.entity.gson.toJson
 import ffc.entity.util.generateTempId
+import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should contain`
 import org.amshove.kluent.`should equal`
 import org.junit.Test
 
@@ -47,8 +49,9 @@ class HealthCareServiceTest {
             weight = 61.5
             height = 170.0
             bloodPressure = ThaiBloodPressure(145.0, 95.0)
-            diagnosises.add(Diagnosis(hypertension, Diagnosis.Type.PRINCIPLE_DX))
+            principleDx = hypertension
             respiratoryRate = 192
+            location = Point(14.192390, 120.029384)
             syntom = "ทานอาหารได้น้อย เบื่ออาหาร"
             detail = "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม"
             result = "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี"
@@ -56,10 +59,13 @@ class HealthCareServiceTest {
         }
 
         with(visit) {
+            providerId `should equal` provider.id
+            patientId `should equal` patient.id
             bmi!!.isNormal `should be` true
             bmi!!.value `should equal` 21.3
             bloodPressure!!.isHigh `should be` true
             serviceType `should equal` comServType
+            diagnosises `should contain` Diagnosis(hypertension, Diagnosis.Type.PRINCIPLE_DX)
         }
 
         print(visit.toJson())

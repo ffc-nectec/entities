@@ -7,7 +7,7 @@ class HomeVisit(
     patientId: String,
     var serviceType: CommunityServiceType,
     id: String = generateTempId()
-) : HealthCareService(patientId, providerId, id) {
+) : HealthCareService(providerId, patientId, id) {
     var detail: String? = null
     var result: String? = null
     var plan: String? = null

@@ -28,4 +28,13 @@ open class HealthCareService(
     var respiratoryRate: Number? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
     var link: Link? = null
+
+    var principleDx: Disease?
+        get() = diagnosises.firstOrNull { it.dxType == Diagnosis.Type.PRINCIPLE_DX }?.disease
+        set(value) {
+            if (value != null)
+                diagnosises.add(Diagnosis(value, Diagnosis.Type.PRINCIPLE_DX))
+            else
+                diagnosises.removeIf { it.dxType == Diagnosis.Type.PRINCIPLE_DX }
+        }
 }
