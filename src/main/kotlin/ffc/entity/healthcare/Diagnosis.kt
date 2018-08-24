@@ -1,6 +1,6 @@
 package ffc.entity.healthcare
 
-class Diagnosis(val disease: Disease, val dxType: Type) {
+data class Diagnosis(val disease: Disease, val dxType: Type) {
 
     enum class Type {
         PRINCIPLE_DX,
