@@ -12,9 +12,14 @@ class HealthCareServiceTest {
             "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
     )
 
-    val hypertension = Disease("Hypertension", "i10").apply {
-        isChronic = true
-        isNonCommunicable = true
+    val hypertension = Disease(
+            "id2h3",
+            "Hypertension",
+            "i10",
+            isEpimedic = false,
+            isChronic = true,
+            isNCD = true).apply {
+        translation.put("th", "ความดันโลหิต")
     }
 
     @Test
@@ -36,6 +41,7 @@ class HealthCareServiceTest {
             bmi!!.isNormal `should be` true
             bmi!!.value `should equal` 21.3
             bloodPressure!!.isHigh `should be` true
+            serviceType `should equal` comServType
         }
 
         print(visit.toJson())
