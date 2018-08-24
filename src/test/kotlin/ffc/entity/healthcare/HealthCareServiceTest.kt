@@ -1,7 +1,11 @@
 package ffc.entity.healthcare
 
 import ffc.entity.Lang
+import ffc.entity.Person
+import ffc.entity.ThaiCitizenId
+import ffc.entity.User
 import ffc.entity.gson.toJson
+import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.junit.Test
@@ -23,9 +27,22 @@ class HealthCareServiceTest {
         translation.put(Lang.th, "ความดันโลหิต")
     }
 
+    val provider = User(generateTempId(),
+            "blast",
+            "123456",
+            User.Role.PROVIDER,
+            User.Role.ADMIN)
+
+    val patient = Person().apply {
+        identities.add(ThaiCitizenId("1154785400590"))
+        prename = "Mr."
+        firstname = "Piruin"
+        lastname = "Panichphol"
+    }
+
     @Test
     fun visit() {
-        var visit = HomeVisit(comServType).apply {
+        val visit = provider.homeVisit(patient.id, comServType).apply {
             syntom = "ปกติ"
             weight = 61.5
             height = 170.0

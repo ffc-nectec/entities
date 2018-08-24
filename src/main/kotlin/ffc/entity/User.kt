@@ -21,6 +21,17 @@ import ffc.entity.util.generateTempId
 
 class User(id: String = generateTempId()) : Entity(id) {
 
+    constructor(
+        id: String = generateTempId(),
+        name: String,
+        password: String,
+        vararg roles: Role
+    ) : this(id) {
+        this.name = name
+        this.password = password
+        this.roles.addAll(roles)
+    }
+
     @Deprecated("use name instead", ReplaceWith("name"))
     val username: String? = null
 
@@ -30,7 +41,7 @@ class User(id: String = generateTempId()) : Entity(id) {
     @Deprecated("use rolse", ReplaceWith("roles"))
     var role: Role = Role.USER
 
-    var roles: List<Role> = listOf()
+    val roles: MutableList<Role> = mutableListOf()
     var link: Link? = null
 
     enum class Role {
