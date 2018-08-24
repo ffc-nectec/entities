@@ -4,7 +4,7 @@ abstract class Lookup(
     open val id: String,
     open val name: String
 ) {
-    val translation: MutableMap<String, String> = hashMapOf()
+    val translation: MutableMap<Lang, String> = hashMapOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -16,4 +16,8 @@ abstract class Lookup(
     override fun hashCode(): Int {
         return id.hashCode()
     }
+}
+
+enum class Lang {
+    en, th
 }

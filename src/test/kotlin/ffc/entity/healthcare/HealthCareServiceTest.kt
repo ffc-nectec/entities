@@ -1,5 +1,6 @@
 package ffc.entity.healthcare
 
+import ffc.entity.Lang
 import ffc.entity.gson.toJson
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
@@ -19,7 +20,7 @@ class HealthCareServiceTest {
             isEpimedic = false,
             isChronic = true,
             isNCD = true).apply {
-        translation.put("th", "ความดันโลหิต")
+        translation.put(Lang.th, "ความดันโลหิต")
     }
 
     @Test
