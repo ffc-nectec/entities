@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class ThaiBloodPressureTest(
-    val bp: ThaiBloodPressure,
+    val bp: BloodPressureAnalyzer,
     val isLow: Boolean,
     val isNormal: Boolean,
     val isPreHigh: Boolean,
