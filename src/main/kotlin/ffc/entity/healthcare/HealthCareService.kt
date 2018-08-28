@@ -24,8 +24,9 @@ open class HealthCareService(
             return if (w != null && h != null) ThaiBMI(h / 100, w) else null
         }
     var bloodPressure: BloodPressure? = null
-    var pulseRate: Number? = null
-    var respiratoryRate: Number? = null
+    var pulseRate: Double? = null
+    var respiratoryRate: Double? = null
+    var bodyTemperature: Double? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
     var link: Link? = null
 
