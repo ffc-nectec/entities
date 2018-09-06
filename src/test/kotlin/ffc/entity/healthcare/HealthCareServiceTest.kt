@@ -73,7 +73,6 @@ class HealthCareServiceTest {
             serviceType `should equal` comServType
             diagnosises `should contain` Diagnosis(hypertension, Diagnosis.Type.PRINCIPLE_DX)
         }
-
         print(visit.toJson())
     }
 
