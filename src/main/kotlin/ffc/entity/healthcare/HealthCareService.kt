@@ -11,7 +11,8 @@ open class HealthCareService(
     val patientId: String,
     id: String = generateTempId()
 ) : Entity(id) {
-    var time = DateTime.now()
+    var time: DateTime = DateTime.now()
+    var endTime: DateTime = time.plusMinutes(5)
     var location: Point? = null
     var syntom: String? = null
     var suggestion: String? = null
