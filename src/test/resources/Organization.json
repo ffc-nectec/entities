@@ -4,6 +4,10 @@
     {
       "name": "blast",
       "role": "USER",
+      "roles": [
+        "PROVIDER",
+        "SURVEYOR"
+      ],
       "id": "ad030c",
       "type": "User",
       "timestamp": "2018-07-10T12:30:00.000+07:00",
@@ -11,7 +15,10 @@
     },
     {
       "name": "pcu100214.airsync",
-      "role": "ORG",
+      "role": "USER",
+      "roles": [
+        "ADMIN"
+      ],
       "id": "123456",
       "type": "User",
       "timestamp": "2018-07-10T12:30:00.000+07:00",
