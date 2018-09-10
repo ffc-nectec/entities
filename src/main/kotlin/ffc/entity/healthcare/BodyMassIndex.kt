@@ -17,7 +17,7 @@ abstract class BodyMassIndex(val heightMetre: Double, val weight: Double) {
     }
 }
 
-class ThaiBMI(h: Double, w: Double) : BodyMassIndex(h, w) {
+internal class ThaiBMI(h: Double, w: Double) : BodyMassIndex(h, w) {
     override val isUnderWeight: Boolean
         get() = value < 18.5
     override val isNormal: Boolean
@@ -27,3 +27,5 @@ class ThaiBMI(h: Double, w: Double) : BodyMassIndex(h, w) {
     override val isObese: Boolean
         get() = value > 30.0
 }
+
+fun bmi(h: Double, w: Double): BodyMassIndex = ThaiBMI(h, w)

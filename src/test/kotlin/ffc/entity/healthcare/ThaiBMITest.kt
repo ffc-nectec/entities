@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 class ThaiBMITest(
-    val bmi: ThaiBMI,
+    val bmi: BodyMassIndex,
     val isUnderWeight: Boolean,
     val isNormal: Boolean,
     val isOverWeight: Boolean,
