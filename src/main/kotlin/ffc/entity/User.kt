@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+import ffc.entity.gson.JsonExclude
 import ffc.entity.util.generateTempId
 
 class User(id: String = generateTempId()) : Entity(id) {
@@ -38,6 +39,7 @@ class User(id: String = generateTempId()) : Entity(id) {
     lateinit var name: String
     lateinit var password: String
 
+    @JsonExclude
     @Deprecated("use rolse", ReplaceWith("roles"))
     var role: Role = Role.USER
 
