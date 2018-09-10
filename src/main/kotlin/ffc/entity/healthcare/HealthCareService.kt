@@ -22,7 +22,7 @@ open class HealthCareService(
         get() {
             val h = height
             val w = weight
-            return if (w != null && h != null) ThaiBMI(h / 100, w) else null
+            return if (w != null && h != null) bmi(h / 100, w) else null
         }
     var bloodPressure: BloodPressure? = null
     var pulseRate: Double? = null
