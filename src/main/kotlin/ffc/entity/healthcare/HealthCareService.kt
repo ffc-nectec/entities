@@ -18,6 +18,7 @@ open class HealthCareService(
     var suggestion: String? = null
     var weight: Double? = null
     var height: Double? = null
+    var waist: Double? = null
     val bmi: BodyMassIndex?
         get() {
             val h = height
@@ -29,6 +30,8 @@ open class HealthCareService(
     var respiratoryRate: Double? = null
     var bodyTemperature: Double? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
+    var note: String? = null
+    var photosUrl: List<String> = listOf()
     var link: Link? = null
 
     var principleDx: Disease?
