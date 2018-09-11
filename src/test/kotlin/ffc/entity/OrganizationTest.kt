@@ -15,12 +15,14 @@ class OrganizationTest {
         users.add(User("ad030c").update(DateTime(timestamp)) {
             name = "blast"
             password = "aaddddres"
+            role = User.Role.USER
             roles.add(User.Role.PROVIDER)
             roles.add(User.Role.SURVEYOR)
         })
         users.add(User("123456").update(timestamp) {
             name = "pcu100214.airsync"
             password = "a1e6-4f63e8295160"
+            role = User.Role.ORG
             roles.add(User.Role.ADMIN)
         })
         tel = "02-564-6900"
