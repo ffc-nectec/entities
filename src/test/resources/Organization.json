@@ -15,7 +15,7 @@
     },
     {
       "name": "pcu100214.airsync",
-      "role": "USER",
+      "role": "ORG",
       "roles": [
         "ADMIN"
       ],
