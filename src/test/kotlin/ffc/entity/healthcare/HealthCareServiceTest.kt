@@ -18,25 +18,28 @@ import org.junit.Test
 class HealthCareServiceTest {
 
     val comServType = CommunityServiceType(
-            "1B0030",
-            "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
+        "1B0030",
+        "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
     )
 
     val hypertension = Disease(
-            "id2h3",
-            "Hypertension",
-            "i10",
-            isEpimedic = false,
-            isChronic = true,
-            isNCD = true).apply {
+        "id2h3",
+        "Hypertension",
+        "i10",
+        isEpimedic = false,
+        isChronic = true,
+        isNCD = true
+    ).apply {
         translation.put(Lang.th, "ความดันโลหิต")
     }
 
-    val provider = User(generateTempId(),
-            "blast",
-            "123456",
-            User.Role.PROVIDER,
-            User.Role.ADMIN)
+    val provider = User(
+        generateTempId(),
+        "blast",
+        "123456",
+        User.Role.PROVIDER,
+        User.Role.ADMIN
+    )
 
     val patient = Person().apply {
         identities.add(ThaiCitizenId("1154785400590"))
@@ -83,5 +86,32 @@ class HealthCareServiceTest {
             pulseRate `should equal` 72.0
             respiratoryRate `should equal` 24.0
         }
+    }
+
+    @Test
+    fun toJsonFromJson() {
+        val visit = provider.homeVisit(patient.id, comServType).apply {
+            syntom = "ปกติ"
+            weight = 61.5
+            height = 170.0
+            bloodPressure = BloodPressure(145.0, 95.0)
+            principleDx = hypertension
+            respiratoryRate = 24.0
+            pulseRate = 72.0
+            bodyTemperature = 37.5
+            location = Point(14.192390, 120.029384)
+            syntom = "ทานอาหารได้น้อย เบื่ออาหาร"
+            detail = "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม"
+            result = "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี"
+            plan = "ติดตามเยี่ยมปีละ 1 ครั้ง"
+            nextAppoint = LocalDate.parse("2019-09-21")
+        }
+
+        val visitJson = visit.toJson()
+
+        val visitFromJson = visitJson.parseTo<HealthCareService>()
+
+        visitFromJson.id `should equal` visit.id
+        (visitFromJson as HomeVisit).nextAppoint `should equal` LocalDate.parse("2019-09-21")
     }
 }
