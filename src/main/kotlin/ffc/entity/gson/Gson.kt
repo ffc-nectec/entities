@@ -25,6 +25,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import ffc.entity.Identity
 import ffc.entity.User
+import ffc.entity.healthcare.HealthCareService
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
 import me.piruin.geok.gson.GeometrySerializer
@@ -36,11 +37,12 @@ import java.lang.reflect.Type
 
 val ffcGson: Gson by lazy {
     GsonBuilder()
-            .setExclusionStrategies(ExcludeAnnotationStrategy())
-            .adapterFor<User>(UserJsonAdapter())
-            .adapterFor<Identity>(IdentityJsonAdapter())
-            .adapterForExtLibrary()
-            .create()
+        .setExclusionStrategies(ExcludeAnnotationStrategy())
+        .adapterFor<User>(UserJsonAdapter())
+        .adapterFor<Identity>(IdentityJsonAdapter())
+        .adapterFor<HealthCareService>(HealthCareJsonAdapter())
+        .adapterForExtLibrary()
+        .create()
 }
 
 internal fun GsonBuilder.adapterForExtLibrary(): GsonBuilder {
