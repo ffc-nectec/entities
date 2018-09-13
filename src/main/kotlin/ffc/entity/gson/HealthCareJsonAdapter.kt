@@ -1,6 +1,5 @@
 package ffc.entity.gson
 
-import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -21,13 +20,15 @@ class HealthCareJsonAdapter : JsonDeserializer<HealthCareService>, JsonSerialize
         typeOfT: Type?,
         context: JsonDeserializationContext?
     ): HealthCareService {
-        val jsonObj = json.asJsonObject
-        val gson = GsonBuilder().adapterForExtLibrary()
 
-        return when (jsonObj.get("type").asString) {
+        return when (json.asJsonObject.get("type").asString) {
             HomeVisit::class.java.simpleName ->
-                gson.create().fromJson(jsonObj.toString(), HomeVisit::class.java)
-            else -> gson.create().fromJson(json.toString(), HealthCareService::class.java)
+                context!!.deserialize<HomeVisit>(json)
+            else -> context!!.deserialize(json)
         }
+    }
+
+    private inline fun <reified T> JsonDeserializationContext.deserialize(json: JsonElement): T {
+        return this.deserialize(json, T::class.java)
     }
 }
