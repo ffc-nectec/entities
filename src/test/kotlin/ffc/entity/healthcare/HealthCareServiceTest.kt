@@ -90,7 +90,7 @@ class HealthCareServiceTest {
 
     @Test
     fun toJsonFromJson() {
-        val visit = provider.homeVisit(patient.id, comServType).apply {
+        val visitJson = provider.homeVisit(patient.id, comServType).apply {
             syntom = "ปกติ"
             weight = 61.5
             height = 170.0
@@ -105,13 +105,11 @@ class HealthCareServiceTest {
             result = "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี"
             plan = "ติดตามเยี่ยมปีละ 1 ครั้ง"
             nextAppoint = LocalDate.parse("2019-09-21")
-        }
-
-        val visitJson = visit.toJson()
+        }.toJson()
 
         val visitFromJson = visitJson.parseTo<HealthCareService>()
 
-        visitFromJson.id `should equal` visit.id
+        visitFromJson.pulseRate `should equal` 72.0
         (visitFromJson as HomeVisit).nextAppoint `should equal` LocalDate.parse("2019-09-21")
     }
 }
