@@ -19,13 +19,15 @@ class ThaiBloodPressureTest(
         @JvmStatic
         @Parameterized.Parameters
         fun data() = listOf(
-                arrayOf(ThaiBloodPressure(110.0, 70.0), false, true, false, false),
-                arrayOf(ThaiBloodPressure(150.0, 110.0), false, false, false, true),
-                arrayOf(ThaiBloodPressure(120.0, 80.0), false, true, false, false),
-                arrayOf(ThaiBloodPressure(121.0, 80.0), false, false, true, false),
-                arrayOf(ThaiBloodPressure(140.0, 91.0), false, false, false, true),
-                arrayOf(ThaiBloodPressure(90.0, 60.0), true, false, false, false)
-        )
+                arrayOf(ThaiBloodPressure(90.0, 60.0), false, true, false, false),
+                arrayOf(ThaiBloodPressure(60.0, 50.0), true, false, false, false),
+                arrayOf(ThaiBloodPressure(119.0, 79.0), false, true, false, false),
+                arrayOf(ThaiBloodPressure(120.0, 80.0), false, false, true, false),
+                arrayOf(ThaiBloodPressure(125.0, 85.0), false, false, true, false),
+                arrayOf(ThaiBloodPressure(139.0, 89.0), false, false, true, false),
+                arrayOf(ThaiBloodPressure(140.0, 99.0), false, false, false, true),
+                arrayOf(ThaiBloodPressure(180.0, 110.0), false, false, false, true)
+                )
     }
 
     @Test

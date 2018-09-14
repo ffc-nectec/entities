@@ -18,13 +18,13 @@ internal class ThaiBloodPressure(bp: BloodPressure) : BloodPressureAnalyzer(bp) 
     val diastolic = bp.diastolic
 
     override val isLow: Boolean
-        get() = systolic <= 90 || diastolic <= 60
+        get() = systolic < 90 || diastolic < 60
     override val isNormal: Boolean
-        get() = systolic in 91..120 && diastolic in 61..80
+        get() = systolic in 90..119 && diastolic in 60..79
     override val isPreHigh: Boolean
-        get() = (systolic in 121..140 || diastolic in 81..90) && !isHigh
+        get() = (systolic in 120..139 || diastolic in 80..89) && !isHigh
     override val isHigh: Boolean
-        get() = systolic > 140 || diastolic > 90
+        get() = systolic >= 140 || diastolic >= 90
 }
 
 val HealthCareService.bloodPressureLevel: BloodPressureAnalyzer?
