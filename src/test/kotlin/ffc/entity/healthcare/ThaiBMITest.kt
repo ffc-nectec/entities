@@ -18,8 +18,11 @@ class ThaiBMITest(
         @JvmStatic
         @Parameterized.Parameters
         fun data() = listOf(
+                arrayOf(ThaiBMI(1.60, 40.0), true, false, false, false),
                 arrayOf(ThaiBMI(1.60, 60.0), false, true, false, false),
-                arrayOf(ThaiBMI(1.60, 40.0), true, false, false, false)
+                arrayOf(ThaiBMI(1.80, 60.0), false, true, false, false),
+                arrayOf(ThaiBMI(1.65, 70.0), false, false, true, false),
+                arrayOf(ThaiBMI(1.65, 85.0), false, false, false, true)
         )
     }
 
