@@ -18,6 +18,7 @@
 package ffc.entity
 
 import ffc.entity.util.generateTempId
+import java.net.URI
 
 class User(id: String = generateTempId()) : Entity(id) {
 
@@ -39,6 +40,11 @@ class User(id: String = generateTempId()) : Entity(id) {
     lateinit var password: String
     var displayName: String? = null
         get() = if (field != null) field else name
+    var avatarUrl: String? = null
+        set(value) {
+            if (value != null) URI.create(value).toURL() //validate
+            field = value
+        }
 
     @Deprecated("use rolse", ReplaceWith("roles"))
     var role: Role = Role.USER
