@@ -18,9 +18,9 @@
 package ffc.entity
 
 import ffc.entity.healthcare.Chronic
+import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
-import java.net.URI
 
 class Person(id: String = generateTempId()) : Entity(id), Cloneable {
 
@@ -36,9 +36,9 @@ class Person(id: String = generateTempId()) : Entity(id), Cloneable {
     var chronics: MutableList<Chronic> = mutableListOf()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
     var avatarUrl: String? = null
-        set(value) {
-            if (value != null) URI.create(value).toURL() //validate
-            field = value
+        set(url) {
+            if (url != null) checkValidUrl(url)
+            field = url
         }
     var link: Link? = null
 

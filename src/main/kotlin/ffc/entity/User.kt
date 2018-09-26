@@ -17,8 +17,8 @@
 
 package ffc.entity
 
+import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
-import java.net.URI
 
 class User(id: String = generateTempId()) : Entity(id) {
 
@@ -41,9 +41,9 @@ class User(id: String = generateTempId()) : Entity(id) {
     var displayName: String? = null
         get() = if (field != null) field else name
     var avatarUrl: String? = null
-        set(value) {
-            if (value != null) URI.create(value).toURL() //validate
-            field = value
+        set(url) {
+            if (url != null) checkValidUrl(url)
+            field = url
         }
 
     @Deprecated("use rolse", ReplaceWith("roles"))

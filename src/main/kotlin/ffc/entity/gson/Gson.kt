@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken
 import ffc.entity.Identity
 import ffc.entity.User
 import ffc.entity.healthcare.HealthCareService
+import ffc.entity.util.URLs
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
 import me.piruin.geok.gson.GeometrySerializer
@@ -41,6 +42,7 @@ val ffcGson: Gson by lazy {
         .adapterFor<User>(UserJsonAdapter())
         .adapterFor<Identity>(IdentityJsonAdapter())
         .adapterFor<HealthCareService>(HealthCareJsonAdapter())
+        .adapterFor<URLs>(URLsJsonAdapter())
         .adapterForExtLibrary()
         .create()
 }
