@@ -37,6 +37,8 @@ class User(id: String = generateTempId()) : Entity(id) {
 
     lateinit var name: String
     lateinit var password: String
+    var displayName: String? = null
+        get() = if (field != null) field else name
 
     @Deprecated("use rolse", ReplaceWith("roles"))
     var role: Role = Role.USER
