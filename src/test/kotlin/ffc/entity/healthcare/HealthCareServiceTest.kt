@@ -7,9 +7,11 @@ import ffc.entity.User
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import ffc.entity.resourceFile
+import ffc.entity.util.URLs
 import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should contain all`
 import org.amshove.kluent.`should contain`
 import org.amshove.kluent.`should equal`
 import org.joda.time.LocalDate
@@ -65,6 +67,10 @@ class HealthCareServiceTest {
             result = "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี"
             plan = "ติดตามเยี่ยมปีละ 1 ครั้ง"
             nextAppoint = LocalDate.parse("2019-09-21")
+            photosUrl = URLs(
+                    "http://ffc.in.th/img/ffcc.jpg",
+                    "http://ffc.in.th/img/ffcc1.jpg"
+            )
         }
 
         with(visit) {
@@ -85,6 +91,8 @@ class HealthCareServiceTest {
         with(visit) {
             pulseRate `should equal` 72.0
             respiratoryRate `should equal` 24.0
+            photosUrl `should contain all` listOf("http://ffc.in.th/img/ffcc.jpg",
+                    "http://ffc.in.th/img/ffcc1.jpg")
         }
     }
 

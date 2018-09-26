@@ -2,9 +2,11 @@ package ffc.entity.healthcare
 
 import ffc.entity.Entity
 import ffc.entity.Link
+import ffc.entity.util.URLs
 import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 open class HealthCareService(
     val providerId: String,
@@ -13,12 +15,14 @@ open class HealthCareService(
 ) : Entity(id) {
     var time: DateTime = DateTime.now()
     var endTime: DateTime = time.plusMinutes(5)
+    var nextAppoint: LocalDate? = null
     var location: Point? = null
     var syntom: String? = null
     var suggestion: String? = null
     var weight: Double? = null
     var height: Double? = null
     var waist: Double? = null
+    var ass: Double? = null
     val bmi: BodyMassIndex?
         get() {
             val h = height
@@ -31,7 +35,7 @@ open class HealthCareService(
     var bodyTemperature: Double? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
     var note: String? = null
-    var photosUrl: List<String> = listOf()
+    var photosUrl: URLs = URLs()
     var link: Link? = null
 
     var principleDx: Disease?

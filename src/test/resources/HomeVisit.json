@@ -2,13 +2,14 @@
   "detail": "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม",
   "result": "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี",
   "plan": "ติดตามเยี่ยมปีละ 1 ครั้ง",
-  "nextAppoint": "2019-09-21",
   "serviceType": {
     "translation": {},
     "id": "1B0030",
     "name": "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
   },
-  "time": "2018-08-28T11:19:45.041+07:00",
+  "time": "2018-09-26T17:45:24.175+07:00",
+  "endTime": "2018-09-26T17:50:24.175+07:00",
+  "nextAppoint": "2019-09-21",
   "location": {
     "type": "Point",
     "coordinates": [
@@ -23,8 +24,8 @@
     "systolic": 145.0,
     "diastolic": 95.0
   },
-  "pulseRate": 72,
-  "respiratoryRate": 24,
+  "pulseRate": 72.0,
+  "respiratoryRate": 24.0,
   "bodyTemperature": 37.5,
   "diagnosises": [
     {
@@ -39,12 +40,17 @@
         "id": "id2h3",
         "name": "Hypertension"
       },
-      "dxType": "PRINCIPLE_DX"
+      "dxType": "PRINCIPLE_DX",
+      "isContinued": false
     }
   ],
-  "providerId": "7ef997ece41e42e7b0b9b28ca62336ca",
-  "patientId": "b1b9020e8f124b62b09d3cda8848374b",
-  "id": "4eb4c875a09f42068b3803a75564996c",
+  "photosUrl": [
+    "http://ffc.in.th/img/ffcc.jpg",
+    "http://ffc.in.th/img/ffcc1.jpg"
+  ],
+  "providerId": "6dcc5e3d551240fb963da0fb07ca00d8",
+  "patientId": "99aa175132d343d59e59af9abd8adbe2",
+  "id": "5877f7b8f6dd4dad8ed45f7fde6acc02",
   "type": "HomeVisit",
-  "timestamp": "2018-08-28T11:19:45.041+07:00"
+  "timestamp": "2018-09-26T17:45:24.175+07:00"
 }
