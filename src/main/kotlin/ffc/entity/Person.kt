@@ -22,16 +22,19 @@ import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
 
-class Person(id: String = generateTempId()) : Entity(id), Cloneable {
+class Person(
+    id: String = generateTempId(),
+    var prename: String = "",
+    var firstname: String = "",
+    var midname: String? = null,
+    var lastname: String = "",
+    var sex: Sex = Sex.UNKNOWN,
+    var birthDate: LocalDate? = null,
+    var houseId: String = generateTempId()
+) : Entity(id), Cloneable {
 
     var identities: MutableList<Identity> = mutableListOf()
-    var prename: String = ""
-    var firstname: String = ""
-    var midname: String? = null
-    var lastname: String = ""
     val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
-    var sex: Sex = Sex.UNKNOWN
-    var birthDate: LocalDate? = null
     val age: Int? get() = birthDate?.let { LocalDate.now().year - it.year }
     var chronics: MutableList<Chronic> = mutableListOf()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
