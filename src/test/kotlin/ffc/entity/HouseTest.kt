@@ -54,5 +54,4 @@ class HouseTest {
             link `should equal` Link(System.JHICS, "hid" to "100234")
         }
     }
-
 }
