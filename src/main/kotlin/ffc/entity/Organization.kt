@@ -17,17 +17,25 @@
 
 package ffc.entity
 
+import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 
 class Organization(id: String = generateTempId()) : Entity(id), Cloneable {
 
     var name: String = "NECTEC"
-    var users: MutableList<User> = mutableListOf()
+    var displayName: String? = null
+        get() = if (field != null) field else name
+    var avatarUrl: String? = null
+        set(url) {
+            if (url != null) checkValidUrl(url)
+            field = url
+        }
 
     var tel: String? = null
     var address: String? = null
     var location: Point? = null
+    var users: MutableList<User> = mutableListOf()
 
     var link: Link? = null
 }

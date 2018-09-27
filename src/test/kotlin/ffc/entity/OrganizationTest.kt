@@ -11,7 +11,8 @@ import org.junit.Test
 class OrganizationTest {
 
     val org = Organization("7e226a182d1448c69b308fb4").update(DateTime.parse("2018-07-10T12:30:00.000+07:00")) {
-        name = "รพ.สต. เนคเทค"
+        name = "รพสต-เนคเทค"
+        displayName = "รพ.สต. เนคเทค"
         users.add(User("ad030c").update(DateTime(timestamp)) {
             name = "blast"
             password = "aaddddres"
