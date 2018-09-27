@@ -4,6 +4,7 @@ import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import me.piruin.geok.geometry.Point
+import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.joda.time.DateTime
 import org.junit.Ignore
@@ -17,6 +18,17 @@ class HouseTest {
         no = "302/21"
         road = "รังสิต-นครนายก"
         location = Point(14.077196, 100.5995609)
+        haveChronic = true
+    }
+
+    @Test
+    fun name() {
+        house.haveChronic `should be` true
+
+        val healtyPerson = Person()
+        house.people.add(healtyPerson)
+
+        house.haveChronic `should be` false
     }
 
     @Ignore

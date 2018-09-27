@@ -47,7 +47,8 @@ open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
 
 class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
-    var people: MutableList<Person>? = mutableListOf()
-    val haveChronic: Boolean get() = people?.firstOrNull { it.haveChronic } != null
+    var people: MutableList<Person> = mutableListOf()
+    var haveChronic: Boolean = false
+        get() = if (people.isNotEmpty()) people.firstOrNull { it.haveChronic } != null else field
     var link: Link? = null
 }
