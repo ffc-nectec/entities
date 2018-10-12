@@ -23,6 +23,8 @@ import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 
 open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
+    var villageId: String? = null
+    var villageName: String? = null
     var no: String? = null
     var road: String? = null
     var location: Point? = null
@@ -48,7 +50,6 @@ open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
 
 class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
-    var villageName: String? = null
     var people: MutableList<Person> = mutableListOf()
     var haveChronic: Boolean = false
         get() = if (people.isNotEmpty()) people.firstOrNull { it.haveChronic } != null else field
