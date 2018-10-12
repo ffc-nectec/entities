@@ -17,38 +17,39 @@
 
 package ffc.entity
 
+import ffc.entity.util.URLs
+import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
-import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Point
-import org.joda.time.DateTime
-
-@Deprecated("use place instead", ReplaceWith("Place"), DeprecationLevel.ERROR)
-open class Address(id: String = generateTempId()) : Entity(id), Cloneable {
-
-    @Deprecated("use id", ReplaceWith("id"))
-    var _id: String = ""
-
-    @Deprecated("use timestamp", ReplaceWith("timestamp"))
-    var dateUpdate: DateTime = DateTime.now()
-
-    @Deprecated("Use location", ReplaceWith("location"))
-    var coordinates: LatLng? = null
-
-    var no: String? = null
-    var road: String? = null
-    var location: Point? = null
-}
 
 open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
     var no: String? = null
     var road: String? = null
     var location: Point? = null
+    var link: Link? = null
+    var avatarUrl: String? = null
+        set(url) {
+            if (url != null) checkValidUrl(url)
+            field = url
+            field?.let {
+                if (!imagesUrl.contains(it)) imagesUrl.add(it)
+            }
+        }
+        get() {
+            return if (field != null)
+                field
+            else if (imagesUrl.isNotEmpty())
+                imagesUrl[0]
+            else
+                null
+        }
+    var imagesUrl: URLs = URLs()
 }
 
 class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
+    var villageName: String? = null
     var people: MutableList<Person> = mutableListOf()
     var haveChronic: Boolean = false
         get() = if (people.isNotEmpty()) people.firstOrNull { it.haveChronic } != null else field
-    var link: Link? = null
 }

@@ -5,6 +5,7 @@ import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should contain`
 import org.amshove.kluent.`should equal`
 import org.joda.time.DateTime
 import org.junit.Ignore
@@ -53,5 +54,22 @@ class HouseTest {
             location `should equal` Point(14.077196, 100.5995609)
             link `should equal` Link(System.JHICS, "hid" to "100234")
         }
+    }
+
+    @Test
+    fun avatarUrlFromImagesList() {
+        val firstImg = "https://cdn.pixabay.com/photo/2014/09/30/09/03/thailand-466936_960_720.jpg"
+        house.imagesUrl.add(firstImg)
+
+        house.avatarUrl `should equal` firstImg
+    }
+
+    @Test
+    fun avatarUrlFromField() {
+        val firstImg = "https://cdn.pixabay.com/photo/2014/09/30/09/03/thailand-466936_960_720.jpg"
+        house.avatarUrl = firstImg
+
+        house.avatarUrl `should equal` firstImg
+        house.imagesUrl `should contain` firstImg
     }
 }
