@@ -24,6 +24,6 @@ fun Religion.valueOfTh(th: String): Religion {
         "เซน" -> Religion.Zen
         "โซโรอัสเตอร์" -> Religion.Zoroastrianism
         "บาไฮ" -> Religion.BahiFaith
-        else -> Religion.Etc
+        else -> this
     }
 }
