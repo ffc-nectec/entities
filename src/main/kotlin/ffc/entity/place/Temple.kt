@@ -5,5 +5,5 @@ import ffc.entity.util.generateTempId
 
 class Temple(id: String = generateTempId()) : Place(id) {
     lateinit var name: String
-    var religion: String? = null
+    var religion: Religion? = null
 }
