@@ -24,6 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import ffc.entity.Identity
+import ffc.entity.Place
 import ffc.entity.User
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.util.URLs
@@ -42,6 +43,7 @@ val ffcGson: Gson by lazy {
         .adapterFor<User>(UserJsonAdapter())
         .adapterFor<Identity>(IdentityJsonAdapter())
         .adapterFor<HealthCareService>(HealthCareJsonAdapter())
+        .adapterFor<Place>(PlaceJsonAdapter())
         .adapterFor<URLs>(URLsJsonAdapter())
         .adapterForExtLibrary()
         .create()
