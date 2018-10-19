@@ -14,8 +14,8 @@ class SchoolTest {
     fun schoolFromJson() {
         val jsonSchool = School().apply {
             name = "โรงเรียนอนุบาลหมีกินไผ่"
-            maxclass = "ปริญญาตรี"
-            depen = "กรมส่งเสริม"
+            maxclass = ClassSchool.HighSchool
+            depend = "กรมส่งเสริม"
 
             location = Point(13.0, 100.3)
             no = "117/8"
@@ -30,6 +30,6 @@ class SchoolTest {
 
         val school = jsonSchool.parseTo<Place>()
 
-        (school as School).depen `should equal` "กรมส่งเสริม"
+        (school as School).depend `should equal` "กรมส่งเสริม"
     }
 }
