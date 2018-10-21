@@ -8,8 +8,8 @@ import com.google.gson.JsonSerializer
 import ffc.entity.House
 import ffc.entity.Place
 import ffc.entity.place.Business
+import ffc.entity.place.ReligiousPlace
 import ffc.entity.place.School
-import ffc.entity.place.Temple
 import java.lang.reflect.Type
 
 class PlaceJsonAdapter : JsonDeserializer<Place>, JsonSerializer<Place> {
@@ -23,7 +23,7 @@ class PlaceJsonAdapter : JsonDeserializer<Place>, JsonSerializer<Place> {
             House::class.java.simpleName -> context.deserialize<House>(json)
             Business::class.java.simpleName -> context.deserialize<Business>(json)
             School::class.java.simpleName -> context.deserialize<School>(json)
-            Temple::class.java.simpleName -> context.deserialize<Temple>(json)
+            ReligiousPlace::class.java.simpleName -> context.deserialize<ReligiousPlace>(json)
             else -> context.deserialize(json)
         }
     }
