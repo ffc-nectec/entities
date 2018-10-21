@@ -1,5 +1,6 @@
 package ffc.entity
 
+import ffc.entity.place.House
 import org.amshove.kluent.`should equal`
 import org.junit.Test
 

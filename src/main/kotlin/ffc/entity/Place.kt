@@ -49,6 +49,7 @@ open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
     var imagesUrl: URLs = URLs()
 }
 
+@Deprecated("move to place package", ReplaceWith("House", "ffc.entity.place"))
 class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
     var people: MutableList<Person> = mutableListOf()

@@ -3,6 +3,7 @@ package ffc.entity
 import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
+import ffc.entity.place.House
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should contain`
