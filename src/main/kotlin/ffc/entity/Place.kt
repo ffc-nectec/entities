@@ -25,7 +25,7 @@ import me.piruin.geok.geometry.Point
 open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
     var villageId: String? = null
     var villageName: String? = null
-    var organizationId: String? = null
+    var orgId: String? = null
     var no: String? = null
     var road: String? = null
     var location: Point? = null
