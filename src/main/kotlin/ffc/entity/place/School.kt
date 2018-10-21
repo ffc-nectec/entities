@@ -5,6 +5,7 @@ import ffc.entity.util.generateTempId
 
 class School(id: String = generateTempId()) : Place(id) {
     lateinit var name: String
-    var maxclass: ClassSchool? = null
+    lateinit var educationLevel: Education
+    var isPrivate: Boolean = false
     var depend: String? = null
 }

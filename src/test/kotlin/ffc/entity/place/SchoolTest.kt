@@ -14,7 +14,8 @@ class SchoolTest {
     fun schoolFromJson() {
         val jsonSchool = School().apply {
             name = "โรงเรียนอนุบาลหมีกินไผ่"
-            maxclass = ClassSchool.HighSchool
+            educationLevel = Education.PreKindergarten
+            isPrivate = true
             depend = "กรมส่งเสริม"
 
             location = Point(13.0, 100.3)
