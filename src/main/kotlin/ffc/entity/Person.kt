@@ -32,7 +32,7 @@ class Person(
     var birthDate: LocalDate? = null,
     var houseId: String = generateTempId()
 ) : Entity(id), Cloneable {
-
+    var orgId: String? = null
     var identities: MutableList<Identity> = mutableListOf()
     val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
     val age: Int? get() = birthDate?.let { LocalDate.now().year - it.year }
