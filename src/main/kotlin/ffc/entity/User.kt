@@ -38,6 +38,7 @@ class User(id: String = generateTempId()) : Entity(id) {
 
     lateinit var name: String
     lateinit var password: String
+    var orgId: String? = null
     var displayName: String? = null
         get() = if (field != null) field else name
     var avatarUrl: String? = null

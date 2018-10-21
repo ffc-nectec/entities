@@ -25,6 +25,7 @@ import me.piruin.geok.geometry.Point
 open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
     var villageId: String? = null
     var villageName: String? = null
+    var orgId: String? = null
     var no: String? = null
     var road: String? = null
     var location: Point? = null
@@ -48,6 +49,7 @@ open class Place(id: String = generateTempId()) : Entity(id), Cloneable {
     var imagesUrl: URLs = URLs()
 }
 
+@Deprecated("move to place package", ReplaceWith("House", "ffc.entity.place"))
 class House(id: String = generateTempId()) : Place(id) {
     var identity: ThaiHouseholdId? = null
     var people: MutableList<Person> = mutableListOf()
