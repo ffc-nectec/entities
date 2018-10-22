@@ -45,7 +45,34 @@ class Person(
         }
     var link: Link? = null
 
+    var relationships: MutableList<Relationship> = mutableListOf()
+    val fatherId: String?
+        get() = relationships.firstOrNull { it.relate == Relate.Father }?.id
+    val motherId: String?
+        get() = relationships.firstOrNull { it.relate == Relate.Mother }?.id
+    val spouseId: String?
+        get() = relationships.firstOrNull { it.relate == Relate.Married }?.id
+    val siblingId: List<String>
+        get() = relationships.filter { it.relate == Relate.Sibling }.map { it.id }
+    val childId: List<String>
+        get() = relationships.filter { it.relate == Relate.Child }.map { it.id }
+
+    fun addRelationship(vararg pairs: Pair<Relate, Person>) {
+        pairs.forEach {
+            relationships.add(Relationship(it.first, it.second))
+        }
+    }
+
     enum class Sex {
         MALE, FEMALE, UNKNOWN
+    }
+
+    class Relationship(val relate: Relate, val id: String, val name: String) {
+
+        constructor(type: Relate, with: Person) : this(type, with.id, with.name)
+    }
+
+    enum class Relate {
+        Father, Mother, Sibling, Twin, Married, Seperated, LegallySeperated, Divorced, Engaged, LoveAffair, Child
     }
 }
