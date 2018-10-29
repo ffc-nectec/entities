@@ -102,6 +102,10 @@ fun MutableList<Person.Relationship>.addRelationship(vararg pairs: Pair<Person.R
     return tempRelation
 }
 
+fun List<Person.Relationship>.validate() {
+    validateRelation(this)
+}
+
 private val validateRelation: (List<Person.Relationship>) -> Unit =
     { updateRelation: List<Person.Relationship> ->
 
