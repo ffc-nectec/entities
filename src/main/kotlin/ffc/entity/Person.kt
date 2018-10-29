@@ -59,10 +59,7 @@ class Person(
         get() = relationships.filter { it.relate == Relate.Child }.map { it.id }
 
     fun addRelationship(vararg pairs: Pair<Relate, Person>) {
-        val tempRelation = relationships.addRelationship(*pairs)
-
-        require(tempRelation.find { it.id == this.id } == null) { "ไม่สามารถมีความสัมพันธ์กับตัวเองได้" }
-
+        val tempRelation = relationships.addRelationship(id, *pairs)
         relationships = tempRelation
     }
 
@@ -92,23 +89,29 @@ private fun MutableList<Person.Relationship>.clone(): MutableList<Person.Relatio
  * เพิ่มความสัมพันธ์ พร้อมตรวจสอบความถูกต้องของสายสัมพันธ์
  * @return ข้อมูลความสัมพันธ์ใหม่ ที่ผ่านการตรวจสอบความถูกต้องแล้ว
  */
-fun MutableList<Relationship>.addRelationship(vararg pairs: Pair<Person.Relate, Person>): MutableList<Relationship> {
+fun MutableList<Relationship>.addRelationship(
+    personId: String,
+    vararg pairs: Pair<Person.Relate, Person>
+): MutableList<Relationship> {
 
     val tempRelation = clone()
     pairs.forEach {
         tempRelation.add(Person.Relationship(it.first, it.second))
     }
 
-    validateRelation(tempRelation)
+    validateRelation(personId, tempRelation)
     return tempRelation
 }
 
-fun List<Person.Relationship>.validate() {
-    validateRelation(this)
+fun List<Person.Relationship>.validate(id: String = "") {
+    validateRelation(id, this)
 }
 
-private val validateRelation: (List<Person.Relationship>) -> Unit =
-    { updateRelation: List<Person.Relationship> ->
+private val validateRelation: (String, List<Person.Relationship>) -> Unit =
+    { ownPersonId, updateRelation ->
+
+        if (ownPersonId.isNotEmpty())
+            require(updateRelation.find { it.id == ownPersonId } == null) { "ไม่สามารถมีความสัมพันธ์กับตัวเองได้" }
 
         val groupPerson: HashMap<String, ArrayList<Person.Relationship>> = hashMapOf()
         updateRelation.forEach {
