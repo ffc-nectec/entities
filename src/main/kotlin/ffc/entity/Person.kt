@@ -58,13 +58,11 @@ class Person(
         get() = relationships.filter { it.relate == Relate.Child }.map { it.id }
 
     fun addRelationship(vararg pairs: Pair<Relate, Person>) {
-        pairs.forEach {
-            val newRelation = Relationship(it.first, it.second)
-            validateRelation(id, relationships.clone().apply {
-                add(newRelation)
-            })
-            relationships.add(newRelation)
-        }
+        val tempRelation = relationships.addRelationship(*pairs)
+
+        require(tempRelation.find { it.id == this.id } == null) { "ไม่สามารถมีความสัมพันธ์กับตัวเองได้" }
+
+        relationships = tempRelation
     }
 
     enum class Sex {
@@ -89,10 +87,24 @@ private fun MutableList<Person.Relationship>.clone(): MutableList<Person.Relatio
     }.toMutableList()
 }
 
-private val validateRelation: (String, List<Person.Relationship>) -> Unit =
-    { ownPersonId: String, updateRelation: List<Person.Relationship> ->
+/**
+ * เพิ่มความสัมพันธ์ พร้อมตรวจสอบความถูกต้องของสายสัมพันธ์
+ * @return ข้อมูลความสัมพันธ์ใหม่ ที่ผ่านการตรวจสอบความถูกต้องแล้ว
+ */
+fun MutableList<Person.Relationship>.addRelationship(vararg pairs: Pair<Person.Relate, Person>): MutableList<Person.Relationship> {
 
-        require(updateRelation.find { it.id == ownPersonId } == null) { "ไม่สามารถมีความสัมพันธ์กับตัวเองได้" }
+    val tempRelation = clone()
+    pairs.forEach {
+        tempRelation.add(Person.Relationship(it.first, it.second))
+    }
+
+    validateRelation(tempRelation)
+    return tempRelation
+}
+
+private val validateRelation: (List<Person.Relationship>) -> Unit =
+    { updateRelation: List<Person.Relationship> ->
+
         val groupPerson: HashMap<String, ArrayList<Person.Relationship>> = hashMapOf()
         updateRelation.forEach {
             if (groupPerson[it.id] == null) groupPerson[it.id] = arrayListOf()
