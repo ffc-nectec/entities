@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+import ffc.entity.Person.Relationship
 import ffc.entity.healthcare.Chronic
 import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
@@ -91,7 +92,7 @@ private fun MutableList<Person.Relationship>.clone(): MutableList<Person.Relatio
  * เพิ่มความสัมพันธ์ พร้อมตรวจสอบความถูกต้องของสายสัมพันธ์
  * @return ข้อมูลความสัมพันธ์ใหม่ ที่ผ่านการตรวจสอบความถูกต้องแล้ว
  */
-fun MutableList<Person.Relationship>.addRelationship(vararg pairs: Pair<Person.Relate, Person>): MutableList<Person.Relationship> {
+fun MutableList<Relationship>.addRelationship(vararg pairs: Pair<Person.Relate, Person>): MutableList<Relationship> {
 
     val tempRelation = clone()
     pairs.forEach {
