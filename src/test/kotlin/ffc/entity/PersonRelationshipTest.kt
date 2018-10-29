@@ -2,7 +2,6 @@ package ffc.entity
 
 import org.amshove.kluent.`should contain all`
 import org.amshove.kluent.`should equal`
-import org.amshove.kluent.`should start with`
 import org.junit.Test
 
 class PersonRelationshipTest {
@@ -16,10 +15,6 @@ class PersonRelationshipTest {
     private val เมธ = male("เมธ")
     private val `ภัสสร` = female("ภัสสร")
     private val `กรกันต์` = male("กรกันต์")
-
-    private val `สมหมาย` = male("สมหมาย")
-    private val `ลูกหมี` = female("ลูกหมี")
-    private val `สมหญิง` = female("สมหญิง")
 
     private val `ประเสริฐ` = male("ประเสริฐ").apply {
         addRelationship(
@@ -78,61 +73,26 @@ class PersonRelationshipTest {
 
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun validateDuplicateRelation() {
-        try {
-            `ประเสริฐ`.apply {
-                addRelationship(Person.Relate.Married to `นิภา`)
-            }
-        } catch (ex: Exception) {
-            ex.message!! `should start with` "พบการใส่ความสัมพันธ์ซ้ำ"
-            throw ex
-        }
+        `ประเสริฐ`.addRelationship(Person.Relate.Child to `นิภา`)
     }
 
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun validateRelationMe() {
-        try {
-            `ประเสริฐ`.apply {
-                addRelationship(Person.Relate.Married to `ประเสริฐ`)
-            }
-        } catch (ex: Exception) {
-            ex.message!! `should start with` "ไม่สามารถมีความสัมพันธ์กับตัวเองได้"
-            throw ex
-        }
+        `ประเสริฐ`.addRelationship(Person.Relate.Married to `ประเสริฐ`)
     }
 
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun validateMotherChild() {
-        try {
-            `ประเสริฐ`.apply {
-                addRelationship(Person.Relate.Child to `อาม่า`)
-            }
-        } catch (ex: Exception) {
-            ex.message!! `should start with` "ตรวจพบความสัมพันธ์ในครอบครัวแปลก"
-            throw ex
-        }
+        `ประเสริฐ`.addRelationship(Person.Relate.Child to `อาม่า`)
     }
 
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun validateFatherChild() {
-        try {
-            `ประเสริฐ`.apply {
-                addRelationship(Person.Relate.Child to `อากง`)
-            }
-        } catch (ex: Exception) {
-            ex.message!! `should start with` "ตรวจพบความสัมพันธ์ในครอบครัวแปลก"
-            throw ex
-        }
+        `ประเสริฐ`.addRelationship(Person.Relate.Child to `อากง`)
     }
 
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun childMarriedFather() {
-        try {
-            `ประเสริฐ`.apply {
-                addRelationship(Person.Relate.Married to `พีท`)
-            }
-        } catch (ex: Exception) {
-            ex.message!! `should start with` "ตรวจพบความสัมพันธ์ในครอบครัวแปลก"
-            throw ex
-        }
+        `ประเสริฐ`.addRelationship(Person.Relate.Married to `พีท`)
     }
 }
