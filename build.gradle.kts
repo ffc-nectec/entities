@@ -15,6 +15,7 @@ dependencies {
     testImplementation("junit:junit:4.12")
     testImplementation("com.gregwoodfill.assert:kotlin-json-assert:0.1.0")
     testImplementation("org.amshove.kluent:kluent:1.34")
+    testImplementation("com.github.ffc-nectec:genogram:master")
 }
 
 repositories {
