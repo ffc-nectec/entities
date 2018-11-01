@@ -1,10 +1,10 @@
 package ffc.entity
 
-import com.sun.deploy.perf.PerfRollup
 import org.amshove.kluent.`should contain all`
 import org.amshove.kluent.`should equal`
 import org.junit.Before
 import org.junit.Test
+import ffc.genogram.Person as GenoPerson
 
 class PersonRelationshipTest {
 
@@ -14,24 +14,21 @@ class PersonRelationshipTest {
     private val เมธ = male("เมธ")
     private val `ภัสสร` = female("ภัสสร")
     private val `กรกันต์` = male("กรกันต์")
-    private val `มนฤดี` = female( "มนฤดี")
+    private val `มนฤดี` = female("มนฤดี")
     private val `นิภา` = female("นิภา")
     private val `คริส` = female("คริส")
     private val `วิเชียร` = male("วิเชียร")
     private val `น้ำผึ้ง` = female("น้ำผึ้ง")
-
     private val `พีท` = male("พีท")
     private val `ฉี` = male("ฉี")
-    private val `เหม่เหม` = female( "เหม่เหม")
+    private val `เหม่เหม` = female("เหม่เหม")
     private val `อี้` = male("อี้")
-    private val `เอิร์น` = male ( "เอิร์น")
+    private val `เอิร์น` = male("เอิร์น")
     private val `เต๋า` = male("เต๋า")
     private val `เต้ย` = male("เต้ย")
     private val `ก๋วยเตี๋ยว` = male("ก๋วยเตี๋ยว")
     private val `เวกัส` = male("เวกัส")
     private val `มาเก๋า` = male("มาเก๋า")
-
-
 
     @Before
     fun setUp() {
@@ -80,8 +77,8 @@ class PersonRelationshipTest {
                 Person.Relate.Father to อากง,
                 Person.Relate.Mother to `อาม่า`,
                 Person.Relate.Married to `วิเชียร`,
-                Person.Relate.Child  to  `อี้`,
-                Person.Relate.Child to  `เอิร์น`,
+                Person.Relate.Child to `อี้`,
+                Person.Relate.Child to `เอิร์น`,
                 Person.Relate.Child to `เต๋า`,
                 Person.Relate.Child to `เต้ย`,
                 Person.Relate.Sibling to `ประเสริฐ`,
@@ -115,7 +112,7 @@ class PersonRelationshipTest {
 
         `พีท`.addRelationship(
                 Person.Relate.Father to `ประเสริฐ`,
-                Person.Relate.Mother to  `คริส`
+                Person.Relate.Mother to `คริส`
         )
 
         `เหม่เหม`.addRelationship(
@@ -166,9 +163,6 @@ class PersonRelationshipTest {
                 Person.Relate.Sibling to `เวกัส`
         )
     }
-
-    
-
 
     fun male(name: String): Person {
         return Person().apply {
@@ -234,5 +228,10 @@ class PersonRelationshipTest {
     @Test(expected = java.lang.IllegalArgumentException::class)
     fun childMarriedFather() {
         `ประเสริฐ`.addRelationship(Person.Relate.Married to `พีท`)
+    }
+
+    @Test
+    fun toGenogramFamily() {
+        //TODO implement
     }
 }
