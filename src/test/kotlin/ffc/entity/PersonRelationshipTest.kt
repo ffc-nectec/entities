@@ -7,196 +7,195 @@ import org.amshove.kluent.`should equal`
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
-import ffc.genogram.Person as GenoPerson
 
 class PersonRelationshipTest {
 
     private val อากง = male("อากง", "sukit_id")
     private val `อาม่า` = female("อาม่า", "pranee_id")
     private val `ประเสริฐ` = male("ประเสริฐ", "prasert_id")
-    private val เมธ = male("เมธ","mate_id")
-    private val `ภัสสร` = female("ภัสสร","patsorn_id")
-    private val `กรกันต์` = male("กรกันต์","kornkan_id")
-    private val `มนฤดี` = female("มนฤดี","monrudee_id")
-    private val `นิภา` = female("นิภา","nipa_id")
-    private val `คริส` = female("คริส","krist_id")
-    private val `วิเชียร` = male("วิเชียร","wichean_id")
-    private val `น้ำผึ้ง` = female("น้ำผึ้ง","nampung_id")
-    private val `พีท` = male("พีท","pete_id")
-    private val `ฉี` = male("ฉี","chi_id")
-    private val `เหม่เหม` = female("เหม่เหม","meimei_id")
-    private val `อี้` = male("อี้","ei_id")
-    private val `เอิร์น` = male("เอิร์น","earn_id")
-    private val `เต๋า` = male("เต๋า","tao_id")
-    private val `เต้ย` = male("เต้ย","toey_id")
-    private val `ก๋วยเตี๋ยว` = male("ก๋วยเตี๋ยว","kwayteow_id")
-    private val `เวกัส` = male("เวกัส","vegas_id")
-    private val `มาเก๋า` = male("มาเก๋า","macau_id")
+    private val เมธ = male("เมธ", "mate_id")
+    private val `ภัสสร` = female("ภัสสร", "patsorn_id")
+    private val `กรกันต์` = male("กรกันต์", "kornkan_id")
+    private val `มนฤดี` = female("มนฤดี", "monrudee_id")
+    private val `นิภา` = female("นิภา", "nipa_id")
+    private val `คริส` = female("คริส", "krist_id")
+    private val `วิเชียร` = male("วิเชียร", "wichean_id")
+    private val `น้ำผึ้ง` = female("น้ำผึ้ง", "nampung_id")
+    private val `พีท` = male("พีท", "pete_id")
+    private val `ฉี` = male("ฉี", "chi_id")
+    private val `เหม่เหม` = female("เหม่เหม", "meimei_id")
+    private val `อี้` = male("อี้", "ei_id")
+    private val `เอิร์น` = male("เอิร์น", "earn_id")
+    private val `เต๋า` = male("เต๋า", "tao_id")
+    private val `เต้ย` = male("เต้ย", "toey_id")
+    private val `ก๋วยเตี๋ยว` = male("ก๋วยเตี๋ยว", "kwayteow_id")
+    private val `เวกัส` = male("เวกัส", "vegas_id")
+    private val `มาเก๋า` = male("มาเก๋า", "macau_id")
 
     @Before
     fun setUp() {
         อากง.addRelationship(
-                Person.Relate.Married to `อาม่า`,
-                Person.Relate.Child to `ประเสริฐ`,
-                Person.Relate.Child to เมธ,
-                Person.Relate.Child to `ภัสสร`,
-                Person.Relate.Child to `มนฤดี`,
-                Person.Relate.Child to `กรกันต์`
+            Person.Relate.Married to `อาม่า`,
+            Person.Relate.Child to `ประเสริฐ`,
+            Person.Relate.Child to เมธ,
+            Person.Relate.Child to `ภัสสร`,
+            Person.Relate.Child to `มนฤดี`,
+            Person.Relate.Child to `กรกันต์`
         )
 
         `อาม่า`.addRelationship(
-                Person.Relate.Married to อากง,
-                Person.Relate.Child to `ประเสริฐ`,
-                Person.Relate.Child to เมธ,
-                Person.Relate.Child to `ภัสสร`,
-                Person.Relate.Child to `มนฤดี`,
-                Person.Relate.Child to `กรกันต์`
+            Person.Relate.Married to อากง,
+            Person.Relate.Child to `ประเสริฐ`,
+            Person.Relate.Child to เมธ,
+            Person.Relate.Child to `ภัสสร`,
+            Person.Relate.Child to `มนฤดี`,
+            Person.Relate.Child to `กรกันต์`
         )
 
         `ประเสริฐ`.addRelationship(
-                Person.Relate.Father to อากง,
-                Person.Relate.Mother to `อาม่า`,
-                Person.Relate.Divorced to `คริส`,
-                Person.Relate.Child to `พีท`,
-                Person.Relate.Married to `นิภา`,
-                Person.Relate.Child to `ฉี`,
-                Person.Relate.Sibling to เมธ,
-                Person.Relate.Sibling to `ภัสสร`,
-                Person.Relate.Sibling to `มนฤดี`,
-                Person.Relate.Sibling to `กรกันต์`
+            Person.Relate.Father to อากง,
+            Person.Relate.Mother to `อาม่า`,
+            Person.Relate.Divorced to `คริส`,
+            Person.Relate.Child to `พีท`,
+            Person.Relate.Married to `นิภา`,
+            Person.Relate.Child to `ฉี`,
+            Person.Relate.Sibling to เมธ,
+            Person.Relate.Sibling to `ภัสสร`,
+            Person.Relate.Sibling to `มนฤดี`,
+            Person.Relate.Sibling to `กรกันต์`
         )
 
         `นิภา`.addRelationship(
-                Person.Relate.Married to `ประเสริฐ`,
-                Person.Relate.Child to `ฉี`
+            Person.Relate.Married to `ประเสริฐ`,
+            Person.Relate.Child to `ฉี`
         )
 
         `คริส`.addRelationship(
-                Person.Relate.Married to `ประเสริฐ`,
-                Person.Relate.Child to `พีท`
+            Person.Relate.Married to `ประเสริฐ`,
+            Person.Relate.Child to `พีท`
         )
 
         เมธ.addRelationship(
-                Person.Relate.Father to อากง,
-                Person.Relate.Mother to `อาม่า`,
-                Person.Relate.Child to `เหม่เหม`,
-                Person.Relate.Sibling to `ประเสริฐ`,
-                Person.Relate.Sibling to `ภัสสร`,
-                Person.Relate.Sibling to `มนฤดี`,
-                Person.Relate.Sibling to `กรกันต์`
+            Person.Relate.Father to อากง,
+            Person.Relate.Mother to `อาม่า`,
+            Person.Relate.Child to `เหม่เหม`,
+            Person.Relate.Sibling to `ประเสริฐ`,
+            Person.Relate.Sibling to `ภัสสร`,
+            Person.Relate.Sibling to `มนฤดี`,
+            Person.Relate.Sibling to `กรกันต์`
         )
 
         `ภัสสร`.addRelationship(
-                Person.Relate.Father to อากง,
-                Person.Relate.Mother to `อาม่า`,
-                Person.Relate.Married to `วิเชียร`,
-                Person.Relate.Child to `อี้`,
-                Person.Relate.Child to `เอิร์น`,
-                Person.Relate.Child to `เต๋า`,
-                Person.Relate.Child to `เต้ย`,
-                Person.Relate.Sibling to `ประเสริฐ`,
-                Person.Relate.Sibling to `เมธ`,
-                Person.Relate.Sibling to `มนฤดี`,
-                Person.Relate.Sibling to `กรกันต์`
+            Person.Relate.Father to อากง,
+            Person.Relate.Mother to `อาม่า`,
+            Person.Relate.Married to `วิเชียร`,
+            Person.Relate.Child to `อี้`,
+            Person.Relate.Child to `เอิร์น`,
+            Person.Relate.Child to `เต๋า`,
+            Person.Relate.Child to `เต้ย`,
+            Person.Relate.Sibling to `ประเสริฐ`,
+            Person.Relate.Sibling to `เมธ`,
+            Person.Relate.Sibling to `มนฤดี`,
+            Person.Relate.Sibling to `กรกันต์`
         )
 
         `วิเชียร`.addRelationship(
-                Person.Relate.Married to `ภัสสร`,
-                Person.Relate.Child to `อี้`,
-                Person.Relate.Child to `เอิร์น`,
-                Person.Relate.Child to `เต๋า`,
-                Person.Relate.Child to `เต้ย`
+            Person.Relate.Married to `ภัสสร`,
+            Person.Relate.Child to `อี้`,
+            Person.Relate.Child to `เอิร์น`,
+            Person.Relate.Child to `เต๋า`,
+            Person.Relate.Child to `เต้ย`
         )
 
         `มนฤดี`.addRelationship(
-                Person.Relate.Father to อากง,
-                Person.Relate.Mother to `อาม่า`,
-                Person.Relate.Child to `ก๋วยเตี๋ยว`
+            Person.Relate.Father to อากง,
+            Person.Relate.Mother to `อาม่า`,
+            Person.Relate.Child to `ก๋วยเตี๋ยว`
         )
 
         `กรกันต์`.addRelationship(
-                Person.Relate.Father to อากง,
-                Person.Relate.Mother to `อาม่า`,
-                Person.Relate.Married to `น้ำผึ้ง`,
-                Person.Relate.Child to `เวกัส`,
-                Person.Relate.Child to `มาเก๋า`,
-                Person.Relate.Sibling to `ประเสริฐ`,
-                Person.Relate.Sibling to `เมธ`,
-                Person.Relate.Sibling to `ภัสสร`,
-                Person.Relate.Sibling to `มนฤดี`
+            Person.Relate.Father to อากง,
+            Person.Relate.Mother to `อาม่า`,
+            Person.Relate.Married to `น้ำผึ้ง`,
+            Person.Relate.Child to `เวกัส`,
+            Person.Relate.Child to `มาเก๋า`,
+            Person.Relate.Sibling to `ประเสริฐ`,
+            Person.Relate.Sibling to `เมธ`,
+            Person.Relate.Sibling to `ภัสสร`,
+            Person.Relate.Sibling to `มนฤดี`
         )
 
         `น้ำผึ้ง`.addRelationship(
-                Person.Relate.Married to `กรกันต์`,
-                Person.Relate.Child to `เวกัส`,
-                Person.Relate.Child to `มาเก๋า`
+            Person.Relate.Married to `กรกันต์`,
+            Person.Relate.Child to `เวกัส`,
+            Person.Relate.Child to `มาเก๋า`
         )
 
         `ฉี`.addRelationship(
-                Person.Relate.Father to `ประเสริฐ`,
-                Person.Relate.Mother to `นิภา`
+            Person.Relate.Father to `ประเสริฐ`,
+            Person.Relate.Mother to `นิภา`
         )
 
         `พีท`.addRelationship(
-                Person.Relate.Father to `ประเสริฐ`,
-                Person.Relate.Mother to `คริส`
+            Person.Relate.Father to `ประเสริฐ`,
+            Person.Relate.Mother to `คริส`
         )
 
         `เหม่เหม`.addRelationship(
-                Person.Relate.Father to เมธ
+            Person.Relate.Father to เมธ
         )
 
         `ก๋วยเตี๋ยว`.addRelationship(
-                Person.Relate.Father to `มนฤดี`
+            Person.Relate.Father to `มนฤดี`
         )
 
         `อี้`.addRelationship(
-                Person.Relate.Father to `วิเชียร`,
-                Person.Relate.Mother to `ภัสสร`,
-                Person.Relate.Sibling to `เอิร์น`,
-                Person.Relate.Sibling to `เต๋า`,
-                Person.Relate.Sibling to `เต้ย`
+            Person.Relate.Father to `วิเชียร`,
+            Person.Relate.Mother to `ภัสสร`,
+            Person.Relate.Sibling to `เอิร์น`,
+            Person.Relate.Sibling to `เต๋า`,
+            Person.Relate.Sibling to `เต้ย`
         )
 
         `เอิร์น`.addRelationship(
-                Person.Relate.Father to `วิเชียร`,
-                Person.Relate.Mother to `ภัสสร`,
-                Person.Relate.Sibling to `อี้`,
-                Person.Relate.Sibling to `เต๋า`,
-                Person.Relate.Sibling to `เต้ย`
+            Person.Relate.Father to `วิเชียร`,
+            Person.Relate.Mother to `ภัสสร`,
+            Person.Relate.Sibling to `อี้`,
+            Person.Relate.Sibling to `เต๋า`,
+            Person.Relate.Sibling to `เต้ย`
         )
 
         `เต๋า`.addRelationship(
-                Person.Relate.Father to `วิเชียร`,
-                Person.Relate.Mother to `ภัสสร`,
-                Person.Relate.Sibling to `อี้`,
-                Person.Relate.Sibling to `เอิร์น`,
-                Person.Relate.Sibling to `เต้ย`
+            Person.Relate.Father to `วิเชียร`,
+            Person.Relate.Mother to `ภัสสร`,
+            Person.Relate.Sibling to `อี้`,
+            Person.Relate.Sibling to `เอิร์น`,
+            Person.Relate.Sibling to `เต้ย`
         )
 
         `เต้ย`.addRelationship(
-                Person.Relate.Father to `วิเชียร`,
-                Person.Relate.Mother to `ภัสสร`,
-                Person.Relate.Sibling to `อี้`,
-                Person.Relate.Sibling to `เอิร์น`,
-                Person.Relate.Sibling to `เต๋า`
+            Person.Relate.Father to `วิเชียร`,
+            Person.Relate.Mother to `ภัสสร`,
+            Person.Relate.Sibling to `อี้`,
+            Person.Relate.Sibling to `เอิร์น`,
+            Person.Relate.Sibling to `เต๋า`
         )
 
         `เวกัส`.addRelationship(
-                Person.Relate.Father to `กรกันต์`,
-                Person.Relate.Mother to `น้ำผึ้ง`,
-                Person.Relate.Sibling to `มาเก๋า`
+            Person.Relate.Father to `กรกันต์`,
+            Person.Relate.Mother to `น้ำผึ้ง`,
+            Person.Relate.Sibling to `มาเก๋า`
         )
 
         `มาเก๋า`.addRelationship(
-                Person.Relate.Father to `กรกันต์`,
-                Person.Relate.Mother to `น้ำผึ้ง`,
-                Person.Relate.Sibling to `เวกัส`
+            Person.Relate.Father to `กรกันต์`,
+            Person.Relate.Mother to `น้ำผึ้ง`,
+            Person.Relate.Sibling to `เวกัส`
         )
     }
 
     fun male(name: String, key: String = name): Person {
-        return Person("{{${key}}}").apply {
+        return Person("{{$key}}").apply {
             firstname = name
             lastname = "จิระอนันต์"
             sex = Person.Sex.MALE
@@ -205,7 +204,7 @@ class PersonRelationshipTest {
     }
 
     fun female(name: String, key: String = name): Person {
-        return Person("{{${key}}}").apply {
+        return Person("{{$key}}").apply {
             firstname = name
             lastname = "จิระอนันต์"
             sex = Person.Sex.FEMALE
