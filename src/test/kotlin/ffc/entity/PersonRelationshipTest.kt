@@ -1,34 +1,37 @@
 package ffc.entity
 
+import ffc.entity.gson.toJson
+import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should contain all`
 import org.amshove.kluent.`should equal`
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import ffc.genogram.Person as GenoPerson
 
 class PersonRelationshipTest {
 
-    private val อากง = male("อากง")
-    private val `อาม่า` = female("อาม่า")
-    private val `ประเสริฐ` = male("ประเสริฐ")
-    private val เมธ = male("เมธ")
-    private val `ภัสสร` = female("ภัสสร")
-    private val `กรกันต์` = male("กรกันต์")
-    private val `มนฤดี` = female("มนฤดี")
-    private val `นิภา` = female("นิภา")
-    private val `คริส` = female("คริส")
-    private val `วิเชียร` = male("วิเชียร")
-    private val `น้ำผึ้ง` = female("น้ำผึ้ง")
-    private val `พีท` = male("พีท")
-    private val `ฉี` = male("ฉี")
-    private val `เหม่เหม` = female("เหม่เหม")
-    private val `อี้` = male("อี้")
-    private val `เอิร์น` = male("เอิร์น")
-    private val `เต๋า` = male("เต๋า")
-    private val `เต้ย` = male("เต้ย")
-    private val `ก๋วยเตี๋ยว` = male("ก๋วยเตี๋ยว")
-    private val `เวกัส` = male("เวกัส")
-    private val `มาเก๋า` = male("มาเก๋า")
+    private val อากง = male("อากง", "sukit_id")
+    private val `อาม่า` = female("อาม่า", "pranee_id")
+    private val `ประเสริฐ` = male("ประเสริฐ", "prasert_id")
+    private val เมธ = male("เมธ","mate_id")
+    private val `ภัสสร` = female("ภัสสร","patsorn_id")
+    private val `กรกันต์` = male("กรกันต์","kornkan_id")
+    private val `มนฤดี` = female("มนฤดี","monrudee_id")
+    private val `นิภา` = female("นิภา","nipa_id")
+    private val `คริส` = female("คริส","krist_id")
+    private val `วิเชียร` = male("วิเชียร","wichean_id")
+    private val `น้ำผึ้ง` = female("น้ำผึ้ง","nampung_id")
+    private val `พีท` = male("พีท","pete_id")
+    private val `ฉี` = male("ฉี","chi_id")
+    private val `เหม่เหม` = female("เหม่เหม","meimei_id")
+    private val `อี้` = male("อี้","ei_id")
+    private val `เอิร์น` = male("เอิร์น","earn_id")
+    private val `เต๋า` = male("เต๋า","tao_id")
+    private val `เต้ย` = male("เต้ย","toey_id")
+    private val `ก๋วยเตี๋ยว` = male("ก๋วยเตี๋ยว","kwayteow_id")
+    private val `เวกัส` = male("เวกัส","vegas_id")
+    private val `มาเก๋า` = male("มาเก๋า","macau_id")
 
     @Before
     fun setUp() {
@@ -63,6 +66,16 @@ class PersonRelationshipTest {
                 Person.Relate.Sibling to `กรกันต์`
         )
 
+        `นิภา`.addRelationship(
+                Person.Relate.Married to `ประเสริฐ`,
+                Person.Relate.Child to `ฉี`
+        )
+
+        `คริส`.addRelationship(
+                Person.Relate.Married to `ประเสริฐ`,
+                Person.Relate.Child to `พีท`
+        )
+
         เมธ.addRelationship(
                 Person.Relate.Father to อากง,
                 Person.Relate.Mother to `อาม่า`,
@@ -87,6 +100,14 @@ class PersonRelationshipTest {
                 Person.Relate.Sibling to `กรกันต์`
         )
 
+        `วิเชียร`.addRelationship(
+                Person.Relate.Married to `ภัสสร`,
+                Person.Relate.Child to `อี้`,
+                Person.Relate.Child to `เอิร์น`,
+                Person.Relate.Child to `เต๋า`,
+                Person.Relate.Child to `เต้ย`
+        )
+
         `มนฤดี`.addRelationship(
                 Person.Relate.Father to อากง,
                 Person.Relate.Mother to `อาม่า`,
@@ -105,6 +126,12 @@ class PersonRelationshipTest {
                 Person.Relate.Sibling to `มนฤดี`
         )
 
+        `น้ำผึ้ง`.addRelationship(
+                Person.Relate.Married to `กรกันต์`,
+                Person.Relate.Child to `เวกัส`,
+                Person.Relate.Child to `มาเก๋า`
+        )
+
         `ฉี`.addRelationship(
                 Person.Relate.Father to `ประเสริฐ`,
                 Person.Relate.Mother to `นิภา`
@@ -117,6 +144,10 @@ class PersonRelationshipTest {
 
         `เหม่เหม`.addRelationship(
                 Person.Relate.Father to เมธ
+        )
+
+        `ก๋วยเตี๋ยว`.addRelationship(
+                Person.Relate.Father to `มนฤดี`
         )
 
         `อี้`.addRelationship(
@@ -164,19 +195,21 @@ class PersonRelationshipTest {
         )
     }
 
-    fun male(name: String): Person {
-        return Person().apply {
+    fun male(name: String, key: String = name): Person {
+        return Person("{{${key}}}").apply {
             firstname = name
             lastname = "จิระอนันต์"
             sex = Person.Sex.MALE
+            houseId = "{{house_id_for_geno}}"
         }
     }
 
-    fun female(name: String): Person {
-        return Person().apply {
+    fun female(name: String, key: String = name): Person {
+        return Person("{{${key}}}").apply {
             firstname = name
             lastname = "จิระอนันต์"
             sex = Person.Sex.FEMALE
+            houseId = "{{house_id_for_geno}}"
         }
     }
 
@@ -233,5 +266,15 @@ class PersonRelationshipTest {
     @Test
     fun toGenogramFamily() {
         //TODO implement
+    }
+
+    @Ignore("for create test data")
+    @Test
+    fun toJson() {
+        val person = `คริส`
+        println(person.relationships.toJson())
+        val newPerson = person.copy(generateTempId())
+        newPerson.relationships = mutableListOf()
+        println(newPerson.toJson())
     }
 }
