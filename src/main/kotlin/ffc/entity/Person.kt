@@ -18,9 +18,11 @@
 package ffc.entity
 
 import ffc.entity.healthcare.Chronic
+import ffc.entity.healthcare.Disease
 import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
+import org.joda.time.Period
 
 class Person(
     id: String = generateTempId(),
@@ -35,7 +37,8 @@ class Person(
     var orgId: String? = null
     var identities: MutableList<Identity> = mutableListOf()
     val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
-    val age: Int? get() = birthDate?.let { LocalDate.now().year - it.year }
+    val age: Int? get() = birthDate?.let { Period(it, deathDate ?: LocalDate.now()).years }
+
     var chronics: MutableList<Chronic> = mutableListOf()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
     var avatarUrl: String? = null
@@ -44,6 +47,10 @@ class Person(
             field = url
         }
     var link: Link? = null
+    var isDead: Boolean = false
+        get() = if (deathCauses.isNotEmpty() || deathDate != null) true else field
+    var deathCauses: MutableList<Disease> = mutableListOf()
+    var deathDate: LocalDate? = null
 
     var relationships: MutableList<Relationship> = mutableListOf()
     val fatherId: String?
