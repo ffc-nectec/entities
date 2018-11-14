@@ -110,24 +110,15 @@ class PersonTest {
     }
 
     @Test
-    fun isDead() {
-        person.isDead `should be` false
-
-        person.isDead = true
-
-        person.isDead `should be` true
-    }
-
-    @Test
     fun deadByCausesOfDeath() {
-        person.deathCauses.add(Disease("1234", "Hypertension", "I15.9"))
+        person.death = Person.Death(LocalDate.now(), Disease("1234", "Hypertension", "I15.9"))
 
         person.isDead `should be` true
     }
 
     @Test
-    fun deathDate() {
-        person.deathDate = LocalDate.parse("2018-11-14")
+    fun deathWithOnlyDate() {
+        person.death = Person.Death(LocalDate.parse("2018-11-14"))
 
         with(person) {
             isDead `should be` true
