@@ -3,6 +3,7 @@ package ffc.entity
 import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
+import ffc.entity.healthcare.Disease
 import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should contain`
@@ -37,11 +38,6 @@ class PersonTest {
         }
 
         person.timestamp `should not equal` timestampOnCreate
-    }
-
-    @Test
-    fun age() {
-        person.age `should be` 25
     }
 
     @Test
@@ -111,5 +107,31 @@ class PersonTest {
     @Test(expected = IllegalArgumentException::class)
     fun invalidAvatarUrl() {
         person.avatarUrl = "InvlaidUrl.png"
+    }
+
+    @Test
+    fun isDead() {
+        person.isDead `should be` false
+
+        person.isDead = true
+
+        person.isDead `should be` true
+    }
+
+    @Test
+    fun deadByCausesOfDeath() {
+        person.deathCauses.add(Disease("1234", "Hypertension", "I15.9"))
+
+        person.isDead `should be` true
+    }
+
+    @Test
+    fun deathDate() {
+        person.deathDate = LocalDate.parse("2018-11-14")
+
+        with(person) {
+            isDead `should be` true
+            age `should be` 25
+        }
     }
 }
