@@ -37,7 +37,7 @@ class Person(
     var orgId: String? = null
     var identities: MutableList<Identity> = mutableListOf()
     val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
-    val age: Int? get() = birthDate?.let { Period(it, deathDate ?: LocalDate.now()).years }
+    val age: Int? get() = birthDate?.let { Period(it, death?.date ?: LocalDate.now()).years }
 
     var chronics: MutableList<Chronic> = mutableListOf()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
@@ -47,10 +47,9 @@ class Person(
             field = url
         }
     var link: Link? = null
-    var isDead: Boolean = false
-        get() = if (deathCauses.isNotEmpty() || deathDate != null) true else field
-    var deathCauses: MutableList<Disease> = mutableListOf()
-    var deathDate: LocalDate? = null
+    val isDead: Boolean
+        get() = death != null
+    var death: Death? = null
 
     var relationships: MutableList<Relationship> = mutableListOf()
     val fatherId: String?
@@ -78,6 +77,11 @@ class Person(
         constructor(type: Relate, with: Person) : this(type, with.id, with.name)
 
         fun copy(): Relationship = clone() as Relationship
+    }
+
+    class Death(val date: LocalDate, val causes: List<Disease>) {
+
+        constructor(date: LocalDate, vararg causesOfDeath: Disease) : this(date, causesOfDeath.toList())
     }
 
     enum class Relate {
