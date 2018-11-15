@@ -22,10 +22,13 @@ import com.fatboyindustrial.gsonjodatime.LocalDateConverter
 import com.fatboyindustrial.gsonjodatime.LocalDateTimeConverter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import ffc.entity.Identity
 import ffc.entity.Place
 import ffc.entity.User
+import ffc.entity.healthcare.Disease
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.util.URLs
 import me.piruin.geok.LatLng
@@ -39,14 +42,15 @@ import java.lang.reflect.Type
 
 val ffcGson: Gson by lazy {
     GsonBuilder()
-        .setExclusionStrategies(ExcludeAnnotationStrategy())
-        .adapterFor<User>(UserJsonAdapter())
-        .adapterFor<Identity>(IdentityJsonAdapter())
-        .adapterFor<HealthCareService>(HealthCareJsonAdapter())
-        .adapterFor<Place>(PlaceJsonAdapter())
-        .adapterFor<URLs>(URLsJsonAdapter())
-        .adapterForExtLibrary()
-        .create()
+            .setExclusionStrategies(ExcludeAnnotationStrategy())
+            .adapterFor<User>(UserJsonAdapter())
+            .adapterFor<Identity>(IdentityJsonAdapter())
+            .adapterFor<HealthCareService>(HealthCareJsonAdapter())
+            .adapterFor<Disease>(DiseaseJsonAdapter())
+            .adapterFor<Place>(PlaceJsonAdapter())
+            .adapterFor<URLs>(URLsJsonAdapter())
+            .adapterForExtLibrary()
+            .create()
 }
 
 internal fun GsonBuilder.adapterForExtLibrary(): GsonBuilder {
@@ -67,3 +71,7 @@ inline fun <reified T> typeTokenOf(): Type = object : TypeToken<T>() {}.type
 fun Any.toJson(gson: Gson = ffcGson): String = gson.toJson(this)
 
 inline fun <reified T> String.parseTo(gson: Gson = ffcGson): T = gson.fromJson(this, typeTokenOf<T>())
+
+internal inline fun <reified T> JsonDeserializationContext.deserialize(json: JsonElement): T {
+    return this.deserialize(json, T::class.java)
+}

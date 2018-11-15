@@ -10,7 +10,7 @@ open class Entity(id: String = generateTempId()) : Cloneable {
     var id: String = id
         internal set
     val isTempId: Boolean get() = id.length == 32
-    open val type = javaClass.simpleName
+    val type = javaClass.simpleName
     var timestamp: DateTime = DateTime.now()
         internal set
     @JsonExclude

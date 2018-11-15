@@ -4,6 +4,7 @@ abstract class Lookup(
     open val id: String,
     open val name: String
 ) {
+    val type = javaClass.simpleName
     val translation: MutableMap<Lang, String> = hashMapOf()
 
     override fun equals(other: Any?): Boolean {

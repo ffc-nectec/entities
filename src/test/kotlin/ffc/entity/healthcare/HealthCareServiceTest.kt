@@ -24,8 +24,7 @@ class HealthCareServiceTest {
         "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
     )
 
-    val hypertension = Disease(
-        "id2h3",
+    val hypertension = Icd10(
         "Hypertension",
         "i10",
         isEpimedic = false,
@@ -115,9 +114,14 @@ class HealthCareServiceTest {
             nextAppoint = LocalDate.parse("2019-09-21")
         }.toJson()
 
+        print(visitJson)
+
         val visitFromJson = visitJson.parseTo<HealthCareService>()
 
-        visitFromJson.pulseRate `should equal` 72.0
-        (visitFromJson as HomeVisit).nextAppoint `should equal` LocalDate.parse("2019-09-21")
+        with(visitFromJson as HomeVisit) {
+            pulseRate `should equal` 72.0
+            nextAppoint `should equal` LocalDate.parse("2019-09-21")
+            principleDx `should equal` hypertension
+        }
     }
 }
