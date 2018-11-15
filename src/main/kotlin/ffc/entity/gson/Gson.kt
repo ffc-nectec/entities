@@ -28,8 +28,8 @@ import com.google.gson.reflect.TypeToken
 import ffc.entity.Identity
 import ffc.entity.Place
 import ffc.entity.User
+import ffc.entity.healthcare.CommunityService
 import ffc.entity.healthcare.Disease
-import ffc.entity.healthcare.HealthCareService
 import ffc.entity.util.URLs
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
@@ -45,7 +45,7 @@ val ffcGson: Gson by lazy {
             .setExclusionStrategies(ExcludeAnnotationStrategy())
             .adapterFor<User>(UserJsonAdapter())
             .adapterFor<Identity>(IdentityJsonAdapter())
-            .adapterFor<HealthCareService>(HealthCareJsonAdapter())
+            .adapterFor<CommunityService>(CommunityServiceJsonAdapter())
             .adapterFor<Disease>(DiseaseJsonAdapter())
             .adapterFor<Place>(PlaceJsonAdapter())
             .adapterFor<URLs>(URLsJsonAdapter())

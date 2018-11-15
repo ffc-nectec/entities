@@ -1,22 +1,5 @@
 {
-  "detail": "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม",
-  "result": "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี",
-  "plan": "ติดตามเยี่ยมปีละ 1 ครั้ง",
-  "serviceType": {
-    "translation": {},
-    "id": "1B0030",
-    "name": "ตรวจคัดกรองความเสี่ยง/โรคมะเร็งเต้านมได้ผลปกติ ผู้รับบริการเคยตรวจด้วยตนเองได้ผลปกติ"
-  },
-  "time": "2018-09-26T17:45:24.175+07:00",
-  "endTime": "2018-09-26T17:50:24.175+07:00",
   "nextAppoint": "2019-09-21",
-  "location": {
-    "type": "Point",
-    "coordinates": [
-      120.029384,
-      14.19239
-    ]
-  },
   "syntom": "ทานอาหารได้น้อย เบื่ออาหาร",
   "weight": 61.5,
   "height": 170.0,
@@ -30,15 +13,15 @@
   "diagnosises": [
     {
       "disease": {
-        "type": "Icd10",
         "icd10": "i10",
         "isEpimedic": false,
         "isChronic": true,
         "isNCD": true,
+        "type": "Icd10",
         "translation": {
-          "th": "ความดันโลหิต"
+          "th": "ความดันโลหิตสูง"
         },
-        "id": "id2h3",
+        "id": "68b89b91e1004eb2b2048d491ef444ec",
         "name": "Hypertension"
       },
       "dxType": "PRINCIPLE_DX",
@@ -49,9 +32,33 @@
     "http://ffc.in.th/img/ffcc.jpg",
     "http://ffc.in.th/img/ffcc1.jpg"
   ],
-  "providerId": "6dcc5e3d551240fb963da0fb07ca00d8",
-  "patientId": "99aa175132d343d59e59af9abd8adbe2",
-  "id": "5877f7b8f6dd4dad8ed45f7fde6acc02",
-  "type": "HomeVisit",
-  "timestamp": "2018-09-26T17:45:24.175+07:00"
+  "communityServices": [
+    {
+      "detail": "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม",
+      "result": "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี",
+      "plan": "ติดตามเยี่ยมปีละ 1 ครั้ง",
+      "type": "HomeVisit",
+      "serviceType": {
+        "type": "ServiceType",
+        "translation": {},
+        "id": "1A000",
+        "name": "เยี่ยมผู้ป่วยโรคความดันโลหิตสูง"
+      }
+    }
+  ],
+  "specialPPs": [],
+  "time": "2018-11-15T20:18:20.978+07:00",
+  "endTime": "2018-11-15T20:23:20.978+07:00",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      120.029384,
+      14.19239
+    ]
+  },
+  "providerId": "4a303fa5fdf941c4937691afa2585741",
+  "patientId": "242603eee4ea4b829c46e63f2fc0328c",
+  "id": "c45647ebd9884763bb7d7367eab6a3fa",
+  "type": "HealthCareService",
+  "timestamp": "2018-11-15T20:18:20.978+07:00"
 }
