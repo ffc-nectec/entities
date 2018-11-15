@@ -14,9 +14,7 @@ abstract class Lookup(
         return true
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
+    override fun hashCode() = id.hashCode()
 }
 
 enum class Lang {

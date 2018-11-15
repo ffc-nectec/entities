@@ -1,22 +1,15 @@
 package ffc.entity.healthcare
 
-import ffc.entity.Entity
-import ffc.entity.Link
 import ffc.entity.util.URLs
 import ffc.entity.util.generateTempId
-import me.piruin.geok.geometry.Point
-import org.joda.time.DateTime
 import org.joda.time.LocalDate
 
 open class HealthCareService(
-    val providerId: String,
-    val patientId: String,
+    providerId: String,
+    patientId: String,
     id: String = generateTempId()
-) : Entity(id) {
-    var time: DateTime = DateTime.now()
-    var endTime: DateTime = time.plusMinutes(5)
+) : Services(providerId, patientId, id) {
     var nextAppoint: LocalDate? = null
-    var location: Point? = null
     var syntom: String? = null
     var suggestion: String? = null
     var weight: Double? = null
@@ -30,13 +23,27 @@ open class HealthCareService(
             return if (w != null && h != null) bmi(h / 100, w) else null
         }
     var bloodPressure: BloodPressure? = null
+    var bloodPressure2nd: BloodPressure? = null
     var pulseRate: Double? = null
     var respiratoryRate: Double? = null
     var bodyTemperature: Double? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
     var note: String? = null
     var photosUrl: URLs = URLs()
-    var link: Link? = null
+
+    var communityServices: MutableList<CommunityService> = mutableListOf()
+    var ncdScreen: NCDScreen? = null
+        set(value) {
+            if (value != null) this.mapTo(value)
+        }
+
+    var specialPPs: MutableList<SpecialPP> = mutableListOf()
+    fun specialPP(ppType: SpecialPP.PPType, block: (SpecialPP.() -> Unit)? = null) {
+        val pp = SpecialPP(providerId, patientId, ppType, id)
+        block?.let { pp.apply(it) }
+        this.mapTo(pp)
+        specialPPs.add(pp)
+    }
 
     var principleDx: Disease?
         get() = diagnosises.firstOrNull { it.dxType == Diagnosis.Type.PRINCIPLE_DX }?.disease

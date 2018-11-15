@@ -5,32 +5,28 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
-import ffc.entity.healthcare.HealthCareService
+import ffc.entity.healthcare.CommunityService
 import ffc.entity.healthcare.HomeVisit
-import ffc.entity.healthcare.NCDScreen
-import ffc.entity.healthcare.SpecialPP
 import java.lang.reflect.Type
 
-class HealthCareJsonAdapter : JsonDeserializer<HealthCareService>, JsonSerializer<HealthCareService> {
-
-    override fun serialize(
-        src: HealthCareService,
-        typeOfSrc: Type,
-        context: JsonSerializationContext
-    ): JsonElement {
-        return context.serialize(src)
-    }
+class CommunityServiceJsonAdapter : JsonDeserializer<CommunityService>, JsonSerializer<CommunityService> {
 
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type,
         context: JsonDeserializationContext
-    ): HealthCareService {
+    ): CommunityService {
         return when (json.asJsonObject.get("type").asString) {
             HomeVisit::class.java.simpleName -> context.deserialize<HomeVisit>(json)
-            NCDScreen::class.java.simpleName -> context.deserialize<NCDScreen>(json)
-            SpecialPP::class.java.simpleName -> context.deserialize<SpecialPP>(json)
             else -> context.deserialize(json)
         }
+    }
+
+    override fun serialize(
+        src: CommunityService,
+        typeOfSrc: Type,
+        context: JsonSerializationContext
+    ): JsonElement {
+        return context.serialize(src)
     }
 }
