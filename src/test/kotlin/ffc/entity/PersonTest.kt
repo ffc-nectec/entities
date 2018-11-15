@@ -3,7 +3,7 @@ package ffc.entity
 import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
-import ffc.entity.healthcare.Disease
+import ffc.entity.healthcare.Icd10
 import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should contain`
@@ -111,7 +111,7 @@ class PersonTest {
 
     @Test
     fun deadByCausesOfDeath() {
-        person.death = Person.Death(LocalDate.now(), Disease("1234", "Hypertension", "I15.9"))
+        person.death = Person.Death(LocalDate.now(), Icd10("Hypertension", "I15.9"))
 
         person.isDead `should be` true
     }

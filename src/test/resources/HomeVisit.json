@@ -30,6 +30,7 @@
   "diagnosises": [
     {
       "disease": {
+        "type": "Icd10",
         "icd10": "i10",
         "isEpimedic": false,
         "isChronic": true,
