@@ -1,14 +1,9 @@
 package ffc.entity.healthcare
 
-import ffc.entity.Lang
-import ffc.entity.Person
-import ffc.entity.ThaiCitizenId
-import ffc.entity.User
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import ffc.entity.resourceFile
 import ffc.entity.util.URLs
-import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should be`
@@ -20,40 +15,7 @@ import org.junit.Test
 
 class HealthCareServiceTest {
 
-    val visitHT = CommunityService.ServiceType(
-            "1A000",
-            "เยี่ยมผู้ป่วยโรคความดันโลหิตสูง"
-    )
 
-    val hypertension = Icd10(
-            "Hypertension",
-            "i10",
-            isEpimedic = false,
-            isChronic = true,
-            isNCD = true
-    ).apply {
-        translation.put(Lang.th, "ความดันโลหิตสูง")
-    }
-
-    val screeningPP = SpecialPP.PPType(
-            "1B1232",
-            "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
-    )
-
-    val provider = User(
-            generateTempId(),
-            "blast",
-            "123456",
-            User.Role.PROVIDER,
-            User.Role.ADMIN
-    )
-
-    val patient = Person().apply {
-        identities.add(ThaiCitizenId("1154785400590"))
-        prename = "Mr."
-        firstname = "Piruin"
-        lastname = "Panichphol"
-    }
 
     @Test
     fun visit() {
