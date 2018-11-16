@@ -21,7 +21,7 @@
         "translation": {
           "th": "ความดันโลหิตสูง"
         },
-        "id": "68b89b91e1004eb2b2048d491ef444ec",
+        "id": "3599b2acbee94f168b063dffb6feaae2",
         "name": "Hypertension"
       },
       "dxType": "PRINCIPLE_DX",
@@ -46,9 +46,32 @@
       }
     }
   ],
-  "specialPPs": [],
-  "time": "2018-11-15T20:18:20.978+07:00",
-  "endTime": "2018-11-15T20:23:20.978+07:00",
+  "specialPPs": [
+    {
+      "ppType": {
+        "type": "PPType",
+        "translation": {},
+        "id": "1B1232",
+        "name": "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
+      },
+      "time": "2018-11-16T10:02:42.083+07:00",
+      "endTime": "2018-11-16T10:07:42.083+07:00",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          120.029384,
+          14.19239
+        ]
+      },
+      "providerId": "6bc5549f25664820a5ef325d0bf1c05e",
+      "patientId": "7b77f0fbb56b45c28f20f9b4339b2d7a",
+      "id": "daec4f346d5b4cc58583b1504de4ec64",
+      "type": "SpecialPP",
+      "timestamp": "2018-11-16T10:02:42.126+07:00"
+    }
+  ],
+  "time": "2018-11-16T10:02:42.083+07:00",
+  "endTime": "2018-11-16T10:07:42.083+07:00",
   "location": {
     "type": "Point",
     "coordinates": [
@@ -56,9 +79,9 @@
       14.19239
     ]
   },
-  "providerId": "4a303fa5fdf941c4937691afa2585741",
-  "patientId": "242603eee4ea4b829c46e63f2fc0328c",
-  "id": "c45647ebd9884763bb7d7367eab6a3fa",
+  "providerId": "6bc5549f25664820a5ef325d0bf1c05e",
+  "patientId": "7b77f0fbb56b45c28f20f9b4339b2d7a",
+  "id": "daec4f346d5b4cc58583b1504de4ec64",
   "type": "HealthCareService",
-  "timestamp": "2018-11-15T20:18:20.978+07:00"
+  "timestamp": "2018-11-16T10:02:42.083+07:00"
 }
