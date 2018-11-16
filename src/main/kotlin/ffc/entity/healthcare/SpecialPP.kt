@@ -20,8 +20,7 @@ class SpecialPP(
     override fun hashCode(): Int = ppType.hashCode()
 
     class PPType(
-        name: String,
-        val code: String,
-        id: String = generateTempId()
+        id: String = generateTempId(),
+        name: String
     ) : Lookup(id, name)
 }

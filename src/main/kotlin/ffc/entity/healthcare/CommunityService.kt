@@ -13,9 +13,4 @@ class HomeVisit(
     var detail: String? = null,
     var result: String? = null,
     var plan: String? = null
-) : CommunityService(serviceType) {
-
-    init {
-        require(serviceType.id.startsWith("1A"))
-    }
-}
+) : CommunityService(serviceType)

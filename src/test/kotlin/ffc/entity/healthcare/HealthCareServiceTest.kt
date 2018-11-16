@@ -35,6 +35,11 @@ class HealthCareServiceTest {
         translation.put(Lang.th, "ความดันโลหิตสูง")
     }
 
+    val screeningPP = SpecialPP.PPType(
+            "1B1232",
+            "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
+    )
+
     val provider = User(
             generateTempId(),
             "blast",
@@ -74,6 +79,7 @@ class HealthCareServiceTest {
                     plan = "ติดตามเยี่ยมปีละ 1 ครั้ง"
             )
             communityServices.add(homeVisit)
+            addSpecialPP(screeningPP)
         }
 
         with(visit) {
@@ -99,6 +105,7 @@ class HealthCareServiceTest {
                     "http://ffc.in.th/img/ffcc1.jpg")
             communityServices[0] `should be instance of` HomeVisit::class.java
             communityServices[0].serviceType `should equal` visitHT
+            specialPPs[0].ppType `should equal` screeningPP
         }
     }
 

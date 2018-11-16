@@ -38,7 +38,7 @@ open class HealthCareService(
         }
 
     var specialPPs: MutableList<SpecialPP> = mutableListOf()
-    fun specialPP(ppType: SpecialPP.PPType, block: (SpecialPP.() -> Unit)? = null) {
+    fun addSpecialPP(ppType: SpecialPP.PPType, block: (SpecialPP.() -> Unit)? = null) {
         val pp = SpecialPP(providerId, patientId, ppType, id)
         block?.let { pp.apply(it) }
         this.mapTo(pp)
