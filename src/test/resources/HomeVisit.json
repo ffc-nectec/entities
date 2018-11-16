@@ -21,7 +21,7 @@
         "translation": {
           "th": "ความดันโลหิตสูง"
         },
-        "id": "3599b2acbee94f168b063dffb6feaae2",
+        "id": "f2b032962e024f31ae1e8d114fb225d1",
         "name": "Hypertension"
       },
       "dxType": "PRINCIPLE_DX",
@@ -46,6 +46,25 @@
       }
     }
   ],
+  "ncdScreen": {
+    "hasHtInFamily": true,
+    "smoke": "USUALLY",
+    "alcohol": "RARELY",
+    "time": "2018-11-16T10:11:40.684+07:00",
+    "endTime": "2018-11-16T10:16:40.684+07:00",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        120.029384,
+        14.19239
+      ]
+    },
+    "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
+    "patientId": "5abdf1e3e500488e971b1b014b96c894",
+    "id": "0a76253796b341348bb96f275e22b011",
+    "type": "NCDScreen",
+    "timestamp": "2018-11-16T10:11:40.750+07:00"
+  },
   "specialPPs": [
     {
       "ppType": {
@@ -54,8 +73,8 @@
         "id": "1B1232",
         "name": "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
       },
-      "time": "2018-11-16T10:02:42.083+07:00",
-      "endTime": "2018-11-16T10:07:42.083+07:00",
+      "time": "2018-11-16T10:11:40.684+07:00",
+      "endTime": "2018-11-16T10:16:40.684+07:00",
       "location": {
         "type": "Point",
         "coordinates": [
@@ -63,15 +82,15 @@
           14.19239
         ]
       },
-      "providerId": "6bc5549f25664820a5ef325d0bf1c05e",
-      "patientId": "7b77f0fbb56b45c28f20f9b4339b2d7a",
-      "id": "daec4f346d5b4cc58583b1504de4ec64",
+      "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
+      "patientId": "5abdf1e3e500488e971b1b014b96c894",
+      "id": "ba81bff7a26b40d1af1a5a1c194e0331",
       "type": "SpecialPP",
-      "timestamp": "2018-11-16T10:02:42.126+07:00"
+      "timestamp": "2018-11-16T10:11:40.748+07:00"
     }
   ],
-  "time": "2018-11-16T10:02:42.083+07:00",
-  "endTime": "2018-11-16T10:07:42.083+07:00",
+  "time": "2018-11-16T10:11:40.684+07:00",
+  "endTime": "2018-11-16T10:16:40.684+07:00",
   "location": {
     "type": "Point",
     "coordinates": [
@@ -79,9 +98,9 @@
       14.19239
     ]
   },
-  "providerId": "6bc5549f25664820a5ef325d0bf1c05e",
-  "patientId": "7b77f0fbb56b45c28f20f9b4339b2d7a",
-  "id": "daec4f346d5b4cc58583b1504de4ec64",
+  "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
+  "patientId": "5abdf1e3e500488e971b1b014b96c894",
+  "id": "ba81bff7a26b40d1af1a5a1c194e0331",
   "type": "HealthCareService",
-  "timestamp": "2018-11-16T10:02:42.083+07:00"
+  "timestamp": "2018-11-16T10:11:40.684+07:00"
 }

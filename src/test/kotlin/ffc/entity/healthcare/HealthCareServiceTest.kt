@@ -80,6 +80,11 @@ class HealthCareServiceTest {
             )
             communityServices.add(homeVisit)
             addSpecialPP(screeningPP)
+            ncdScreen = NCDScreen(providerId, patientId,
+                    bloodSugar = 150.0, // mg/dL
+                    hasHtInFamily = true,
+                    alcohol = Frequency.RARELY,
+                    smoke = Frequency.USUALLY)
         }
 
         with(visit) {
@@ -106,6 +111,11 @@ class HealthCareServiceTest {
             communityServices[0] `should be instance of` HomeVisit::class.java
             communityServices[0].serviceType `should equal` visitHT
             specialPPs[0].ppType `should equal` screeningPP
+            with(ncdScreen!!) {
+                hasHtInFamily `should equal` true
+                alcohol `should equal` Frequency.RARELY
+                smoke `should equal` Frequency.USUALLY
+            }
         }
     }
 
