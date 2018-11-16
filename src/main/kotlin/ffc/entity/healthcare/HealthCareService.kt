@@ -34,7 +34,14 @@ open class HealthCareService(
     var communityServices: MutableList<CommunityService> = mutableListOf()
     var ncdScreen: NCDScreen? = null
         set(value) {
-            if (value != null) this.mapTo(value)
+            value?.let {
+                this.mapTo(it)
+                it.height = height
+                it.weight = weight
+                it.waist = waist
+                it.bloodPressure = bloodPressure
+                it.bloodPressure2nd = bloodPressure2nd
+            }
             field = value
         }
 

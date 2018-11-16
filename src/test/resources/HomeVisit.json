@@ -21,7 +21,7 @@
         "translation": {
           "th": "ความดันโลหิตสูง"
         },
-        "id": "f2b032962e024f31ae1e8d114fb225d1",
+        "id": "8362c074fe1d4b198a8c03369ca11221",
         "name": "Hypertension"
       },
       "dxType": "PRINCIPLE_DX",
@@ -50,8 +50,15 @@
     "hasHtInFamily": true,
     "smoke": "USUALLY",
     "alcohol": "RARELY",
-    "time": "2018-11-16T10:11:40.684+07:00",
-    "endTime": "2018-11-16T10:16:40.684+07:00",
+    "bloodSugar": 150.0,
+    "weight": 61.5,
+    "height": 170.0,
+    "bloodPressure": {
+      "systolic": 145.0,
+      "diastolic": 95.0
+    },
+    "time": "2018-11-16T10:48:09.675+07:00",
+    "endTime": "2018-11-16T10:53:09.675+07:00",
     "location": {
       "type": "Point",
       "coordinates": [
@@ -59,11 +66,11 @@
         14.19239
       ]
     },
-    "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
-    "patientId": "5abdf1e3e500488e971b1b014b96c894",
-    "id": "0a76253796b341348bb96f275e22b011",
+    "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
+    "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
+    "id": "d321b1cb543841e0a16199e30c76805b",
     "type": "NCDScreen",
-    "timestamp": "2018-11-16T10:11:40.750+07:00"
+    "timestamp": "2018-11-16T10:48:09.750+07:00"
   },
   "specialPPs": [
     {
@@ -73,8 +80,8 @@
         "id": "1B1232",
         "name": "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
       },
-      "time": "2018-11-16T10:11:40.684+07:00",
-      "endTime": "2018-11-16T10:16:40.684+07:00",
+      "time": "2018-11-16T10:48:09.675+07:00",
+      "endTime": "2018-11-16T10:53:09.675+07:00",
       "location": {
         "type": "Point",
         "coordinates": [
@@ -82,15 +89,15 @@
           14.19239
         ]
       },
-      "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
-      "patientId": "5abdf1e3e500488e971b1b014b96c894",
-      "id": "ba81bff7a26b40d1af1a5a1c194e0331",
+      "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
+      "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
+      "id": "551a54af48654b4dbe2bee2c4ab04b66",
       "type": "SpecialPP",
-      "timestamp": "2018-11-16T10:11:40.748+07:00"
+      "timestamp": "2018-11-16T10:48:09.749+07:00"
     }
   ],
-  "time": "2018-11-16T10:11:40.684+07:00",
-  "endTime": "2018-11-16T10:16:40.684+07:00",
+  "time": "2018-11-16T10:48:09.675+07:00",
+  "endTime": "2018-11-16T10:53:09.675+07:00",
   "location": {
     "type": "Point",
     "coordinates": [
@@ -98,9 +105,9 @@
       14.19239
     ]
   },
-  "providerId": "d7b8b78f745b40b8b431fa8f5152ab1d",
-  "patientId": "5abdf1e3e500488e971b1b014b96c894",
-  "id": "ba81bff7a26b40d1af1a5a1c194e0331",
+  "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
+  "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
+  "id": "551a54af48654b4dbe2bee2c4ab04b66",
   "type": "HealthCareService",
-  "timestamp": "2018-11-16T10:11:40.684+07:00"
+  "timestamp": "2018-11-16T10:48:09.675+07:00"
 }
