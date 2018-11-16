@@ -35,6 +35,7 @@ open class HealthCareService(
     var ncdScreen: NCDScreen? = null
         set(value) {
             if (value != null) this.mapTo(value)
+            field = value
         }
 
     var specialPPs: MutableList<SpecialPP> = mutableListOf()
