@@ -1,13 +1,16 @@
 package ffc.entity.healthcare.analyze
 
 import ffc.entity.healthcare.BloodPressure
+import ffc.entity.healthcare.Diagnosis
 import ffc.entity.healthcare.Frequency
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.NCDScreen
+import ffc.entity.healthcare.diabetes
 import ffc.entity.healthcare.hypertension
 import ffc.entity.healthcare.patient
 import ffc.entity.healthcare.provider
 import me.piruin.geok.geometry.Point
+import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should equal`
 import org.joda.time.LocalDate
 import org.junit.Test
@@ -22,6 +25,7 @@ class HealthAnalyzerTest {
             height = 170.0
             bloodPressure = BloodPressure(145.0, 95.0)
             principleDx = hypertension
+            diagnosises.add(Diagnosis(diabetes, Diagnosis.Type.CO_MORBIDITY))
             respiratoryRate = 24.0
             pulseRate = 72.0
             bodyTemperature = 37.5
@@ -39,6 +43,11 @@ class HealthAnalyzerTest {
 
         analyzer.analyze(visit)
 
-        analyzer.result[HealthAnalyzer.HealthIssue.HT] `should equal` HealthAnalyzer.Serverity.HI
+        with(analyzer.result) {
+            size `should be equal to` 2
+            get(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
+            get(HealthIssue.Issue.DM)!!.severity `should equal` null
+        }
+
     }
 }

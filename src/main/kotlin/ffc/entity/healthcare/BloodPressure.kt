@@ -29,3 +29,6 @@ internal class ThaiBloodPressure(bp: BloodPressure) : BloodPressureAnalyzer(bp) 
 
 val HealthCareService.bloodPressureLevel: BloodPressureAnalyzer?
     get() = (bloodPressure2nd ?: bloodPressure)?.let { ThaiBloodPressure(it) }
+
+val NCDScreen.bloodPressureLevel: BloodPressureAnalyzer?
+    get() = (bloodPressure2nd ?: bloodPressure)?.let { ThaiBloodPressure(it) }

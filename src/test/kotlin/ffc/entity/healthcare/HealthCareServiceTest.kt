@@ -15,8 +15,6 @@ import org.junit.Test
 
 class HealthCareServiceTest {
 
-
-
     @Test
     fun visit() {
         val visit = HealthCareService(provider.id, patient.id).apply {
