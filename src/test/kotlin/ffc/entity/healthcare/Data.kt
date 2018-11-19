@@ -21,6 +21,13 @@ internal val hypertension = Icd10(
     translation.put(Lang.th, "ความดันโลหิตสูง")
 }
 
+internal val diabetes = Icd10(
+        "Diabetes mellitus (DM)",
+        "E10.3",
+        isChronic = true,
+        isNCD = true
+)
+
 internal val screeningPP = SpecialPP.PPType(
         "1B1232",
         "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
