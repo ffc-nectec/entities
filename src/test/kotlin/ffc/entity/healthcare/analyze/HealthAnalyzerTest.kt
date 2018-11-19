@@ -5,6 +5,7 @@ import ffc.entity.healthcare.Diagnosis
 import ffc.entity.healthcare.Frequency
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.NCDScreen
+import ffc.entity.healthcare.cvdSpecialPP
 import ffc.entity.healthcare.diabetes
 import ffc.entity.healthcare.hypertension
 import ffc.entity.healthcare.patient
@@ -37,6 +38,7 @@ class HealthAnalyzerTest {
                     hasHtInFamily = true,
                     alcohol = Frequency.RARELY,
                     smoke = Frequency.USUALLY)
+            addSpecialPP(cvdSpecialPP)
         }
 
         val analyzer = HealthAnalyzer()
@@ -44,9 +46,10 @@ class HealthAnalyzerTest {
         analyzer.analyze(visit)
 
         with(analyzer.result) {
-            size `should be equal to` 2
+            size `should be equal to` 3
             get(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
             get(HealthIssue.Issue.DM)!!.severity `should equal` null
+            get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
         }
 
     }
