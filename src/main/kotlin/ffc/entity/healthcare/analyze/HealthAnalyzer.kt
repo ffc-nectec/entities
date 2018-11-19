@@ -9,7 +9,8 @@ class HealthAnalyzer {
             HtAnalyzer(),
             DmAnalyzer(),
             CvdAnalyzer(),
-            DementiaAnalyzer()
+            DementiaAnalyzer(),
+            DepressiveAnalyzer()
     )
 
     val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
