@@ -11,6 +11,10 @@ internal val visitHT = CommunityService.ServiceType(
         "เยี่ยมผู้ป่วยโรคความดันโลหิตสูง"
 )
 
+internal val cvdSpecialPP = SpecialPP.PPType(
+        "1B1231",
+        "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยง")
+
 internal val hypertension = Icd10(
         "Hypertension",
         "i10",

@@ -5,7 +5,7 @@ data class HealthIssue(
     val severity: Severity? = null
 ) {
     enum class Issue {
-        DM, HT
+        DM, HT, CVD, DEMENTIA,
     }
 
     enum class Severity {
