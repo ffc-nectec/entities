@@ -16,7 +16,7 @@ class CvdAnalyzer : Analyzer {
                     "1B1234", "1B1235" -> HealthIssue.Severity.VERY_HI
                     else -> null
                 }
-                if (service != null) HealthIssue(forIssue, severity) else null
+                if (severity != null) HealthIssue(forIssue, severity) else null
             }
             else -> null
         }
