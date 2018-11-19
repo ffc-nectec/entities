@@ -8,7 +8,8 @@ class HealthAnalyzer {
     val analyzers = mutableListOf(
             HtAnalyzer(),
             DmAnalyzer(),
-            CvdAnalyzer()
+            CvdAnalyzer(),
+            DementiaAnalyzer()
     )
 
     val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
