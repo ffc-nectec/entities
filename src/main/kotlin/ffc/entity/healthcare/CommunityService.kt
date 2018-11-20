@@ -1,9 +1,9 @@
 package ffc.entity.healthcare
 
+import ffc.entity.Entity
 import ffc.entity.Lookup
 
-open class CommunityService(val serviceType: ServiceType) {
-    val type = javaClass.simpleName
+open class CommunityService(val serviceType: ServiceType) : Entity() {
 
     class ServiceType(id: String, name: String) : Lookup(id, name)
 }
