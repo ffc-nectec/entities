@@ -31,6 +31,6 @@ class HtAnalyzer : Analyzer {
             }
             else -> null
         }
-        return if (severity != null) HealthIssue(forIssue, severity, service) else null
+        return if (severity != null) HealthProblem(forIssue, service, severity) else null
     }
 }
