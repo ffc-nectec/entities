@@ -16,14 +16,21 @@ class HealthAnalyzer {
     val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
 
     fun analyze(vararg services: Service) {
+        services.sortBy { it.time }
         services.forEach { analyzeIt(it) }
     }
 
     private fun analyzeIt(service: Service) {
+        val activatedAnalyzer = mutableListOf<Analyzer>()
         analyzers.forEach { analyzer ->
             val res = analyzer.analyzeFrom(service)
-            res?.let { result.put(analyzer.forIssue, it) }
+            res?.let {
+                result.put(analyzer.forIssue, it)
+                activatedAnalyzer.add(analyzer)
+            }
         }
+        analyzers.removeAll(activatedAnalyzer)
+
         if (service is HealthCareService) {
             if (service.specialPPs.isNotEmpty()) {
                 analyze(*service.specialPPs.toTypedArray())
@@ -31,5 +38,4 @@ class HealthAnalyzer {
             service.ncdScreen?.let { analyzeIt(it) }
         }
     }
-
 }

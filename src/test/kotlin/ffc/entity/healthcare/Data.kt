@@ -15,6 +15,10 @@ internal val cvdSpecialPP = SpecialPP.PPType(
         "1B1231",
         "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยง")
 
+internal val cvdHiRiskSpecialPP = SpecialPP.PPType(
+        "1B1235",
+        "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุพบว่ามีความเสี่ยงสูงมาก รักษาต่อ")
+
 internal val hypertension = Icd10(
         "Hypertension",
         "i10",
