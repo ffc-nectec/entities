@@ -63,7 +63,6 @@ class HealthAnalyzerTest {
             get(HealthIssue.Issue.DM)!!.severity `should equal` HealthIssue.Severity.UNDEFINED
             get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
         }
-
     }
 
     @Test
