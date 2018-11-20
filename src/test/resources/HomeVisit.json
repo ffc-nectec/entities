@@ -21,7 +21,7 @@
         "translation": {
           "th": "ความดันโลหิตสูง"
         },
-        "id": "8362c074fe1d4b198a8c03369ca11221",
+        "id": "7c195f4604104761bd25822d0806702a",
         "name": "Hypertension"
       },
       "dxType": "PRINCIPLE_DX",
@@ -37,13 +37,15 @@
       "detail": "ตรวจร่างกายทั่วไป / อธิบานผลเสียของโรค / เปิดโอกาสให้ผู้ป่วยซักถาม",
       "result": "ผู้ป่วยเข้าใจเกี่ยวกับโรค สามารถดูแลตัวเองได้และปฎิบัติตามคำแนะนำได้ดี",
       "plan": "ติดตามเยี่ยมปีละ 1 ครั้ง",
-      "type": "HomeVisit",
       "serviceType": {
         "type": "ServiceType",
         "translation": {},
         "id": "1A000",
         "name": "เยี่ยมผู้ป่วยโรคความดันโลหิตสูง"
-      }
+      },
+      "id": "7759f3719b2147cbbecf9ffbc1b7ebba",
+      "type": "HomeVisit",
+      "timestamp": "2018-11-20T10:16:04.733+07:00"
     }
   ],
   "ncdScreen": {
@@ -57,8 +59,8 @@
       "systolic": 145.0,
       "diastolic": 95.0
     },
-    "time": "2018-11-16T10:48:09.675+07:00",
-    "endTime": "2018-11-16T10:53:09.675+07:00",
+    "time": "2018-11-20T10:16:04.671+07:00",
+    "endTime": "2018-11-20T10:21:04.671+07:00",
     "location": {
       "type": "Point",
       "coordinates": [
@@ -66,11 +68,11 @@
         14.19239
       ]
     },
-    "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
-    "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
-    "id": "d321b1cb543841e0a16199e30c76805b",
+    "providerId": "1ea3429ba3dc48068b1ed2d6b51d2a11",
+    "patientId": "9bd09011bc9a4aec92c3b4a519733bb9",
+    "id": "339f9a7868ea4023bb4be2c5c74bf7c4",
     "type": "NCDScreen",
-    "timestamp": "2018-11-16T10:48:09.750+07:00"
+    "timestamp": "2018-11-20T10:16:04.733+07:00"
   },
   "specialPPs": [
     {
@@ -80,8 +82,8 @@
         "id": "1B1232",
         "name": "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุ พบว่ามีความเสี่ยงสูง"
       },
-      "time": "2018-11-16T10:48:09.675+07:00",
-      "endTime": "2018-11-16T10:53:09.675+07:00",
+      "time": "2018-11-20T10:16:04.671+07:00",
+      "endTime": "2018-11-20T10:21:04.671+07:00",
       "location": {
         "type": "Point",
         "coordinates": [
@@ -89,15 +91,15 @@
           14.19239
         ]
       },
-      "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
-      "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
-      "id": "551a54af48654b4dbe2bee2c4ab04b66",
+      "providerId": "1ea3429ba3dc48068b1ed2d6b51d2a11",
+      "patientId": "9bd09011bc9a4aec92c3b4a519733bb9",
+      "id": "c7c5c1f8bf964886a756c804bed3c6ae",
       "type": "SpecialPP",
-      "timestamp": "2018-11-16T10:48:09.749+07:00"
+      "timestamp": "2018-11-20T10:16:04.733+07:00"
     }
   ],
-  "time": "2018-11-16T10:48:09.675+07:00",
-  "endTime": "2018-11-16T10:53:09.675+07:00",
+  "time": "2018-11-20T10:16:04.671+07:00",
+  "endTime": "2018-11-20T10:21:04.671+07:00",
   "location": {
     "type": "Point",
     "coordinates": [
@@ -105,9 +107,9 @@
       14.19239
     ]
   },
-  "providerId": "a734839247ed4157b0f4f9cba03e4ce6",
-  "patientId": "49b6fbcfa2fa43a2900ebdcc04446ae3",
-  "id": "551a54af48654b4dbe2bee2c4ab04b66",
+  "providerId": "1ea3429ba3dc48068b1ed2d6b51d2a11",
+  "patientId": "9bd09011bc9a4aec92c3b4a519733bb9",
+  "id": "c7c5c1f8bf964886a756c804bed3c6ae",
   "type": "HealthCareService",
-  "timestamp": "2018-11-16T10:48:09.675+07:00"
+  "timestamp": "2018-11-20T10:16:04.671+07:00"
 }
