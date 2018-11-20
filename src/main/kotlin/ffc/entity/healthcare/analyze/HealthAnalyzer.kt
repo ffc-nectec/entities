@@ -11,7 +11,7 @@ class HealthAnalyzer {
             CvdAnalyzer(),
             DementiaAnalyzer(),
             DepressiveAnalyzer(),
-            OaAnalyzer(),
+            OaKneeAnalyzer(),
             NearsightedAnalyzer(),
             FarsightedAnalyzer(),
             AmdAnalyzer(),

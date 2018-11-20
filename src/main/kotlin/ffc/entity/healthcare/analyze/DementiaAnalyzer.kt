@@ -4,6 +4,7 @@ import ffc.entity.healthcare.Service
 import ffc.entity.healthcare.SpecialPP
 
 class DementiaAnalyzer : Analyzer {
+
     override val forIssue = HealthIssue.Issue.DEMENTIA
 
     override fun analyzeFrom(service: Service): HealthIssue? {

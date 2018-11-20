@@ -4,6 +4,7 @@ import ffc.entity.healthcare.Service
 import ffc.entity.healthcare.SpecialPP
 
 class FarsightedAnalyzer : Analyzer {
+
     override val forIssue = HealthIssue.Issue.FARSIGHTED
 
     override fun analyzeFrom(service: Service): HealthIssue? {

@@ -9,7 +9,7 @@ open class HealthIssue(
 ) {
 
     enum class Issue {
-        DM, HT, CVD, DEMENTIA, DEPRESSIVE, OA,
+        DM, HT, CVD, DEMENTIA, DEPRESSIVE, OA_KNEE,
         FARSIGHTED, NEARSIGHTED, CATARACT, GLAUCOMA, AMD,
         FALL_RISK, ACTIVITIES
     }
