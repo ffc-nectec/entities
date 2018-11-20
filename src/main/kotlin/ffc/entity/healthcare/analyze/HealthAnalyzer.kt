@@ -14,13 +14,16 @@ class HealthAnalyzer {
             OaAnalyzer()
     )
 
-    val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
+    val result: Map<HealthIssue.Issue, HealthIssue>
+        get() = _result
+
+    private val _result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
 
     val problems: Map<HealthIssue.Issue, HealthProblem>
-        get() = result.filterValueType()
+        get() = _result.filterValueType()
 
     val checked: Map<HealthIssue.Issue, HealthChecked>
-        get() = result.filterValueType()
+        get() = _result.filterValueType()
 
     fun analyze(vararg services: Service) {
         services.sortBy { it.time }
@@ -32,7 +35,7 @@ class HealthAnalyzer {
         analyzers.forEach { analyzer ->
             val res = analyzer.analyzeFrom(service)
             res?.let {
-                result.put(analyzer.forIssue, it)
+                _result.put(analyzer.forIssue, it)
                 activatedAnalyzer.add(analyzer)
             }
         }

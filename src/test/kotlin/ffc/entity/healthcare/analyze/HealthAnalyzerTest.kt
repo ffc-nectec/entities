@@ -93,5 +93,4 @@ class HealthAnalyzerTest {
             get(HealthIssue.Issue.DEMENTIA)!!.date `should equal` visit2.time.toLocalDate()
         }
     }
-
 }
