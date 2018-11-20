@@ -12,8 +12,8 @@ import ffc.entity.ThaiCitizenId
 import ffc.entity.ThaiHouseholdId
 import java.lang.reflect.Type
 
-class IdentityJsonAdapter : JsonDeserializer<Identity>,
-        JsonSerializer<Identity> {
+class IdentityJsonAdapter : JsonDeserializer<Identity>, JsonSerializer<Identity> {
+
     override fun serialize(src: Identity, typeOfSrc: Type?, context: JsonSerializationContext): JsonElement {
         return context.serialize(src)
     }

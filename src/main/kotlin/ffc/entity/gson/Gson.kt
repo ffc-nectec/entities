@@ -30,6 +30,7 @@ import ffc.entity.Place
 import ffc.entity.User
 import ffc.entity.healthcare.CommunityService
 import ffc.entity.healthcare.Disease
+import ffc.entity.healthcare.analyze.HealthIssue
 import ffc.entity.util.URLs
 import me.piruin.geok.LatLng
 import me.piruin.geok.geometry.Geometry
@@ -49,6 +50,7 @@ val ffcGson: Gson by lazy {
             .adapterFor<Disease>(DiseaseJsonAdapter())
             .adapterFor<Place>(PlaceJsonAdapter())
             .adapterFor<URLs>(URLsJsonAdapter())
+            .adapterFor<HealthIssue>(HealthIssueJsonAdapter())
             .adapterForExtLibrary()
             .create()
 }
