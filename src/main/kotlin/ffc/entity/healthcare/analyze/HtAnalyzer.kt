@@ -1,6 +1,7 @@
 package ffc.entity.healthcare.analyze
 
 import ffc.entity.healthcare.HealthCareService
+import ffc.entity.healthcare.Icd10
 import ffc.entity.healthcare.NCDScreen
 import ffc.entity.healthcare.Service
 import ffc.entity.healthcare.bloodPressureLevel
@@ -21,13 +22,16 @@ class HtAnalyzer : Analyzer {
                 }
             }
             is HealthCareService -> {
-                val bpLevel = service.bloodPressureLevel
-                when {
-                    bpLevel == null -> null
-                    bpLevel.isHigh -> HealthIssue.Severity.HI
-                    bpLevel.isPreHigh -> HealthIssue.Severity.MID
-                    else -> HealthIssue.Severity.LOW
+                val ht = service.diagnosises.firstOrNull {
+                    val disease = it.disease
+                    if (disease is Icd10)
+                        disease.icd10.contains(Regex("^[iI]1[0-5]"))
+                    else
+                        false
                 }
+                if (ht != null)
+                    return HealthProblem(forIssue, service)
+                else null
             }
             else -> null
         }
