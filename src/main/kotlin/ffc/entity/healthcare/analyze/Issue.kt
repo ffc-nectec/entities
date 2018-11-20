@@ -9,24 +9,24 @@ open class HealthIssue(
 ) {
 
     enum class Issue {
-        DM, HT, CVD, DEMENTIA, DEPRESSIVE
+        DM, HT, CVD, DEMENTIA, DEPRESSIVE, OA
     }
 
     enum class Severity {
-        LOW, MID, HI, VERY_HI, UNDEFINE
+        LOW, MID, HI, VERY_HI, UNDEFINED
     }
 }
 
 class HealthProblem(
     issue: HealthIssue.Issue,
-    val severity: HealthIssue.Severity = HealthIssue.Severity.UNDEFINE,
+    val severity: HealthIssue.Severity = HealthIssue.Severity.UNDEFINED,
     date: LocalDate = LocalDate.now()
 ) : HealthIssue(issue, date) {
 
     constructor(
         issue: HealthIssue.Issue,
         service: Service,
-        severity: HealthIssue.Severity = HealthIssue.Severity.UNDEFINE
+        severity: HealthIssue.Severity = HealthIssue.Severity.UNDEFINED
     ) : this(issue, severity, service.time.toLocalDate())
 }
 
