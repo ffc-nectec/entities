@@ -16,4 +16,4 @@ class NCDScreen(
     var bloodPressure: BloodPressure? = null,
     var bloodPressure2nd: BloodPressure? = null,
     id: String = generateTempId()
-) : Services(providerId, patientId, id)
+) : Service(providerId, patientId, id)

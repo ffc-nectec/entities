@@ -1,13 +1,13 @@
 package ffc.entity.healthcare.analyze
 
-import ffc.entity.healthcare.Services
+import ffc.entity.healthcare.Service
 import ffc.entity.healthcare.SpecialPP
 
 class DepressiveAnalyzer : Analyzer {
 
     override val forIssue: HealthIssue.Issue = HealthIssue.Issue.DEPRESSIVE
 
-    override fun analyzeFrom(service: Services): HealthIssue? {
+    override fun analyzeFrom(service: Service): HealthIssue? {
         return if (service is SpecialPP) {
             val severity = when (service.ppType.id) {
                 "1B0285" -> HealthIssue.Severity.VERY_HI
@@ -16,7 +16,7 @@ class DepressiveAnalyzer : Analyzer {
                 "1B0281" -> HealthIssue.Severity.UNDEFINE
                 else -> null
             }
-            if (severity != null) HealthIssue(forIssue, severity) else null
+            if (severity != null) HealthIssue(forIssue, severity, service) else null
         } else null
     }
 }
