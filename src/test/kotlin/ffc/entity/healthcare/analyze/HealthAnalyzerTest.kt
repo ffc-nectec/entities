@@ -7,6 +7,7 @@ import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.NCDScreen
 import ffc.entity.healthcare.cvdHiRiskSpecialPP
 import ffc.entity.healthcare.cvdSpecialPP
+import ffc.entity.healthcare.dementiaCheckSpecialPP
 import ffc.entity.healthcare.diabetes
 import ffc.entity.healthcare.hypertension
 import ffc.entity.healthcare.patient
@@ -49,27 +50,33 @@ class HealthAnalyzerTest {
         principleDx = diabetes
         syntom = "ทานอาหารได้น้อย เบื่ออาหาร"
         addSpecialPP(cvdHiRiskSpecialPP)
+        addSpecialPP(dementiaCheckSpecialPP)
     }
 
     @Test
     fun visit() {
         analyzer.analyze(visit1)
 
-        with(analyzer.result) {
+        with(analyzer.problems) {
             size `should be equal to` 3
             get(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
             get(HealthIssue.Issue.DM)!!.severity `should equal` HealthIssue.Severity.UNDEFINE
             get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
         }
+
     }
 
     @Test
     fun mutipleVisit() {
         analyzer.analyze(visit2, visit1)
 
-        with(analyzer.result) {
+        with(analyzer.problems) {
             size `should be equal to` 3
             get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
+        }
+        with(analyzer.checked) {
+            size `should be equal to` 1
+            get(HealthIssue.Issue.DEMENTIA)!!.date `should equal` visit2.time.toLocalDate()
         }
     }
 
@@ -77,9 +84,13 @@ class HealthAnalyzerTest {
     fun mutipleVisitUnsorted() {
         analyzer.analyze(visit1, visit2)
 
-        with(analyzer.result) {
+        with(analyzer.problems) {
             size `should be equal to` 3
             get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
+        }
+        with(analyzer.checked) {
+            size `should be equal to` 1
+            get(HealthIssue.Issue.DEMENTIA)!!.date `should equal` visit2.time.toLocalDate()
         }
     }
 

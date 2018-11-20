@@ -15,6 +15,12 @@ class HealthAnalyzer {
 
     val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
 
+    val problems: Map<HealthIssue.Issue, HealthProblem>
+        get() = result.filterValueType()
+
+    val checked: Map<HealthIssue.Issue, HealthChecked>
+        get() = result.filterValueType()
+
     fun analyze(vararg services: Service) {
         services.sortBy { it.time }
         services.forEach { analyzeIt(it) }
@@ -37,5 +43,10 @@ class HealthAnalyzer {
             }
             service.ncdScreen?.let { analyzeIt(it) }
         }
+    }
+
+    private inline fun <K, V, reified R> Map<out K, V>.filterValueType(): Map<K, R> {
+        return filterValues { it is R }
+                .mapValues { it.value as R }
     }
 }

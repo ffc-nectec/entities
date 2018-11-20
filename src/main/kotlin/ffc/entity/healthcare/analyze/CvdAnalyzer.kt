@@ -10,13 +10,13 @@ class CvdAnalyzer : Analyzer {
     override fun analyzeFrom(service: Service): HealthIssue? {
         return when (service) {
             is SpecialPP -> {
-                val severity = when (service.ppType.id) {
-                    "1B1231" -> HealthIssue.Severity.MID
-                    "1B1232" -> HealthIssue.Severity.HI
-                    "1B1234", "1B1235" -> HealthIssue.Severity.VERY_HI
+                when (service.ppType.id) {
+                    "1B1230" -> HealthChecked(forIssue, service)
+                    "1B1231" -> HealthProblem(forIssue, service, HealthIssue.Severity.MID)
+                    "1B1232" -> HealthProblem(forIssue, service, HealthIssue.Severity.HI)
+                    "1B1234", "1B1235" -> HealthProblem(forIssue, service, HealthIssue.Severity.VERY_HI)
                     else -> null
                 }
-                if (severity != null) HealthIssue(forIssue, severity) else null
             }
             else -> null
         }

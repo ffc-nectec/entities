@@ -19,6 +19,11 @@ internal val cvdHiRiskSpecialPP = SpecialPP.PPType(
         "1B1235",
         "การตรวจคัดกรองความเสี่ยงโรคหัวใจและหลอดเลือดสมองในผู้สูงอายุพบว่ามีความเสี่ยงสูงมาก รักษาต่อ")
 
+internal val dementiaCheckSpecialPP = SpecialPP.PPType(
+        "1B1220",
+        "การตรวจคัดกรองสมรรถภาพสมอง (ภาวะสมองเสื่อม) โดยแบบAMT ในผู้สูงอายุพบว่าปกติ"
+)
+
 internal val hypertension = Icd10(
         "Hypertension",
         "i10",
