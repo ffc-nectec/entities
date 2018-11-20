@@ -17,7 +17,9 @@ class HealthAnalyzer {
             AmdAnalyzer(),
             CataractAnalyzer(),
             GlaucomaAnalyzer(),
-            NearsightedAnalyzer()
+            NearsightedAnalyzer(),
+            FallRiskAnalyzer(),
+            ADLAnalyzer()
     )
 
     val result: Map<HealthIssue.Issue, HealthIssue>
