@@ -23,5 +23,4 @@ class HealthIssueJsonAdapter : JsonDeserializer<HealthIssue>, JsonSerializer<Hea
     override fun serialize(src: HealthIssue, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
         return context.serialize(src)
     }
-
 }
