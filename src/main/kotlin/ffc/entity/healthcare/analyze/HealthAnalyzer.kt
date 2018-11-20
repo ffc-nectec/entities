@@ -11,7 +11,13 @@ class HealthAnalyzer {
             CvdAnalyzer(),
             DementiaAnalyzer(),
             DepressiveAnalyzer(),
-            OaAnalyzer()
+            OaAnalyzer(),
+            NearsightedAnalyzer(),
+            FarsightedAnalyzer(),
+            AmdAnalyzer(),
+            CataractAnalyzer(),
+            GlaucomaAnalyzer(),
+            NearsightedAnalyzer()
     )
 
     val result: Map<HealthIssue.Issue, HealthIssue>
