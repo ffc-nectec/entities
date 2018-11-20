@@ -23,5 +23,4 @@ class DmAnalyzer : Analyzer {
             else -> null
         }
     }
-
 }
