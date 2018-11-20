@@ -60,7 +60,7 @@ class HealthAnalyzerTest {
         with(analyzer.problems) {
             size `should be equal to` 3
             get(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
-            get(HealthIssue.Issue.DM)!!.severity `should equal` HealthIssue.Severity.UNDEFINE
+            get(HealthIssue.Issue.DM)!!.severity `should equal` HealthIssue.Severity.UNDEFINED
             get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
         }
 
