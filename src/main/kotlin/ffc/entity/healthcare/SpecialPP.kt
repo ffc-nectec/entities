@@ -8,7 +8,7 @@ class SpecialPP(
     patientId: String,
     val ppType: PPType,
     id: String = generateTempId()
-) : Services(providerId, patientId, id) {
+) : Service(providerId, patientId, id) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

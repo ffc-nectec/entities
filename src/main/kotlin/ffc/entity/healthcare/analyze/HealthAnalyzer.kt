@@ -1,7 +1,7 @@
 package ffc.entity.healthcare.analyze
 
 import ffc.entity.healthcare.HealthCareService
-import ffc.entity.healthcare.Services
+import ffc.entity.healthcare.Service
 
 class HealthAnalyzer {
 
@@ -15,11 +15,11 @@ class HealthAnalyzer {
 
     val result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
 
-    fun analyze(vararg services: Services) {
+    fun analyze(vararg services: Service) {
         services.forEach { analyzeIt(it) }
     }
 
-    private fun analyzeIt(service: Services) {
+    private fun analyzeIt(service: Service) {
         analyzers.forEach { analyzer ->
             val res = analyzer.analyzeFrom(service)
             res?.let { result.put(analyzer.forIssue, it) }

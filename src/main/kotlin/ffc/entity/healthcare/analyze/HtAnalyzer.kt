@@ -2,14 +2,14 @@ package ffc.entity.healthcare.analyze
 
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.NCDScreen
-import ffc.entity.healthcare.Services
+import ffc.entity.healthcare.Service
 import ffc.entity.healthcare.bloodPressureLevel
 
 class HtAnalyzer : Analyzer {
 
     override val forIssue: HealthIssue.Issue = HealthIssue.Issue.HT
 
-    override fun analyzeFrom(service: Services): HealthIssue? {
+    override fun analyzeFrom(service: Service): HealthIssue? {
         val severity = when (service) {
             is NCDScreen -> {
                 val bpLevel = service.bloodPressureLevel
@@ -31,6 +31,6 @@ class HtAnalyzer : Analyzer {
             }
             else -> null
         }
-        return if (severity != null) HealthIssue(forIssue, severity) else null
+        return if (severity != null) HealthIssue(forIssue, severity, service) else null
     }
 }

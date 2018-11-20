@@ -2,13 +2,13 @@ package ffc.entity.healthcare.analyze
 
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.Icd10
-import ffc.entity.healthcare.Services
+import ffc.entity.healthcare.Service
 
 class DmAnalyzer : Analyzer {
 
     override val forIssue: HealthIssue.Issue = HealthIssue.Issue.DM
 
-    override fun analyzeFrom(service: Services): HealthIssue? {
+    override fun analyzeFrom(service: Service): HealthIssue? {
         return when (service) {
             is HealthCareService -> {
                 val dm = service.diagnosises.firstOrNull {
@@ -18,7 +18,7 @@ class DmAnalyzer : Analyzer {
                     else
                         false
                 }
-                if (dm != null) HealthIssue(forIssue) else null
+                if (dm != null) HealthIssue(forIssue, service = service) else null
             }
             else -> null
         }

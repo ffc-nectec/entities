@@ -6,7 +6,7 @@ import ffc.entity.util.generateTempId
 import me.piruin.geok.geometry.Point
 import org.joda.time.DateTime
 
-abstract class Services(
+abstract class Service(
     val providerId: String,
     val patientId: String,
     id: String = generateTempId()
@@ -20,7 +20,7 @@ abstract class Services(
     var location: Point? = null
     var link: Link? = null
 
-    fun mapTo(other: Services) {
+    fun mapTo(other: Service) {
         other.let {
             it.time = time
             it.endTime = endTime

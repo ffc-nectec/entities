@@ -8,7 +8,7 @@ open class HealthCareService(
     providerId: String,
     patientId: String,
     id: String = generateTempId()
-) : Services(providerId, patientId, id) {
+) : Service(providerId, patientId, id) {
     var nextAppoint: LocalDate? = null
     var syntom: String? = null
     var suggestion: String? = null

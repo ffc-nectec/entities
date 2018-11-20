@@ -1,10 +1,10 @@
 package ffc.entity.healthcare.analyze
 
-import ffc.entity.healthcare.Services
+import ffc.entity.healthcare.Service
 
 interface Analyzer {
 
     val forIssue: HealthIssue.Issue
 
-    fun analyzeFrom(service: Services): HealthIssue?
+    fun analyzeFrom(service: Service): HealthIssue?
 }
