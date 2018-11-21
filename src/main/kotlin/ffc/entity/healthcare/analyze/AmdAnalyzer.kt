@@ -5,7 +5,7 @@ import ffc.entity.healthcare.SpecialPP
 
 class AmdAnalyzer : Analyzer {
 
-    override val forIssue = HealthIssue.Issue.CATARACT
+    override val forIssue = HealthIssue.Issue.AMD
 
     override fun analyzeFrom(service: Service): HealthIssue? {
         return if (service is SpecialPP) {
