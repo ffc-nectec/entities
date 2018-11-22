@@ -72,19 +72,25 @@ class Person(
         MALE, FEMALE, UNKNOWN
     }
 
-    class Relationship(val relate: Relate, val id: String, val name: String) : Cloneable {
+    class Relationship(
+        val relate: Relate,
+        val id: String,
+        val name: String,
+        val age: Int? = null,
+        val avatarUrl: String? = null
+    ) : Cloneable {
 
-        constructor(type: Relate, with: Person) : this(type, with.id, with.name)
+        constructor(type: Relate, with: Person) : this(type, with.id, with.name, with.age, with.avatarUrl)
 
         fun copy(): Relationship = clone() as Relationship
+    }
+
+    enum class Relate {
+        Father, Mother, Sibling, Twin, Married, Seperated, LegallySeperated, Divorced, Engaged, LoveAffair, Child
     }
 
     class Death(val date: LocalDate, val causes: List<Disease>) {
 
         constructor(date: LocalDate, vararg causesOfDeath: Disease) : this(date, causesOfDeath.toList())
-    }
-
-    enum class Relate {
-        Father, Mother, Sibling, Twin, Married, Seperated, LegallySeperated, Divorced, Engaged, LoveAffair, Child
     }
 }
