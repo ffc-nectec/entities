@@ -3,10 +3,11 @@ package ffc.entity.healthcare.analyze
 import ffc.entity.healthcare.Service
 import org.joda.time.LocalDate
 
-open class HealthIssue(
+abstract class HealthIssue(
     val issue: Issue,
     val date: LocalDate = LocalDate.now()
 ) {
+    abstract val haveIssue: Boolean
     val type = javaClass.simpleName
 
     enum class Issue {
@@ -16,7 +17,7 @@ open class HealthIssue(
     }
 
     enum class Severity {
-        OK, LOW, MID, HI, VERY_HI, UNDEFINED
+        OK, UNDEFINED, LOW, MID, HI, VERY_HI,
     }
 }
 
@@ -26,17 +27,36 @@ class HealthProblem(
     date: LocalDate = LocalDate.now()
 ) : HealthIssue(issue, date) {
 
+    override val haveIssue: Boolean
+        get() = severity != Severity.OK
+
     constructor(
         issue: HealthIssue.Issue,
         service: Service,
         severity: HealthIssue.Severity = HealthIssue.Severity.UNDEFINED
     ) : this(issue, severity, service.time.toLocalDate())
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is HealthProblem) return false
+
+        if (issue != other.issue) return false
+        if (severity != other.severity) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = issue.hashCode()
+        result = 31 * result + severity.hashCode()
+        return result
+    }
 }
 
 class HealthChecked(
     issue: HealthIssue.Issue,
     date: LocalDate = LocalDate.now(),
-    val haveIssue: Boolean = false
+    override val haveIssue: Boolean = false
 ) : HealthIssue(issue, date) {
 
     constructor(
@@ -44,4 +64,20 @@ class HealthChecked(
         service: Service,
         haveIssue: Boolean = false
     ) : this(issue, service.time.toLocalDate(), haveIssue)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is HealthChecked) return false
+
+        if (issue != other.issue) return false
+        if (haveIssue != other.haveIssue) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = issue.hashCode()
+        result = 31 * result + haveIssue.hashCode()
+        return result
+    }
 }

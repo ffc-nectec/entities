@@ -35,23 +35,6 @@ class HealthAnalyzer {
     var timestamp: DateTime? = DateTime.now()
         private set
 
-    val issue: Map<HealthIssue.Issue, HealthIssue>
-        get() {
-            val issue = _result.values.filter {
-                when (it) {
-                    is HealthProblem -> it.severity != HealthIssue.Severity.OK
-                    is HealthChecked -> it.haveIssue
-                    else -> false
-                }
-            }
-            _result.mapKeys { }
-            val map = mutableMapOf<HealthIssue.Issue, HealthIssue>()
-            issue.forEach {
-                map[it.issue] = it
-            }
-            return map
-        }
-
     fun analyze(vararg services: Service) {
         timestamp = DateTime.now()
         services.sortByDescending { it.time }
@@ -59,12 +42,11 @@ class HealthAnalyzer {
     }
 
     fun haveProblemWith(issue: HealthIssue.Issue): Boolean {
-        val value = _result[issue]
-        return when (value) {
-            is HealthProblem -> value.severity != HealthIssue.Severity.OK
-            is HealthChecked -> value.haveIssue
-            else -> false
-        }
+        return _result[issue]?.haveIssue == true
+    }
+
+    fun haveProblemWith(issue: HealthIssue.Issue, severity: HealthIssue.Severity): Boolean {
+        return _result.values.contains(HealthProblem(issue, severity))
     }
 
     private fun analyzeIt(service: Service) {
