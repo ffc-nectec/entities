@@ -1,5 +1,6 @@
 package ffc.entity.healthcare.analyze
 
+import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
 import ffc.entity.healthcare.BloodPressure
 import ffc.entity.healthcare.Diagnosis
@@ -13,6 +14,7 @@ import ffc.entity.healthcare.diabetes
 import ffc.entity.healthcare.hypertension
 import ffc.entity.healthcare.patient
 import ffc.entity.healthcare.provider
+import ffc.entity.resourceFile
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be`
@@ -70,6 +72,15 @@ class HealthAnalyzerTest {
     }
 
     @Test
+    fun haveIssue() {
+        analyzer.analyze(visit1)
+
+        analyzer.haveProblemWith(HealthIssue.Issue.HT) `should be` true
+        analyzer.haveProblemWith(HealthIssue.Issue.DM) `should be` true
+        analyzer.haveProblemWith(HealthIssue.Issue.ACTIVITIES) `should be` false
+    }
+
+    @Test
     fun mutipleVisit() {
         analyzer.analyze(visit2, visit1)
 
@@ -98,10 +109,17 @@ class HealthAnalyzerTest {
     }
 
     @Test
-    fun name() {
+    fun toJson() {
         analyzer.analyze(visit1)
 
         println(analyzer.toJson())
+    }
+
+    @Test
+    fun fromJson() {
+        val analyzer = resourceFile("HealthAnalyzer.json").parseTo<HealthAnalyzer>()
+
+        analyzer.result.size `should be` 3
     }
 }
 

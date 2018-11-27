@@ -58,6 +58,15 @@ class HealthAnalyzer {
         services.forEach { analyzeIt(it) }
     }
 
+    fun haveProblemWith(issue: HealthIssue.Issue): Boolean {
+        val value = _result[issue]
+        return when (value) {
+            is HealthProblem -> value.severity != HealthIssue.Severity.OK
+            is HealthChecked -> value.haveIssue
+            else -> false
+        }
+    }
+
     private fun analyzeIt(service: Service) {
         val activatedAnalyzer = mutableListOf<Analyzer>()
         analyzers.forEach { analyzer ->
