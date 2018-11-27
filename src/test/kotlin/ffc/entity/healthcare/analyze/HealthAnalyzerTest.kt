@@ -20,6 +20,7 @@ import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.amshove.kluent.`should have key`
+import org.amshove.kluent.`should have value`
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import org.junit.Test
@@ -77,6 +78,20 @@ class HealthAnalyzerTest {
         analyzer.haveProblemWith(HealthIssue.Issue.HT) `should be` true
         analyzer.haveProblemWith(HealthIssue.Issue.DM) `should be` true
         analyzer.haveProblemWith(HealthIssue.Issue.ACTIVITIES) `should be` false
+    }
+
+    @Test
+    fun haveIssueWithSeverity() {
+        analyzer.analyze(visit1)
+
+        analyzer.haveProblemWith(HealthIssue.Issue.HT, HealthIssue.Severity.HI) `should be` true
+    }
+
+    @Test
+    fun containValue() {
+        analyzer.analyze(visit1)
+
+        analyzer.result `should have value` HealthProblem(HealthIssue.Issue.HT, HealthIssue.Severity.HI)
     }
 
     @Test
