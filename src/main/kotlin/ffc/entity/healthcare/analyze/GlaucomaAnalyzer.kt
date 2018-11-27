@@ -11,7 +11,7 @@ class GlaucomaAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1253" -> HealthChecked(forIssue, service)
-                "1B1254", "1B1255" -> HealthProblem(forIssue, service)
+                "1B1254", "1B1255" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

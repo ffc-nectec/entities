@@ -11,7 +11,7 @@ class AmdAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1256" -> HealthChecked(forIssue, service)
-                "1B1257", "1B1258" -> HealthProblem(forIssue, service)
+                "1B1257", "1B1258" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

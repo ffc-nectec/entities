@@ -12,6 +12,10 @@ abstract class Service(
     id: String = generateTempId()
 ) : Entity(id) {
     var time: DateTime = DateTime.now()
+        set(value) {
+            field = value
+            endTime = value.plusMinutes(5)
+        }
     var endTime: DateTime = time.plusMinutes(5)
         set(value) {
             require(value.isAfter(time)) { "endTime must be after time" }

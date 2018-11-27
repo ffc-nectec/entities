@@ -11,7 +11,7 @@ class CataractAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1250" -> HealthChecked(forIssue, service)
-                "1B1251", "1B1252" -> HealthProblem(forIssue, service)
+                "1B1251", "1B1252" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

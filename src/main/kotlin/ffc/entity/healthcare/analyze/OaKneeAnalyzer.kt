@@ -11,7 +11,7 @@ class OaKneeAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1270" -> HealthChecked(forIssue, service)
-                "1B1271", "1B1272" -> HealthProblem(forIssue, service)
+                "1B1271", "1B1272" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

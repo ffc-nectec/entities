@@ -32,16 +32,29 @@ class HealthAnalyzer {
     @SerializedName("result")
     private val _result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
 
-    val lastAnalyzer = DateTime()
+    var timestamp: DateTime? = DateTime.now()
+        private set
 
-    val problems: Map<HealthIssue.Issue, HealthProblem>
-        get() = _result.filterValueType()
-
-    val checked: Map<HealthIssue.Issue, HealthChecked>
-        get() = _result.filterValueType()
+    val issue: Map<HealthIssue.Issue, HealthIssue>
+        get() {
+            val issue = _result.values.filter {
+                when (it) {
+                    is HealthProblem -> it.severity != HealthIssue.Severity.OK
+                    is HealthChecked -> it.haveIssue
+                    else -> false
+                }
+            }
+            _result.mapKeys { }
+            val map = mutableMapOf<HealthIssue.Issue, HealthIssue>()
+            issue.forEach {
+                map[it.issue] = it
+            }
+            return map
+        }
 
     fun analyze(vararg services: Service) {
-        services.sortBy { it.time }
+        timestamp = DateTime.now()
+        services.sortByDescending { it.time }
         services.forEach { analyzeIt(it) }
     }
 
@@ -62,10 +75,5 @@ class HealthAnalyzer {
             }
             service.ncdScreen?.let { analyzeIt(it) }
         }
-    }
-
-    private inline fun <K, V, reified R> Map<out K, V>.filterValueType(): Map<K, R> {
-        return filterValues { it is R }
-            .mapValues { it.value as R }
     }
 }
