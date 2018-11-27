@@ -1,5 +1,6 @@
 package ffc.entity.healthcare.analyze
 
+import ffc.entity.gson.toJson
 import ffc.entity.healthcare.BloodPressure
 import ffc.entity.healthcare.Diagnosis
 import ffc.entity.healthcare.Frequency
@@ -14,7 +15,9 @@ import ffc.entity.healthcare.patient
 import ffc.entity.healthcare.provider
 import me.piruin.geok.geometry.Point
 import org.amshove.kluent.`should be equal to`
+import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
+import org.amshove.kluent.`should have key`
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import org.junit.Test
@@ -46,7 +49,7 @@ class HealthAnalyzerTest {
     }
 
     private val visit2 = HealthCareService(provider.id, patient.id).apply {
-        time = DateTime.now().minusMonths(3)
+        time = DateTime.now().plusMonths(3)
         principleDx = diabetes
         syntom = "ทานอาหารได้น้อย เบื่ออาหาร"
         addSpecialPP(cvdHiRiskSpecialPP)
@@ -57,11 +60,12 @@ class HealthAnalyzerTest {
     fun visit() {
         analyzer.analyze(visit1)
 
-        with(analyzer.problems) {
+        with(analyzer.result) {
             size `should be equal to` 3
-            get(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.UNDEFINED
-            get(HealthIssue.Issue.DM)!!.severity `should equal` HealthIssue.Severity.UNDEFINED
-            get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
+            getAs<HealthProblem>(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
+            getAs<HealthChecked>(HealthIssue.Issue.DM)!!.haveIssue `should be` true
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
+
         }
     }
 
@@ -69,27 +73,37 @@ class HealthAnalyzerTest {
     fun mutipleVisit() {
         analyzer.analyze(visit2, visit1)
 
-        with(analyzer.problems) {
-            size `should be equal to` 3
-            get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
+        with(analyzer.result) {
+            size `should be equal to` 4
+            `should have key`(HealthIssue.Issue.HT)
+            `should have key`(HealthIssue.Issue.DM)
+            `should have key`(HealthIssue.Issue.CVD)
+            `should have key`(HealthIssue.Issue.DEMENTIA)
+
+            getAs<HealthChecked>(HealthIssue.Issue.DEMENTIA)!!.haveIssue `should equal` false
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
         }
-        with(analyzer.checked) {
-            size `should be equal to` 1
-            get(HealthIssue.Issue.DEMENTIA)!!.date `should equal` visit2.time.toLocalDate()
-        }
+
     }
 
     @Test
     fun mutipleVisitUnsorted() {
         analyzer.analyze(visit1, visit2)
 
-        with(analyzer.problems) {
-            size `should be equal to` 3
-            get(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
-        }
-        with(analyzer.checked) {
-            size `should be equal to` 1
-            get(HealthIssue.Issue.DEMENTIA)!!.date `should equal` visit2.time.toLocalDate()
+        with(analyzer.result) {
+            size `should be equal to` 4
+
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
         }
     }
+
+    @Test
+    fun name() {
+        analyzer.analyze(visit1)
+
+        println(analyzer.toJson())
+    }
 }
+
+@Suppress("UNCHECKED_CAST")
+inline fun <T : HealthIssue> Map<HealthIssue.Issue, HealthIssue>.getAs(key: HealthIssue.Issue): T? = get(key) as T?

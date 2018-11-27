@@ -1,0 +1,23 @@
+{
+  "result": {
+    "HT": {
+      "severity": "HI",
+      "type": "HealthProblem",
+      "issue": "HT",
+      "date": "2018-11-27"
+    },
+    "DM": {
+      "haveIssue": true,
+      "type": "HealthChecked",
+      "issue": "DM",
+      "date": "2018-11-27"
+    },
+    "CVD": {
+      "severity": "MID",
+      "type": "HealthProblem",
+      "issue": "CVD",
+      "date": "2018-11-27"
+    }
+  },
+  "timestamp": "2018-11-27T14:30:51.673+07:00"
+}

@@ -11,7 +11,7 @@ class FallRiskAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1200" -> HealthChecked(forIssue, service)
-                "1B1201", "1B1202" -> HealthProblem(forIssue, service)
+                "1B1201", "1B1202" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

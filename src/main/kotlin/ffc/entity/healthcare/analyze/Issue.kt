@@ -7,6 +7,7 @@ open class HealthIssue(
     val issue: Issue,
     val date: LocalDate = LocalDate.now()
 ) {
+    val type = javaClass.simpleName
 
     enum class Issue {
         DM, HT, CVD, DEMENTIA, DEPRESSIVE, OA_KNEE,
@@ -15,7 +16,7 @@ open class HealthIssue(
     }
 
     enum class Severity {
-        LOW, MID, HI, VERY_HI, UNDEFINED
+        OK, LOW, MID, HI, VERY_HI, UNDEFINED
     }
 }
 
@@ -34,11 +35,13 @@ class HealthProblem(
 
 class HealthChecked(
     issue: HealthIssue.Issue,
-    date: LocalDate = LocalDate.now()
+    date: LocalDate = LocalDate.now(),
+    val haveIssue: Boolean = false
 ) : HealthIssue(issue, date) {
 
     constructor(
         issue: HealthIssue.Issue,
-        service: Service
-    ) : this(issue, service.time.toLocalDate())
+        service: Service,
+        haveIssue: Boolean = false
+    ) : this(issue, service.time.toLocalDate(), haveIssue)
 }

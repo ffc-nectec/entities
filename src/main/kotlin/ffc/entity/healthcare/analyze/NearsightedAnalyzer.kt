@@ -11,7 +11,7 @@ class NearsightedAnalyzer : Analyzer {
         return if (service is SpecialPP) {
             when (service.ppType.id) {
                 "1B1240" -> HealthChecked(forIssue, service)
-                "1B1241", "1B1242" -> HealthProblem(forIssue, service)
+                "1B1241", "1B1242" -> HealthChecked(forIssue, service, haveIssue = true)
                 else -> null
             }
         } else null

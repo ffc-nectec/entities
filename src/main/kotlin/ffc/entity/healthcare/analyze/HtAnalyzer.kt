@@ -1,5 +1,6 @@
 package ffc.entity.healthcare.analyze
 
+import ffc.entity.healthcare.BloodPressureAnalyzer
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.Icd10
 import ffc.entity.healthcare.NCDScreen
@@ -12,29 +13,32 @@ class HtAnalyzer : Analyzer {
 
     override fun analyzeFrom(service: Service): HealthIssue? {
         val severity = when (service) {
-            is NCDScreen -> {
-                val bpLevel = service.bloodPressureLevel
-                when {
-                    bpLevel == null -> null
-                    bpLevel.isHigh -> HealthIssue.Severity.HI
-                    bpLevel.isPreHigh -> HealthIssue.Severity.MID
-                    else -> HealthIssue.Severity.LOW
-                }
-            }
-            is HealthCareService -> {
-                val ht = service.diagnosises.firstOrNull {
-                    val disease = it.disease
-                    if (disease is Icd10)
-                        disease.icd10.contains(Regex("^[iI]1[0-5]"))
-                    else
-                        false
-                }
-                if (ht != null)
-                    return HealthProblem(forIssue, service)
-                else null
-            }
+            is NCDScreen -> service.bloodPressureLevel.severity
+            is HealthCareService -> service.bloodPressureLevel.severity
             else -> null
+        }
+
+        if (severity == null && service is HealthCareService) {
+            val ht = service.diagnosises.firstOrNull {
+                val disease = it.disease
+                if (disease is Icd10)
+                    disease.icd10.contains(Regex("^[iI]1[0-5]"))
+                else
+                    false
+            }?.let {
+                return HealthChecked(forIssue, service, haveIssue = true)
+            }
         }
         return if (severity != null) HealthProblem(forIssue, service, severity) else null
     }
+
+    val BloodPressureAnalyzer?.severity: HealthIssue.Severity?
+        get() {
+            return when {
+                this == null -> null
+                isPreHigh -> HealthIssue.Severity.MID
+                isHigh -> HealthIssue.Severity.HI
+                else -> null
+            }
+        }
 }

@@ -18,7 +18,7 @@ class DmAnalyzer : Analyzer {
                     else
                         false
                 }
-                if (dm != null) HealthProblem(forIssue, service) else null
+                if (dm != null) HealthChecked(forIssue, service, haveIssue = true) else null
             }
             else -> null
         }
