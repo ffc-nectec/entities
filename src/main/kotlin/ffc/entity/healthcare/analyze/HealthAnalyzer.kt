@@ -1,31 +1,38 @@
 package ffc.entity.healthcare.analyze
 
+import com.google.gson.annotations.SerializedName
+import ffc.entity.gson.JsonExclude
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.Service
+import org.joda.time.DateTime
 
 class HealthAnalyzer {
 
+    @JsonExclude
     val analyzers = mutableListOf(
-            HtAnalyzer(),
-            DmAnalyzer(),
-            CvdAnalyzer(),
-            DementiaAnalyzer(),
-            DepressiveAnalyzer(),
-            OaKneeAnalyzer(),
-            NearsightedAnalyzer(),
-            FarsightedAnalyzer(),
-            AmdAnalyzer(),
-            CataractAnalyzer(),
-            GlaucomaAnalyzer(),
-            NearsightedAnalyzer(),
-            FallRiskAnalyzer(),
-            ADLAnalyzer()
+        HtAnalyzer(),
+        DmAnalyzer(),
+        CvdAnalyzer(),
+        DementiaAnalyzer(),
+        DepressiveAnalyzer(),
+        OaKneeAnalyzer(),
+        NearsightedAnalyzer(),
+        FarsightedAnalyzer(),
+        AmdAnalyzer(),
+        CataractAnalyzer(),
+        GlaucomaAnalyzer(),
+        NearsightedAnalyzer(),
+        FallRiskAnalyzer(),
+        ADLAnalyzer()
     )
 
     val result: Map<HealthIssue.Issue, HealthIssue>
         get() = _result
 
+    @SerializedName("result")
     private val _result = mutableMapOf<HealthIssue.Issue, HealthIssue>()
+
+    val lastAnalyzer = DateTime()
 
     val problems: Map<HealthIssue.Issue, HealthProblem>
         get() = _result.filterValueType()
@@ -59,6 +66,6 @@ class HealthAnalyzer {
 
     private inline fun <K, V, reified R> Map<out K, V>.filterValueType(): Map<K, R> {
         return filterValues { it is R }
-                .mapValues { it.value as R }
+            .mapValues { it.value as R }
     }
 }
