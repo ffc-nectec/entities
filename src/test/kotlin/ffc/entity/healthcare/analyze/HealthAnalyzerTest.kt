@@ -67,7 +67,6 @@ class HealthAnalyzerTest {
             getAs<HealthProblem>(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
             getAs<HealthChecked>(HealthIssue.Issue.DM)!!.haveIssue `should be` true
             getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
-
         }
     }
 
@@ -94,7 +93,6 @@ class HealthAnalyzerTest {
             getAs<HealthChecked>(HealthIssue.Issue.DEMENTIA)!!.haveIssue `should equal` false
             getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
         }
-
     }
 
     @Test
