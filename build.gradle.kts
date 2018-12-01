@@ -8,7 +8,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation("joda-time:joda-time:2.9.9")
-    implementation("com.github.piruin:geok:1.0.0-alpha-2")
+    implementation("com.github.piruin:geok:1.0.0-alpha-3")
     implementation("com.google.code.gson:gson:2.8.1")
     implementation("com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.6.0")
 
