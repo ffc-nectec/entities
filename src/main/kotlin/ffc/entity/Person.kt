@@ -19,6 +19,7 @@ package ffc.entity
 
 import ffc.entity.healthcare.Chronic
 import ffc.entity.healthcare.Disease
+import ffc.entity.healthcare.analyze.HealthAnalyzer
 import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
 import org.joda.time.LocalDate
@@ -50,6 +51,7 @@ class Person(
     val isDead: Boolean
         get() = death != null
     var death: Death? = null
+    var healthAnalyze: HealthAnalyzer? = null
 
     var relationships: MutableList<Relationship> = mutableListOf()
     val fatherId: String?
