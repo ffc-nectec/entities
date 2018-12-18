@@ -3,8 +3,6 @@ package ffc.entity.gson
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.google.gson.JsonSerializationContext
-import com.google.gson.JsonSerializer
 import ffc.entity.Place
 import ffc.entity.place.Business
 import ffc.entity.place.House
@@ -13,10 +11,7 @@ import ffc.entity.place.School
 import java.lang.reflect.Type
 import ffc.entity.House as OldHouse
 
-class PlaceJsonAdapter : JsonDeserializer<Place>, JsonSerializer<Place> {
-    override fun serialize(src: Place?, typeOfSrc: Type?, context: JsonSerializationContext): JsonElement {
-        return context.serialize(src)
-    }
+class PlaceJsonAdapter : JsonDeserializer<Place> {
 
     override fun deserialize(json: JsonElement, typeOfT: Type?, context: JsonDeserializationContext): Place {
 
