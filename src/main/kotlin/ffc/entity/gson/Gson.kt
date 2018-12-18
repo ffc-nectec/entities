@@ -32,10 +32,7 @@ import ffc.entity.healthcare.CommunityService
 import ffc.entity.healthcare.Disease
 import ffc.entity.healthcare.analyze.HealthIssue
 import ffc.entity.util.URLs
-import me.piruin.geok.LatLng
-import me.piruin.geok.geometry.Geometry
-import me.piruin.geok.gson.GeometrySerializer
-import me.piruin.geok.gson.LatLngSerializer
+import me.piruin.geok.gson.registerGeokTypeAdapter
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
@@ -56,8 +53,7 @@ val ffcGson: Gson by lazy {
 }
 
 internal fun GsonBuilder.adapterForExtLibrary(): GsonBuilder {
-    adapterFor<Geometry>(GeometrySerializer())
-    adapterFor<LatLng>(LatLngSerializer())
+    registerGeokTypeAdapter()
     adapterFor<DateTime>(DateTimeConverter())
     adapterFor<LocalDate>(LocalDateConverter())
     adapterFor<LocalDateTime>(LocalDateTimeConverter())
