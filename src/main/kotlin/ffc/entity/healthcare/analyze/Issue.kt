@@ -27,8 +27,7 @@ class HealthProblem(
     date: LocalDate = LocalDate.now()
 ) : HealthIssue(issue, date) {
 
-    override val haveIssue: Boolean
-        get() = severity != Severity.OK
+    override val haveIssue: Boolean = severity != Severity.OK
 
     constructor(
         issue: HealthIssue.Issue,
