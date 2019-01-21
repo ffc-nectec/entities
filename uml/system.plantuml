@@ -14,24 +14,28 @@ rectangle "PHU" {
 }
 
 cloud G-Cloud {
-  [Proxy]
-  [FFC API] as API
-  database "NoSQL" {
-    [Data]
+  rectangle {
+      [FFC API] <<RESTful>> as API
+      database "NoSQL" {
+        [Data]
+      }
+      API -down- Data
   }
   rectangle "BeeStorage" {
-      [Image\nManager] as Img
+      [Controller] <<Thumbor>> as Img
        database "Storage" {
           [Image Data] as ImgData
        }
-       Img - ImgData
+        Img -down- ImgData
   }
-
-  [Proxy] -up-- https
-  Proxy - API : api.ffc.in.th
-  Proxy - Img : img.ffc.in.th
-  API -- Data
-
+  () https
+  [Load Balancer] <<Proxy>> as Proxy
+  Proxy -up- https
+  Proxy . API : api.ffc.in.th
+  Proxy . Img : img.ffc.in.th
+  [Console] <<html>>
+  [Console] .. Proxy : console.ffc.in.th
+  [Console] - API : via
 }
 
 cloud Firebase {
@@ -43,11 +47,20 @@ rectangle Mobile {
 }
 
 API --> Messaging : Push
-Messaging --> app : Notify
-Messaging ---> AirSync : Notify
+Messaging ..> app : Notify
+Messaging ...> AirSync : Notify
 
+AirSync ---> https : api
+app ---> https : api
 
-AirSync --- https
-app --- https
+actor User
+User <<Provider, Surveyor>>
+User -- Jhcis : use
+User - app : use
+
+actor Admin
+() "Web Browser" as web
+web -up-- Admin
+web --> https : console
 
 @enduml
