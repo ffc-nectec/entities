@@ -2,38 +2,33 @@
 left to right direction
 skinparam monochrome true
 
-actor :Health Care\nProvider: as Provider
-actor Surveyor
-actor OrgAdmin <<AirSync>> as Admin
+actor :Health Care\nProvider: as Provider <<Care Manaer>>
+actor Surveyor <<Care Giver>>
 actor Patient
+actor Analyzer <<Machine>> as AI
 
-usecase (View Service\nHistory) as ServiceHist
+Provider -right--|> Surveyor
 
-Provider --> ServiceHist : Provider View
-ServiceHist <-- Patient : Patient View
-Provider --> (Home Visit)
-Provider --> (NCD Screening)
-Provider --> (View Genogram)
+rectangle Healthcare-Service {
+    Provider -- (HomeVisit) : View History /\n Home Visit
+    (Service) .> (HomeVisit) : <<extend>>
+    (Service) -- Patient
+    (Service) -- AI : Analyze
+    (Service) <. (Patient\nInfomation) : <<include>>
+    (Genogram) <. (Patient\nInfomation) : <<include>>
+    (Patient\nInfomation) -- Patient
+    (Suggestion) -- AI : Analyze result
+    Provider -- (Suggestion) : Receive / Alert
+    Surveyor --  (Patient\nInfomation) : View
+}
 
-(Home Visit) ..|> (Service) : extend
-(NCD Screening) ..|> (Service) : extend
-(Service) . Patient
-usecase (View Place) as VP
-usecase (View Service\nTarget Place) as VTP
-
-VTP ..|> VP : extend
-Provider --> VTP
-Provider --> (View Patient\nDetail)
-(Alert to Visit Patient) --> Provider
-Provider -> (Edit Relationship)
-
-(Edit Relationship) <-- Surveyor
-Surveyor --> VP
-Surveyor --> (Add Place)
-Surveyor --> (Mark\nPlace Location)
-
-
-(Add Place) <-- Admin
-(Add Person) <-- Admin
+rectangle Community {
+    Surveyor -- (Place) : Update
+    (Place) <. (Resident): <<include>>
+    (Place Location) <. (Place) : <<extend>>
+    (Resident) -- (Patient)
+    (Community Maps) .> (Place Location) : <<include>>
+    Surveyor -- (Community Maps) : View
+}
 
 @enduml
