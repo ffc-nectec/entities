@@ -3,7 +3,7 @@
 skinparam monochrome true
 skinparam componentStyle uml2
 
-rectangle PHS {
+rectangle "PHU" {
     [FFC AirSync] as AirSync
     [Jhcis]
     database "MySQL" {
@@ -16,9 +16,15 @@ rectangle PHS {
 cloud G-Cloud {
   [Proxy]
   [FFC API] as API
-  [Image] as Img
   database "NoSQL" {
     [Data]
+  }
+  rectangle "BeeStorage" {
+      [Image\nManager] as Img
+       database "Storage" {
+          [Image Data] as ImgData
+       }
+       Img - ImgData
   }
 
   [Proxy] -up-- https
