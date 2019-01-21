@@ -1,0 +1,47 @@
+@startuml
+
+skinparam monochrome true
+skinparam componentStyle uml2
+
+rectangle PHS {
+    [FFC AirSync] as AirSync
+    [Jhcis]
+    database "MySQL" {
+        [Data] as JDB
+    }
+    AirSync -up- JDB
+    JDB - Jhcis
+}
+
+cloud G-Cloud {
+  [Proxy]
+  [FFC API] as API
+  [Image] as Img
+  database "NoSQL" {
+    [Data]
+  }
+
+  [Proxy] -up-- https
+  Proxy - API : api.ffc.in.th
+  Proxy - Img : img.ffc.in.th
+  API -- Data
+
+}
+
+cloud Firebase {
+   () Messaging
+}
+
+rectangle Mobile {
+    [FFC-Application] as app
+}
+
+API --> Messaging : Push
+Messaging --> app : Notify
+Messaging ---> AirSync : Notify
+
+
+AirSync --- https
+app --- https
+
+@enduml
