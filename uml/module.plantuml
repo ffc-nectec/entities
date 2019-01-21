@@ -1,0 +1,10 @@
+@startuml
+skinparam monochrome true
+
+[App] --> [API]
+[AirSync] --> [API]
+[API] --> [Entity]
+[App] -> [Genogram]
+[API] -> [Genogram]
+
+@enduml
