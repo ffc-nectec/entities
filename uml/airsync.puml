@@ -1,0 +1,28 @@
+@startuml
+actor Bob
+actor Alice
+participant API
+participant "Push Notification \nService Provider" as PUSH
+participant "AirSync" as AIR
+participant "JHCIS\nDatabase" as J
+
+== Initialization ==
+Bob -> PUSH : Subscribe as Client
+Alice -> PUSH : Subscribe as Client
+AIR -> PUSH : Subscribe as AirSync
+
+== Operation ==
+Alice -> API : Make update via FFC Application
+hnote over API : isSynced=false
+API -> PUSH : Push notification to \norganization's server (AirSync)
+PUSH -> AIR : broadcast to subscriber (AirSync)\n with Data type and ID
+AIR -> API : Ask for Update data
+API --> AIR : Response update data
+AIR -> J : Update data to \nlocal database
+AIR -> API : Confirm sync data completed
+hnote over API : isSynced=true
+API -> PUSH : Push notification to \nall client in organization
+PUSH -> Alice : broadcast to subscriber (Client)
+PUSH -> Bob : broadcast to subscriber (Client)
+
+@enduml
