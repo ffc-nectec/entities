@@ -1,27 +1,30 @@
 @startuml
 
 skinparam monochrome true
-skinparam componentStyle uml2
 
-rectangle "PHU" {
-    [FFC AirSync] as AirSync
-    [Jhcis]
-    database "MySQL" {
-        [Data] as JDB
+rectangle "PCU" <<Private Network>> {
+    [AirSync] as AirSync
+    frame "HIS" {
+        [JHCIS] as J
+        database "JHCIS\nDatabase" {
+            [data] as JDB
+        }
     }
     AirSync -up- JDB
-    JDB - Jhcis
+    JDB = J
 }
 
-cloud G-Cloud {
-  rectangle {
-      [FFC API] <<RESTful>> as API
-      database "NoSQL" {
+cloud Cloud {
+  frame FFC {
+      [API] <<RESTful>> as API
+      database "Database" {
         [Data]
       }
+      [Console] <<html>>
+      Console --> API : via
       API -down- Data
   }
-  rectangle "BeeStorage" {
+  frame "BeeStorage" {
       [Controller] <<Thumbor>> as Img
        database "Storage" {
           [Image Data] as ImgData
@@ -31,19 +34,19 @@ cloud G-Cloud {
   () https
   [Load Balancer] <<Proxy>> as Proxy
   Proxy -up- https
-  Proxy . API : api.ffc.in.th
-  Proxy . Img : img.ffc.in.th
-  [Console] <<html>>
+  Proxy -left. API : api.ffc.in.th
+  Proxy -. Img : img.ffc.in.th
+
   [Console] .. Proxy : console.ffc.in.th
-  [Console] - API : via
+
 }
 
-cloud Firebase {
+cloud "Push Notification \nService Provider" {
    () Messaging
 }
 
 rectangle Mobile {
-    [FFC-Application] as app
+    [Application] as app
 }
 
 API --> Messaging : Push
@@ -53,12 +56,17 @@ Messaging ...> AirSync : Notify
 AirSync ---> https : api
 app ---> https : api
 
-actor User
-User <<Provider, Surveyor>>
-User -- Jhcis : use
-User - app : use
+actor "HealthCare\n Provider" as Provider
+Provider <<Care Manager>>
+Provider -- J
+Provider - app
+
+actor Surveyor
+Surveyor <<Care Giver>>
+app -- Surveyor
 
 actor Admin
+Provider -|> Admin
 () "Web Browser" as web
 web -up-- Admin
 web --> https : console
