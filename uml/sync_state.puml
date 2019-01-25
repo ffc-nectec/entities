@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+
+State AirSync {
+    [*] --> NotSync : Default state
+    Syncing --> Syncing : Retry
+    Syncing --> Synced : Successed\nSave on API
+    Synced --> NotSync : Changed
+    NotSync --> Syncing : Start Sync\nOperation
+
+
+}
+
+State API {
+    [*] -> isNotSync : New data from Application
+    isNotSync --> isSynced : AirSync confirmed
+    isSynced --> isNotSync : Changed
+    isNotSync -> Synced : Push to AirSync
+    NotCommit --> isSynced : AirSync confirmed
+    NotCommit --> [*] : Fail / Aborted
+}
+
+Syncing --> NotCommit : Send data to API
+
+
+
+@enduml
