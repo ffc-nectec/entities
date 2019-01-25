@@ -2,7 +2,7 @@
 left to right direction
 skinparam monochrome true
 
-actor :Health Care\nProvider: as Provider <<Care Manaer>>
+actor :Health Care\nProvider: as Provider <<Care Manager>>
 actor Surveyor <<Care Giver>>
 actor Patient
 actor Analyzer <<Machine>> as AI
@@ -10,7 +10,7 @@ actor Analyzer <<Machine>> as AI
 Provider -right--|> Surveyor
 
 rectangle Healthcare-Service {
-    Provider -- (HomeVisit) : View History /\n Home Visit
+    Provider -- (HomeVisit) : View History /\n Visit a home
     (Service) .> (HomeVisit) : <<extend>>
     (Service) -- Patient
     (Service) -- AI : Analyze

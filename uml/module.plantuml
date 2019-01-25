@@ -1,10 +1,19 @@
 @startuml
 skinparam monochrome true
 
+rectangle "FFC" {
+    [AirSync]
+    [App]
+    [API]
+    [Entity]
+}
+
+[JHCIS] -> [AirSync]
 [App] --> [API]
 [AirSync] --> [API]
 [API] --> [Entity]
-[App] -> [Genogram]
+[App] --> [Genogram]
 [API] -> [Genogram]
+[App] -> [TAI/ADL]
 
 @enduml
