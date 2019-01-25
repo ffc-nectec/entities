@@ -1,4 +1,6 @@
 @startuml
+skinparam monochrome true
+
 actor Bob <<Application>>
 actor Alice <<Application>>
 participant  API
