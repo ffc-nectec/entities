@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+
+cloud G-Cloud {
+    [Load Balancer] as Load
+    https - [Load]
+    note top of [https]
+      Request from client
+      start here
+    end note
+
+    [Centralize\nLog] as Log
+    note right of [Log]
+      Every component
+      send log to this one
+    end note
+
+    package "FFC" {
+        [Load] -> http : Forward
+        http -down- [API 1]
+        http -down- [API N]
+        http - [Console]
+
+
+        package "Database" {
+            [Router/\nConfig] as Router
+            [API 1] -- [Router]
+            [API N] -- [Router]
+            [Router] -- [Data 1]
+            [Router] -- [Data N]
+        }
+    }
+
+
+    package "BeeStorage" {
+        [Controller]
+        [Load] --> [Controller] : Forward
+        frame "ImageData" {
+            [Router/\nConfig] as ImgRouter
+            [Controller] -down- [ImgRouter]
+            [ImgRouter] -- [Image 1]
+            [ImgRouter] -- [Image N]
+        }
+    }
+}
+
+@enduml
