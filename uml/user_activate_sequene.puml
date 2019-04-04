@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+
+actor Alice <<User>>
+participant App
+actor Bob <<Admin>>
+participant AirSync
+participant API
+
+Alice -> App : Login with HIS's user&pass
+App -> API : Request for Token with U&P
+API -> App : 403 User need to activate
+App -> Alice : Display "Require OTP to Activate"
+Alice -> Bob : I need OTP to\nactivate my account
+Bob -> AirSync : Give me OTP
+AirSync -> API : Request OTP with Admin privilege
+API -> AirSync : Response OTP
+AirSync -> Bob : Display OTP
+Bob -> Alice : Give OTP
+Alice -> App : Input OTP
+App -> API : Send OTP for activate Alice's account
+API -> API : Validate OTP
+API -> App : Response Token
+App -> Alice : Display authenticate success!
+
+@enduml
