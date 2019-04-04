@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+
+actor Alice <<User>>
+participant App <<on Aliice Mobile>>
+participant API
+participant "Mobile Authen\nProvider" as OTP
+
+Alice -> App : Login with username & password
+App -> API : Request for Token with U&P
+API -> App : 302 Require Two-factor authen\nBecause password too weak
+App -> Alice : Display mobile authen require!
+App -> OTP : Reqrest mobile authen\n for Alice
+hnote over App : Watch for OTP SMS from Provider
+OTP -> App : Send OTP SMS to\n Alice's mobile
+App -> OTP : Authen with OTP from SMS
+OTP -> App : Return Key
+App -> API : Request for Token with\nMobile Authen Provider's Key
+API -> OTP : Verify Key
+OTP -> API : Approve Key correct
+API -> App : Response Token
+App -> Alice : Display Authen Success!!
+
+@enduml
