@@ -18,6 +18,7 @@
 package ffc.entity
 
 import ffc.entity.healthcare.Chronic
+import ffc.entity.healthcare.Disability
 import ffc.entity.healthcare.Disease
 import ffc.entity.healthcare.analyze.HealthAnalyzer
 import ffc.entity.util.checkValidUrl
@@ -40,7 +41,8 @@ class Person(
     val name: String get() = "$prename$firstname ${midname?.plus(" ") ?: ""}$lastname".trim()
     val age: Int? get() = birthDate?.let { Period(it, death?.date ?: LocalDate.now()).years }
 
-    var chronics: MutableList<Chronic> = mutableListOf()
+    var chronics = mutableListOf<Chronic>()
+    var disabilities = mutableListOf<Disability>()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
     var avatarUrl: String? = null
         set(url) {

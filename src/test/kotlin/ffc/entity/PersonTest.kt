@@ -20,6 +20,7 @@ package ffc.entity
 import com.gregwoodfill.assert.`should equal json`
 import ffc.entity.gson.parseTo
 import ffc.entity.gson.toJson
+import ffc.entity.healthcare.Disability
 import ffc.entity.healthcare.Icd10
 import ffc.entity.util.generateTempId
 import org.amshove.kluent.`should be`
@@ -141,5 +142,14 @@ class PersonTest {
             isDead `should be` true
             age `should be` 25
         }
+    }
+
+    @Test
+    fun disability() {
+        val disable = Disability(
+                Disability.Group.MENTAL,
+                cause = Disability.Cause.INJURED)
+
+        person.disabilities.add(disable)
     }
 }
