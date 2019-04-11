@@ -19,27 +19,12 @@ package ffc.entity
 
 import org.joda.time.DateTime
 
-const val USER_DATE_EXPIRE = 1
-const val ORG_DATE_EXPIRE = 9000
-
 data class Token(
     val user: User,
     val token: String
 ) {
-    @Deprecated("check at user", level = DeprecationLevel.ERROR)
-    val role = User.Role.USER
-
-    @Deprecated("not need", level = DeprecationLevel.ERROR)
-    val name: String = ""
-
-    @Deprecated("Use createDate", ReplaceWith("createDate"))
-    val timestamp: DateTime = DateTime.now()
-
     val createDate: DateTime = DateTime.now()
-    var expireDate: DateTime = when (user.role) {
-        User.Role.ORG -> createDate.plusDays(ORG_DATE_EXPIRE)
-        else -> createDate.plusDays(USER_DATE_EXPIRE)
-    }
+    var expireDate: DateTime = createDate.plusDays(1)
 
     val isNotExpire: Boolean
         get() = !isExpire

@@ -33,11 +33,9 @@ class User(id: String = generateTempId()) : Entity(id) {
         this.roles.addAll(roles)
     }
 
-    @Deprecated("use name instead", ReplaceWith("name"))
-    val username: String? = null
-
     lateinit var name: String
     lateinit var password: String
+
     var orgId: String? = null
     var displayName: String? = null
         get() = if (field != null) field else name
@@ -47,17 +45,10 @@ class User(id: String = generateTempId()) : Entity(id) {
             field = url
         }
 
-    @Deprecated("use rolse", ReplaceWith("roles"))
-    var role: Role = Role.USER
-
     val roles: MutableList<Role> = mutableListOf()
     var link: Link? = null
 
     enum class Role {
-        @Deprecated("Use admin")
-        ORG,
-        @Deprecated("Define as Provider, Surveyor or Patient")
-        USER,
         ADMIN,
         PROVIDER,
         SURVEYOR,
