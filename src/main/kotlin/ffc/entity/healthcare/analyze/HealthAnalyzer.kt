@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName
 import ffc.entity.gson.JsonExclude
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.Service
+import ffc.entity.healthcare.Severity
 import org.joda.time.DateTime
 
 class HealthAnalyzer {
@@ -62,7 +63,7 @@ class HealthAnalyzer {
         return _result[issue]?.haveIssue == true
     }
 
-    fun haveProblemWith(issue: HealthIssue.Issue, severity: HealthIssue.Severity): Boolean {
+    fun haveProblemWith(issue: HealthIssue.Issue, severity: Severity): Boolean {
         return _result.values.contains(HealthProblem(issue, severity))
     }
 

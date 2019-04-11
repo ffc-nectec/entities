@@ -24,6 +24,7 @@ import ffc.entity.healthcare.Diagnosis
 import ffc.entity.healthcare.Frequency
 import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.NCDScreen
+import ffc.entity.healthcare.Severity
 import ffc.entity.healthcare.cvdHiRiskSpecialPP
 import ffc.entity.healthcare.cvdSpecialPP
 import ffc.entity.healthcare.dementiaCheckSpecialPP
@@ -82,9 +83,9 @@ class HealthAnalyzerTest {
 
         with(analyzer.result) {
             size `should be equal to` 3
-            getAs<HealthProblem>(HealthIssue.Issue.HT)!!.severity `should equal` HealthIssue.Severity.HI
+            getAs<HealthProblem>(HealthIssue.Issue.HT)!!.severity `should equal` Severity.HI
             getAs<HealthChecked>(HealthIssue.Issue.DM)!!.haveIssue `should be` true
-            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.MID
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` Severity.MID
         }
     }
 
@@ -101,14 +102,14 @@ class HealthAnalyzerTest {
     fun haveIssueWithSeverity() {
         analyzer.analyze(visit1)
 
-        analyzer.haveProblemWith(HealthIssue.Issue.HT, HealthIssue.Severity.HI) `should be` true
+        analyzer.haveProblemWith(HealthIssue.Issue.HT, Severity.HI) `should be` true
     }
 
     @Test
     fun containValue() {
         analyzer.analyze(visit1)
 
-        analyzer.result `should have value` HealthProblem(HealthIssue.Issue.HT, HealthIssue.Severity.HI)
+        analyzer.result `should have value` HealthProblem(HealthIssue.Issue.HT, Severity.HI)
     }
 
     @Test
@@ -123,7 +124,7 @@ class HealthAnalyzerTest {
             `should have key`(HealthIssue.Issue.DEMENTIA)
 
             getAs<HealthChecked>(HealthIssue.Issue.DEMENTIA)!!.haveIssue `should equal` false
-            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` Severity.VERY_HI
         }
     }
 
@@ -134,7 +135,7 @@ class HealthAnalyzerTest {
         with(analyzer.result) {
             size `should be equal to` 4
 
-            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` HealthIssue.Severity.VERY_HI
+            getAs<HealthProblem>(HealthIssue.Issue.CVD)!!.severity `should equal` Severity.VERY_HI
         }
     }
 
