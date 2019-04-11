@@ -22,6 +22,7 @@ import ffc.entity.healthcare.HealthCareService
 import ffc.entity.healthcare.Icd10
 import ffc.entity.healthcare.NCDScreen
 import ffc.entity.healthcare.Service
+import ffc.entity.healthcare.Severity
 import ffc.entity.healthcare.bloodPressureLevel
 
 class HtAnalyzer : Analyzer {
@@ -49,12 +50,12 @@ class HtAnalyzer : Analyzer {
         return if (severity != null) HealthProblem(forIssue, service, severity) else null
     }
 
-    val BloodPressureAnalyzer?.severity: HealthIssue.Severity?
+    val BloodPressureAnalyzer?.severity: Severity?
         get() {
             return when {
                 this == null -> null
-                isPreHigh -> HealthIssue.Severity.MID
-                isHigh -> HealthIssue.Severity.HI
+                isPreHigh -> Severity.MID
+                isHigh -> Severity.HI
                 else -> null
             }
         }
