@@ -13,7 +13,6 @@
   "users": [
     {
       "name": "blast",
-      "role": "USER",
       "roles": [
         "PROVIDER",
         "SURVEYOR"
@@ -25,7 +24,6 @@
     },
     {
       "name": "pcu100214.airsync",
-      "role": "ORG",
       "roles": [
         "ADMIN"
       ],
