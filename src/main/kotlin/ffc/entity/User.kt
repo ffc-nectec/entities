@@ -19,6 +19,7 @@ package ffc.entity
 
 import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
+import org.joda.time.DateTime
 
 class User(id: String = generateTempId()) : Entity(id) {
 
@@ -44,6 +45,20 @@ class User(id: String = generateTempId()) : Entity(id) {
             if (url != null) checkValidUrl(url)
             field = url
         }
+
+    var isActivated: Boolean = false
+        private set
+    var activateTime: DateTime? = null
+        private set
+
+    fun activate() {
+        check(isActivated == false) { "User $name already activated" }
+        update {
+            isActivated = true
+            activateTime = DateTime.now()
+        }
+    }
+
 
     val roles: MutableList<Role> = mutableListOf()
     var link: Link? = null
