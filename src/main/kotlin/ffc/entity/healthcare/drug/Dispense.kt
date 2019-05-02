@@ -35,4 +35,3 @@ class Dispense(
 enum class Unit {
     UNKNOWN, TABLET, CAPSULE, ML, UNIT
 }
-
