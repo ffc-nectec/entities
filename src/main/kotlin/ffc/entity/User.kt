@@ -19,6 +19,7 @@ package ffc.entity
 
 import ffc.entity.util.checkValidUrl
 import ffc.entity.util.generateTempId
+import ffc.entity.util.toInternationalPhoneNumber
 import org.joda.time.DateTime
 
 class User(id: String = generateTempId()) : Entity(id) {
@@ -45,7 +46,15 @@ class User(id: String = generateTempId()) : Entity(id) {
             if (url != null) checkValidUrl(url)
             field = url
         }
-
+    var tel: String? = null
+        set(value) {
+            if (value != null) {
+                require(value.isNotBlank()) { "tel must not blank" }
+                field = value.toInternationalPhoneNumber()
+            } else {
+                field = null
+            }
+        }
     var isActivated: Boolean = false
         private set
     var activateTime: DateTime? = null
@@ -58,7 +67,6 @@ class User(id: String = generateTempId()) : Entity(id) {
             activateTime = DateTime.now()
         }
     }
-
 
     val roles: MutableList<Role> = mutableListOf()
     var link: Link? = null
