@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NECTEC
+ * Copyright (c) 2019 NECTEC
  *   National Electronics and Computer Technology Center, Thailand
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,8 +20,8 @@ package ffc.entity.healthcare.drug
 import ffc.entity.Lookup
 
 class Drug(
-        id: String,
-        name: String
+    id: String,
+    name: String
 ) : Lookup(id, name) {
 
 }

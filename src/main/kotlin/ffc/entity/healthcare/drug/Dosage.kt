@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NECTEC
+ * Copyright (c) 2019 NECTEC
  *   National Electronics and Computer Technology Center, Thailand
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,17 +18,17 @@
 package ffc.entity.healthcare.drug
 
 open class Dosage(
-        val amount: Double,
-        val unit: Unit = Unit.UNKNOWN,
-        val takeUntilFinish: Boolean = false
+    val amount: Double,
+    val unit: Unit = Unit.UNKNOWN,
+    val takeUntilFinish: Boolean = false
 )
 
 class MealDosage(
-        meals: List<Meal>,
-        val timing: Timing,
-        amount: Double,
-        unit: Unit = Unit.UNKNOWN,
-        takeUntilFinish: Boolean = false
+    meals: List<Meal>,
+    val timing: Timing,
+    amount: Double,
+    unit: Unit = Unit.UNKNOWN,
+    takeUntilFinish: Boolean = false
 ) : Dosage(amount, unit, takeUntilFinish) {
     val meals = meals.distinct()
 
@@ -42,8 +42,8 @@ class MealDosage(
 }
 
 class IntervalDosage(
-        val everyHours: IntRange,
-        amount: Double,
-        unit: Unit = Unit.UNKNOWN,
-        takeUntilFinish: Boolean = false
+    val everyHours: IntRange,
+    amount: Double,
+    unit: Unit = Unit.UNKNOWN,
+    takeUntilFinish: Boolean = false
 )

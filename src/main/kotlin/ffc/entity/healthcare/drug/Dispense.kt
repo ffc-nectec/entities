@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NECTEC
+ * Copyright (c) 2019 NECTEC
  *   National Electronics and Computer Technology Center, Thailand
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +18,12 @@
 package ffc.entity.healthcare.drug
 
 class Dispense(
-        val drug: Drug,
-        val amount: Double,
-        val unit: Unit = Unit.UNKNOWN,
-        val cost: Double? = null,
-        val price: Double? = null,
-        val dosage: Dosage? = null
+    val drug: Drug,
+    val amount: Double,
+    val unit: Unit = Unit.UNKNOWN,
+    val cost: Double? = null,
+    val price: Double? = null,
+    val dosage: Dosage? = null
 ) {
     val totalCost: Double?
         get() = cost?.times(amount)
