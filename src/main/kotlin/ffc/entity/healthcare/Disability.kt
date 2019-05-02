@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NECTEC
+ * Copyright (c) 2019 NECTEC
  *   National Electronics and Computer Technology Center, Thailand
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +20,12 @@ package ffc.entity.healthcare
 import org.joda.time.LocalDate
 
 class Disability(
-        val group: Group,
-        val detectDate: LocalDate = LocalDate.now(),
-        val startDate: LocalDate? = null,
-        val cause: Cause = Cause.UNKNOWN,
-        val disease: Disease? = null,
-        val severity: Severity = Severity.UNDEFINED
+    val group: Group,
+    val detectDate: LocalDate = LocalDate.now(),
+    val startDate: LocalDate? = null,
+    val cause: Cause = Cause.UNKNOWN,
+    val disease: Disease? = null,
+    val severity: Severity = Severity.UNDEFINED
 ) {
 
     init {

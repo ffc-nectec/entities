@@ -22,6 +22,4 @@ import ffc.entity.Lookup
 class Drug(
     id: String,
     name: String
-) : Lookup(id, name) {
-
-}
+) : Lookup(id, name)
