@@ -32,6 +32,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation("joda-time:joda-time:2.9.9")
+    implementation("com.github.piruin:jbcrypt:0.4")
     implementation("com.github.piruin.geok:geok:1.0.0")
     implementation("com.github.piruin.geok:geok-gson:1.0.0")
     implementation("com.google.code.gson:gson:2.8.1")
