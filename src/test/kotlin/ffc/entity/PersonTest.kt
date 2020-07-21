@@ -118,7 +118,7 @@ class PersonTest {
         with(copyPerson) {
             id `should be` "piruin"
             name `should equal` "นายพิรุณ พานิชผล"
-            age `should be` 25
+            age `should be` 27
         }
     }
 
