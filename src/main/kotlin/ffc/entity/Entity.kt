@@ -30,6 +30,8 @@ open class Entity(id: String = generateTempId()) : Cloneable {
     val type = javaClass.simpleName
     var timestamp: DateTime = DateTime.now()
         internal set
+    var allowUserId = mutableListOf<String>()
+
     @JsonExclude
     val bundle: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 
