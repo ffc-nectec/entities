@@ -17,6 +17,7 @@
 
 package ffc.entity
 
+import ffc.entity.healthcare.Behavior
 import ffc.entity.healthcare.Chronic
 import ffc.entity.healthcare.Disability
 import ffc.entity.healthcare.Disease
@@ -44,6 +45,7 @@ class Person(
     var chronics = mutableListOf<Chronic>()
     var disabilities = mutableListOf<Disability>()
     val haveChronic: Boolean get() = chronics.firstOrNull { it.isActive } != null
+    var behavior: Behavior? = null
     var avatarUrl: String? = null
         set(url) {
             if (url != null) checkValidUrl(url)
