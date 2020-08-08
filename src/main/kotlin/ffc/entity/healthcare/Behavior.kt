@@ -3,15 +3,15 @@ package ffc.entity.healthcare
 import org.joda.time.DateTime
 
 data class Behavior(
-    var ciga: Frequency? = null,
-    var wisky: Frequency? = null,
+    var smoke: Frequency? = null,
+    var alcohol: Frequency? = null,
     var exercise: Frequency? = null,
-    var bigaccidentever: Frequency? = null,
-    var tonic: Frequency? = null,
-    var habitfoming: Frequency? = null,
-    var drugbyyourseft: Frequency? = null,
-    var sugar: Frequency? = null,
-    var salt: Frequency? = null
+    var bigaccidentever: Boolean? = null,
+    var tonic: Boolean? = null,
+    var habitfoming: Boolean? = null,
+    var drugbyyourseft: Boolean? = null,
+    var sugar: Boolean? = null,
+    var salt: Boolean? = null
 ) {
     var timestamp: DateTime = DateTime.now()
         internal set
