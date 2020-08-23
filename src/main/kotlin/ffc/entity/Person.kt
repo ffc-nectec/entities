@@ -82,11 +82,12 @@ class Person(
         val relate: Relate,
         val id: String,
         val name: String,
-        val birthDate: LocalDate? = null,
+        @Deprecated("ยกเลิกใช้งาน")
+        val age: Int? = null,
         val avatarUrl: String? = null
     ) : Cloneable {
 
-        constructor(type: Relate, with: Person) : this(type, with.id, with.name, with.birthDate, with.avatarUrl)
+        constructor(type: Relate, with: Person) : this(type, with.id, with.name, with.age, with.avatarUrl)
 
         fun copy(): Relationship = clone() as Relationship
     }
