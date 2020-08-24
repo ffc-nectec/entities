@@ -44,6 +44,7 @@ open class HealthCareService(
     var pulseRate: Double? = null
     var respiratoryRate: Double? = null
     var bodyTemperature: Double? = null
+    var sugarLab: Double? = null
     var diagnosises: MutableList<Diagnosis> = mutableListOf()
     var note: String? = null
     var photosUrl: URLs = URLs()
